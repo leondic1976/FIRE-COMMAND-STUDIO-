@@ -6,6 +6,7 @@ import re
 import sys
 
 from scripts.audit_python_dependencies import dependencies
+from scripts.dependency_inventory import javascript_entries
 
 
 def collect(root, destination):
@@ -36,11 +37,12 @@ def collect(root, destination):
                     continue
                 notices.extend([f'--- {item} ---', text])
     lock = json.loads((root / 'package-lock.json').read_text(encoding='utf-8'))
-    for name, info in sorted(lock['packages'].items()):
+    for info in sorted(javascript_entries(lock), key=lambda entry: entry['path']):
+        name = info['path']
         directory = root / name
-        if not name or not directory.is_dir():
+        if info['first_party'] or not directory.is_dir():
             continue
-        inventory.append({'ecosystem':'javascript','name':name.removeprefix('node_modules/'),'version':info.get('version'),'license':info.get('license'),'build_only':bool(info.get('dev'))})
+        inventory.append({'ecosystem':'javascript','name':name.removeprefix('node_modules/'),'version':info['version'],'license':info['license_declaration'],'build_only':bool(info['development'])})
         for source in sorted(directory.iterdir()):
             if source.is_file() and re.match(r'(?i)^(license|copying|notice)(?:\.|$)', source.name) and source.stat().st_size < 1024 * 1024:
                 notices.extend(['=' * 72, f"{name} {info.get('version')}", source.read_text(encoding='utf-8', errors='replace')])

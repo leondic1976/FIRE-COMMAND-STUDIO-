@@ -23,5 +23,19 @@
   "original_user_backend_port_8010_untouched": true,
   "public_web_runtime_deployed": false,
   "runtime_choice_pending": true,
-  "existing_dependency_versions_and_integrities_changed": false
+  "existing_dependency_versions_and_integrities_changed": false,
+  "first_ci": {
+    "run": 44077535545,
+    "conclusion": "failure",
+    "failed_step": "dependency_inventory",
+    "root_cause": "npm workspace link records do not include a version",
+    "later_remote_security_steps": "skipped"
+  },
+  "workspace_inventory_regression": {
+    "tests_passed": 5,
+    "seconds": 0.07,
+    "javascript_records": 157,
+    "direct_python_records": 19,
+    "notice_entries": 144
+  }
 }

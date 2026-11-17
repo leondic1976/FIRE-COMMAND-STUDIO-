@@ -12,18 +12,37 @@ from importlib.metadata import metadata, version
 from pathlib import Path
 
 
-def inventory(root: Path):
-    manifest = json.loads((root / 'package-lock.json').read_text(encoding='utf-8'))
+def javascript_entries(manifest):
+    """Resolve npm workspace links from lock metadata, without reading link targets."""
     javascript = []
     for path, package in manifest['packages'].items():
         if not path:
             continue
+        workspace = package.get('link') is True
+        declaration = package
+        if workspace:
+            target = package.get('resolved')
+            if not isinstance(target, str) or target.startswith(('/', '\\')) or '\\' in target or ':' in target or '..' in target.split('/'):
+                raise ValueError('Workspace link must resolve inside the lockfile project')
+            declaration = manifest['packages'].get(target, {})
+            if declaration.get('link'):
+                raise ValueError('Workspace link must reference a declared package')
+        version_value = declaration.get('version')
+        if not isinstance(version_value, str) or not version_value.strip():
+            raise ValueError('Missing package version: ' + path)
         javascript.append({
             'path': path,
-            'version': package['version'],
-            'license_declaration': package.get('license', 'UNDECLARED'),
-            'development': package.get('dev', False),
+            'version': version_value,
+            'license_declaration': declaration.get('license', 'UNDECLARED'),
+            'development': declaration.get('dev', False),
+            'first_party': workspace or 'node_modules' not in path.split('/'),
         })
+    return javascript
+
+
+def inventory(root: Path):
+    manifest = json.loads((root / 'package-lock.json').read_text(encoding='utf-8'))
+    javascript = javascript_entries(manifest)
     python = []
     for line in (root / 'requirements.txt').read_text(encoding='utf-8').splitlines():
         match = re.match(r'^([a-zA-Z0-9_.-]+)(?:\[[^]]+\])?==([^\s]+)$', line.strip())
