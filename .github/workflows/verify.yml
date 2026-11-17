@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
       - run: python -m pip install -r requirements.txt
       - run: npm run build
+      - name: Create ignored runtime directory
+        run: python -c "from pathlib import Path; Path('runtime').mkdir(parents=True, exist_ok=True)"
       - run: python -m pytest tests -q --basetemp=runtime/pytest
       - run: npm test
       - run: python scripts/dependency_inventory.py

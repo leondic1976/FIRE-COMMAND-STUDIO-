@@ -21,7 +21,7 @@
 ## 확인한 환경과 배포 기록
 
 - GitHub 원격: `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-.git`, 공개 빈 저장소, push 권한 확인.
-- 로컬 브랜치: `main`, 기존 커밋 없음. 검증된 현재 구현을 먼저 기록/푸시한다.
+- 로컬 브랜치: `main`, 초기 커밋998074eacafc37cd46d98fae57e195cff7af36d4를 기록/원격 main 푸시 완료. 첫 원격 CI의 runtime 준비 오류를 수정하고 재검증한다.
 - Sites 정적/Worker 호스팅 도구와 Vercel 로그인 환경은 사용 가능하다. 현재 Site 생성/배포는 수행하지 않았다. 기존 다른 Vercel 프로젝트는 변경하지 않는다.
 - `.gitattributes`에서 자동 줄바꿈 변환을 끈다. Windows/Linux 간 plan/계약/소스 SHA256의 원바이트를 보존하고 Git 인덱스와 작업 파일 일치를 확인한다.
 - `.env`, 키/쿠키, runtime DB/백업, node_modules, dist, 캡처/PDF/시험 임시자료는 커밋에서 제외한다. 합성 소스/가명 예시와 검토용 메타데이터만 게시한다.

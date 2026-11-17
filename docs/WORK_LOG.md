@@ -278,3 +278,9 @@
 - 현재 same-origin FastAPI/WS/영구 DB 앱의 dist만 정적 게시하면 동작하지 않는 계약을 확인했다. 단순 검토본을 전체 기능으로 대체하지 않는다. 정적 웹+관리형 서버리스 서비스 사용과 순수 브라우저 전용의 보안/다중 PC 차이를 설명하고 필수 구조를 질문했다. 답변 전 종속 구현/새 호스팅 생성을 하지 않고 독립 게시 준비를 진행한다. STATIC_HOSTING에 기능별 실행 조건을 기록했다.
 - core.autocrlf=true에서 원본/소스/데이터 SHA가 변하지 않게 .gitattributes로 원바이트를 보존했다(IMP071). 첫 whitespace 명령은 CRLF를 공백으로 오인해 다량 출력됐으며 cr-at-eol 속성으로 구분했다. 재검사215개/1,971,249바이트의 인덱스/작업 파일이 모두 같고 금지 경로/제한된 키패턴 발견0, 원본/사본과 기존 제품 소스 지문이 동일하다. 남은 whitespace1건은 기존 application.py839의 빈 EOF이며 검증된 소스 바이트 보존을 위해 유지한다. 전체 기능 시험 재실행이 필요한 런타임 변경은 없다.
 - 공개 공식 Git 원격에서 checkout/setup-node/setup-python의v7 태그가 실제 존재함을 확인했다. 원격 CI는 push 뒤 결과를 별도로 확인한다. 아직 성공한 커밋/푸시/배포로 기록하지 않는다. 원시 검사 artifacts/git-prepublish-check.json.
+
+### 2026-11-17 16:58 KST 초기 커밋/푸시·원격 CI 실제 실패 수정
+
+- 초기 커밋998074eacafc37cd46d98fae57e195cff7af36d4/215파일을 main에 생성하고 origin/main 푸시 성공·원격 SHA 일치를 확인했다. 사용자 명시 승인 범위의 게시이며 기존 Chrome/기관 승인을 뜻하지 않는다.
+- 원격 실행44042619512는 Ubuntu/Python3.14.10에서 설치/웹 타입·빌드는 통과했지만 Pytest137통과/19skip/86준비오류로 실패했다. runtime은 Git 제외라 깨끗한 체크아웃에는 부모 폴더가 없었으며 --basetemp 생성에서 FileNotFoundError였다. 뒤 npm test/인벤토리/Python·npm 보안 단계는 skip이므로 통과로 기록하지 않는다. raw로그 artifacts/ci-first-failed.log/공개 실행 URL 보존.
+- CI에 Pytest 전 runtime.mkdir(parents=True,exist_ok=True)를 추가하고 YAML/순서를 확인했다(IMP072). 제품 코드는 변경하지 않았다. 같은 원격 전체 검증을 재실행하며 통과 전에는 배포 완료로 기록하지 않는다. 정적 전체 기능 구조의 필수 질문은 계속 답변 대기다.

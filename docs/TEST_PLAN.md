@@ -268,3 +268,5 @@ python -m pytest tests/e2e/test_browser.py tests/e2e/test_external_browser.py te
 ### 2026-11-17 16:56 KST 최초 Git 게시 전 검증
 
 .gitattributes의 원바이트 보존 아래215개 인덱스 파일/작업 파일 Git blob을 전부 대조해 일치했다. 금지 경로·제한된 키패턴0, plan사본/기존 소스 SHA 동일이다. CRLF를 인식한 diff --check의 유일한 기존 문제는 application.py839의 빈 EOF로 기록하며 코드 바이트는 바꾸지 않았다. 공식 actions3종v7 태그를 원격에서 확인했다. 제품 변경 없이 Git/배포 문서만 추가했으므로 이미 통과한 기능 시험을 반복하지 않는다. 호스팅 실행 환경의 새 기능/권한 시험은 별도 필요하다.
+
+원격 CI 최초 실제 실행44042619512: 설치/타입/빌드 성공, Pytest137통과/19skip/86오류(부모 runtime 폴더 부재), 이후4개 단계 skip. 첫 실패를 보존하고 CI 부모 폴더 생성 뒤 동일 전체 재시험한다. 원격 기준이므로 로컬226개와 합산하지 않는다.
