@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-11-17T02:26:23.559950+00:00",
+  "kind": "SYNTHETIC_CONSOLE_LAYOUT_AND_MAP_REVIEW",
+  "api_source_sha256": "49dcd590af46c71990dee0a71ec0e19e880b762aa997d8a8d18e9c7efc3a289f",
+  "institutional_release_approved": false,
+  "real_user_pilot": false,
+  "actual_kakao_key_or_sdk_verified": false,
+  "results": {
+    "pytest-release.xml": {
+      "tests": 194,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 39.599,
+      "junit_sha256": "a506fd491088bff95c98ede2494eef2e96628d00c8a495351ddaec06059b5223",
+      "report": "pytest-release.xml",
+      "passed": 194
+    },
+    "browser-release-chromium.xml": {
+      "tests": 9,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 141.098,
+      "junit_sha256": "1149e95de4edc4618a1858cb0f1ae222eaacf30d18d2192c7015b80ddcd675a6",
+      "report": "browser-release-chromium.xml",
+      "passed": 9
+    },
+    "browser-release-firefox.xml": {
+      "tests": 9,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 184.715,
+      "junit_sha256": "46d30e1e5180a08c5b8c7adba305eb230565adf56f4f0f1ac956b00f6b7c1ea5",
+      "report": "browser-release-firefox.xml",
+      "passed": 9
+    },
+    "map-failures-chromium.xml": {
+      "tests": 3,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 17.012,
+      "junit_sha256": "83d7c7b92996185af09d1a8929738dd440f65a58fef23a3951e08f15444ad38a",
+      "report": "map-failures-chromium.xml",
+      "passed": 3
+    },
+    "map-failures-firefox.xml": {
+      "tests": 3,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 28.147,
+      "junit_sha256": "423a99e5ebfb505b7f3dfdbddb680454432dc1af954531ffc9c0101c22e04dde",
+      "report": "map-failures-firefox.xml",
+      "passed": 3
+    },
+    "layout-fallback-current-firefox.xml": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 9.386,
+      "junit_sha256": "bde61479498dd5262e91e688a0e0a81a03626b41f18b6bdb14ec215f05e38ba4",
+      "report": "layout-fallback-current-firefox.xml",
+      "passed": 1
+    },
+    "evidence-finalization.xml": {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 0.048,
+      "junit_sha256": "56790b5fabfb0086a2322c702e279e336d3581a721c90798ba521a3f84ba75ff",
+      "report": "evidence-finalization.xml",
+      "passed": 1
+    }
+  },
+  "failed_runs_preserved": [
+    {
+      "tests": 9,
+      "errors": 0,
+      "failures": 1,
+      "skipped": 0,
+      "seconds": 185.074,
+      "junit_sha256": "0565214d35f727818a73c1b2c473cde16108b414592d4cd914b01f74ca37d6f0",
+      "report": "browser-review-firefox-initial-failed.xml",
+      "passed": 8
+    },
+    {
+      "tests": 3,
+      "errors": 0,
+      "failures": 3,
+      "skipped": 0,
+      "seconds": 3.46,
+      "junit_sha256": "51f0529f9aa9b4358e4ae78dd5658f12f2a6ae39d69da3c09779521ed46f4fc9",
+      "report": "map-failures-chromium-initial-failed.xml",
+      "passed": 0
+    }
+  ],
+  "resolutions": [
+    "Large scene viewport caused Firefox End key to leave the final state outside the outer viewport; Home/End explicitly reveal the requested item without weakening the assertion. Full nine-case suites repeated in both engines.",
+    "Map QA initially submitted the response state_version inside the strict Exercise contract. Fixture now sends the envelope version separately. API validation unchanged."
+  ],
+  "map_qa": {
+    "loopback_base": "http://127.0.0.1:8012",
+    "key_is_synthetic": true,
+    "provider_requests_locally_aborted_or_fulfilled": true,
+    "actual_provider_traffic": false,
+    "cases": [
+      "network_error",
+      "sdk_load_timeout",
+      "no_roadview_panorama"
+    ]
+  },
+  "source_hashes": {
+    "apps/web/src/CandidateControls.tsx": "d5a8792e8bd77ef9dd05c1cb5a68959a51d0125fbeefc8ea6493dc9492ff4f2e",
+    "apps/web/src/BoardLayout.tsx": "aee301a51f25fcc8f7d4053e2db25fe637237582ea4f1c8c761f910ee971d1cd",
+    "apps/web/src/candidate-controls.css": "df3bc3ef180fbbfa87d4d6b6b896c4e96726c465e21a61b1303e9696ef48bdce",
+    "apps/web/src/board-layout.css": "6fdee8b3426682a25ae96f994131250a4a5ef9d61bca83f48a6db3683310fc5d",
+    "packages/scene3d/Scene.tsx": "8e5ae928f87adb59690a88d038f1e5d0eebba7f85b0ce904e915095c364d7a7d",
+    "scripts/finalize_evidence.py": "c57d76615ae4225665fd66286ff0adfb4f94c680136cba07e48a66628bfe8f7b",
+    "scripts/run_map_fixture.py": "56c2dae08704154e58556389ff6c507c2f9749d9a43e0b0f704e75d9420dd567"
+  },
+  "scope_note": "194 API/unit/integration/security cases; 9 normal browser flows plus 3 synthetic SDK failure cases per engine. Focused repeats are overlapping regression evidence, not additional distinct features. The current 60-minute soak is still in progress and not asserted passed."
+}

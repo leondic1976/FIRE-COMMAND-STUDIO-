@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-11-17T03:45:12.501510+00:00",
+  "synthetic_only": true,
+  "institutional_approval": false,
+  "note": "합성 개발 예시. 날짜는 생성 시점 기준이며 실제 명부·현장자료가 아님. 발행 전 숙지/검수 필요.",
+  "files": [
+    {
+      "path": "packages/domain-schemas/exercise.schema.json",
+      "sha256": "fd36148ab71ffc272fc91ade7dd4b85cc912728bf4a9272e77b2a2b6956e4e29"
+    },
+    {
+      "path": "packages/domain-schemas/asset-provenance.schema.json",
+      "sha256": "8494ba3273c7129b3787d6fd4f5dd15bf6d181c0f3b9aa01a1527573a5648184"
+    },
+    {
+      "path": "packages/domain-schemas/openapi.json",
+      "sha256": "d020c56fe811e7d56bf014b67af9da1fe807498c037b5cd8e7b7303cbd350685"
+    },
+    {
+      "path": "data/role-seeds/statutory-base.json",
+      "sha256": "271b1ca0d4c31879fc7285bf8bad739447aab017ebdf821e94a18121889a3f6b"
+    },
+    {
+      "path": "data/synthetic/factory.json",
+      "sha256": "4f67e0d471cd3e238460c87b8cc5dcb9e115133401aa1b80b573df82d895d85d"
+    },
+    {
+      "path": "data/synthetic/highrise.json",
+      "sha256": "cb3a318823248bc306afc689e35cf6be592bdfaaf2830c98f6c5c17c321d6ec5"
+    },
+    {
+      "path": "data/synthetic/underground.json",
+      "sha256": "62a5f2e9912a64ff693a3467f51f70896feb23c4541e197f4370f7e996d87801"
+    },
+    {
+      "path": "data/synthetic/compound.json",
+      "sha256": "54aebe5e5d5b377bc062e1ad3b1d90d5d4d8bbe790af410e12bffa20ccdca84f"
+    }
+  ]
+}

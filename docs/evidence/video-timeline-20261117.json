@@ -1,0 +1,83 @@
+{
+  "kind": "SYNTHETIC_VIDEO_TIMELINE_BEFORE_GENERATOR",
+  "created_at": "2026-11-17T03:25:56.622903+00:00",
+  "api_source_sha256": "324dbee0a0576c5c81497f2dcfcfd35fe72aafe690515b0a66b6606733c1ac94",
+  "scope": "Recorded-file processing, event cue and training-clock browser playback; pre-generator source. Not evidence for later API changes.",
+  "synthetic_av_fixture": true,
+  "actual_av_verified": false,
+  "actual_institutional_video_or_host_approved": false,
+  "real_lan_pilot": false,
+  "institutional_release_approved": false,
+  "results": [
+    {
+      "file": "artifacts/tests/pytest-clock-final-candidate.xml",
+      "sha256": "8e91ec9aabb2902852b23628a4548fd7095526b3bb58a13f9e87cfc5294cc6b1",
+      "tests": 209,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 41.689
+    },
+    {
+      "file": "artifacts/tests/browser-media-final-chromium.xml",
+      "sha256": "8aeada272b92a979be449b1ee0e184caca8afbbc5f220f4eeb9608379ca2a270",
+      "tests": 10,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 194.493
+    },
+    {
+      "file": "artifacts/tests/browser-media-final-firefox.xml",
+      "sha256": "95619dcb1d1fc8659512187d4c0c5b12144712f9ef4f819a3d3eab3fa7c3d69b",
+      "tests": 10,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 225.806
+    },
+    {
+      "file": "artifacts/tests/media-browser-chromium-serverclock.xml",
+      "sha256": "b9258cac4acc0158c0285a0a0a1100345db89c2ae5efbcf2e7e65af4a6f3a054",
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 38.71
+    }
+  ],
+  "pdf": {
+    "file": "output/pdf/history/media-provenance-pre-generator-20261117.pdf",
+    "synthetic_only": true,
+    "pages": 3,
+    "required_missing": [],
+    "text_outside_pages": [],
+    "private_review_note_absent": true,
+    "pdf_sha256": "53b641ab1e3d88c56551a2422922820a38f91559a6a52c579edef6f18703e8df",
+    "renderer": "PyMuPDF 1.27.2.3",
+    "visually_reviewed": true,
+    "reviewed_pages": [
+      1,
+      2,
+      3
+    ],
+    "visual_findings": []
+  },
+  "interrupted_soak": {
+    "file": "artifacts/perf/soak-media-clock-before-generator-incomplete.json",
+    "seconds": 402.63,
+    "clients": 12,
+    "commands": 39,
+    "errors": 0,
+    "complete": false,
+    "passed": false
+  },
+  "web_unit_tests": 22,
+  "typecheck_and_build_passed": true,
+  "remaining": [
+    "Generator contract and GUI completion",
+    "Final fixed-source regression and 60 minute soak",
+    "Institutional approvals and real-room pilot"
+  ],
+  "source_state": "Historical before generator API contract changes"
+}

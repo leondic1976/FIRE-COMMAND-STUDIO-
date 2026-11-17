@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "ConversionClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "input_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Input Sha256",
+          "type": "string"
+        },
+        "output_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Output Sha256",
+          "type": "string"
+        },
+        "tool_manifest_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Tool Manifest Sha256",
+          "type": "string"
+        },
+        "converter_version": {
+          "maxLength": 150,
+          "minLength": 1,
+          "title": "Converter Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_sha256",
+        "output_sha256",
+        "tool_manifest_sha256",
+        "converter_version"
+      ],
+      "title": "ConversionClaim",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Provider",
+          "type": "string"
+        },
+        "as_of": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "As Of",
+          "type": "string"
+        },
+        "rights": {
+          "default": "approved",
+          "enum": [
+            "approved",
+            "restricted",
+            "unknown"
+          ],
+          "title": "Rights",
+          "type": "string"
+        },
+        "confidence": {
+          "default": "simulated",
+          "enum": [
+            "verified",
+            "approximate",
+            "unverified",
+            "simulated"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "classification": {
+          "default": "SYNTHETIC",
+          "enum": [
+            "SYNTHETIC",
+            "INTERNAL",
+            "PUBLIC"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "url": {
+          "default": "",
+          "maxLength": 500,
+          "title": "Url",
+          "type": "string"
+        },
+        "reviewer": {
+          "default": "",
+          "maxLength": 100,
+          "title": "Reviewer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "as_of"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "label": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+    },
+    "creator": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Creator",
+      "type": "string"
+    },
+    "license_scope": {
+      "maxLength": 1000,
+      "minLength": 3,
+      "title": "License Scope",
+      "type": "string"
+    },
+    "location_note": {
+      "default": "",
+      "maxLength": 500,
+      "title": "Location Note",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/Source"
+    },
+    "conversion_claim": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ConversionClaim"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "label",
+    "creator",
+    "license_scope",
+    "source"
+  ],
+  "title": "AssetProvenance",
+  "type": "object"
+}

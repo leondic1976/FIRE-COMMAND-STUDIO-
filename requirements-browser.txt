@@ -1,0 +1,4 @@
+# Optional. Browser execution requires the separately requested user approval.
+playwright==1.62.0
+# Optional local PDF visual verification used by scripts/check_report_pdf.py.
+PyMuPDF==1.27.2.3

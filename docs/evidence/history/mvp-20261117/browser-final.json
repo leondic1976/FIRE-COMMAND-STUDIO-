@@ -1,0 +1,54 @@
+{
+  "synthetic_only": true,
+  "browser_results": [
+    {
+      "tests": 6,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "playwright": "1.62.0",
+      "headless": true,
+      "base_url": "http://127.0.0.1:8010",
+      "existing_browser_profile_used": false,
+      "real_user_pilot": false,
+      "target_pc_fps_verified": false,
+      "seconds": 95.698,
+      "cases": [
+        "test_new_exercise_readiness_publish_and_ten_injects",
+        "test_participant_solo_feedback_and_account_isolation",
+        "test_old_session_selection_reconnect_and_role_switch",
+        "test_phone_layout_and_modal_keyboard",
+        "test_public_board_uses_public_network_projection",
+        "test_webgl_unavailable_preserves_scene_state_in_2d"
+      ]
+    },
+    {
+      "tests": 6,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "firefox",
+      "browser_version": "153.0",
+      "playwright": "1.62.0",
+      "headless": true,
+      "base_url": "http://127.0.0.1:8010",
+      "existing_browser_profile_used": false,
+      "real_user_pilot": false,
+      "target_pc_fps_verified": false,
+      "seconds": 131.192,
+      "cases": [
+        "test_new_exercise_readiness_publish_and_ten_injects",
+        "test_participant_solo_feedback_and_account_isolation",
+        "test_old_session_selection_reconnect_and_role_switch",
+        "test_phone_layout_and_modal_keyboard",
+        "test_public_board_uses_public_network_projection",
+        "test_webgl_unavailable_preserves_scene_state_in_2d"
+      ]
+    }
+  ],
+  "institutional_release_approved": false,
+  "real_lan_pilot": false,
+  "target_pc_fps_verified": false
+}

@@ -1,0 +1,232 @@
+{
+  "generated_at": "2026-11-17T01:52:09.712719+00:00",
+  "source": "PyPI release vulnerability metadata",
+  "scope": "Installed project dependency closure including declared extras",
+  "tls_verification": true,
+  "security_or_institutional_certification": false,
+  "results": [
+    {
+      "name": "annotated-doc",
+      "version": "0.0.4",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.7.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "anyio",
+      "version": "4.14.2",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.18",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "click",
+      "version": "8.3.1",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "et-xmlfile",
+      "version": "2.0.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "fastapi",
+      "version": "0.138.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "greenlet",
+      "version": "3.3.1",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "httptools",
+      "version": "0.8.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "idna",
+      "version": "3.15",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "openpyxl",
+      "version": "3.1.5",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "packaging",
+      "version": "26.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pluggy",
+      "version": "1.6.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "psycopg2-binary",
+      "version": "2.9.12",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pydantic",
+      "version": "2.12.5",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.41.5",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pygments",
+      "version": "2.20.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pytest",
+      "version": "9.0.3",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pytest-asyncio",
+      "version": "1.4.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.2",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.31",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.3",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "sqlalchemy",
+      "version": "2.0.46",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "starlette",
+      "version": "1.3.1",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.15.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.2",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "tzdata",
+      "version": "2025.3",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.40.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "watchfiles",
+      "version": "1.2.0",
+      "queried": true,
+      "findings": []
+    },
+    {
+      "name": "websockets",
+      "version": "16.0",
+      "queried": true,
+      "findings": []
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,1126 @@
+{
+  "id": "example-underground",
+  "name": "지하상가 침수 공동 상황판단 훈련",
+  "organization_name": "가상 훈련기관",
+  "objective": "임무 숙지·정보검증·협업·안전·지휘결정",
+  "mode": "GROUP",
+  "organization_type": "FIELD_COMMAND",
+  "roles": [
+    {
+      "id": "incident_commander",
+      "name": "지휘대장",
+      "tasks": [
+        "재난현장 지휘·조정·통제",
+        "위험과 자원 제약에 따른 우선순위·지휘결론",
+        "통제단 가동 전 지휘와 전환 판단"
+      ],
+      "reports_to": null,
+      "department": "기관 확인 필요",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "field_officer",
+      "name": "현장지휘요원",
+      "tasks": [
+        "지휘대장 지휘 보좌",
+        "초기 대응활동 계획 수립 지원",
+        "현장 대응방안과 소방력 배치 제안"
+      ],
+      "reports_to": "incident_commander",
+      "department": "현장지휘부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "resource_officer",
+      "name": "자원지원요원",
+      "tasks": [
+        "자원집결지·대기소 선정 지원",
+        "동원자원 현황 관리",
+        "지원기관·대체자원 요청과 회신 확인"
+      ],
+      "reports_to": "incident_commander",
+      "department": "자원지원부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "communications_officer",
+      "name": "통신지원요원",
+      "tasks": [
+        "통신체계 유지·관리",
+        "무전지휘 지원과 전달 확인",
+        "교신 장애 시 예비통신계획 보고"
+      ],
+      "reports_to": "incident_commander",
+      "department": "현장지휘부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "safety_officer",
+      "name": "안전관리요원",
+      "tasks": [
+        "현장 안전사고 예방계획 검토",
+        "안전진단과 위험요인 보고",
+        "대원 보호·안전조치 권고"
+      ],
+      "reports_to": "incident_commander",
+      "department": "현장지휘부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "situation_officer",
+      "name": "상황조사요원",
+      "tasks": [
+        "현장·119상황실 정보 지원",
+        "상황판단 정보 수집·제공",
+        "확인 사실과 미확인 정보를 구분해 종합 보고"
+      ],
+      "reports_to": "incident_commander",
+      "department": "대응계획부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    },
+    {
+      "id": "medical_officer",
+      "name": "구급지휘요원",
+      "tasks": [
+        "재난의료체계 가동 지원",
+        "사상자 현황과 수용능력 확인",
+        "이송·의료자원 조정안 보고"
+      ],
+      "reports_to": "incident_commander",
+      "department": "현장지휘부",
+      "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+      "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+      "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+      "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+      "version": 1,
+      "critical": true
+    }
+  ],
+  "persons": [
+    {
+      "id": "person-01",
+      "display_name": "훈련요원 01",
+      "available": true
+    },
+    {
+      "id": "person-02",
+      "display_name": "훈련요원 02",
+      "available": true
+    },
+    {
+      "id": "person-03",
+      "display_name": "훈련요원 03",
+      "available": true
+    },
+    {
+      "id": "person-04",
+      "display_name": "훈련요원 04",
+      "available": true
+    },
+    {
+      "id": "person-05",
+      "display_name": "훈련요원 05",
+      "available": true
+    },
+    {
+      "id": "person-06",
+      "display_name": "훈련요원 06",
+      "available": true
+    },
+    {
+      "id": "person-07",
+      "display_name": "훈련요원 07",
+      "available": true
+    },
+    {
+      "id": "person-08",
+      "display_name": "훈련요원 08",
+      "available": true
+    },
+    {
+      "id": "person-09",
+      "display_name": "훈련요원 09",
+      "available": true
+    },
+    {
+      "id": "person-10",
+      "display_name": "훈련요원 10",
+      "available": true
+    }
+  ],
+  "assignments": [
+    {
+      "id": "assignment-1",
+      "role_id": "incident_commander",
+      "person_id": "person-01",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-08",
+        "person-09"
+      ]
+    },
+    {
+      "id": "assignment-2",
+      "role_id": "field_officer",
+      "person_id": "person-02",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-09",
+        "person-10"
+      ]
+    },
+    {
+      "id": "assignment-3",
+      "role_id": "resource_officer",
+      "person_id": "person-03",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-10",
+        "person-08"
+      ]
+    },
+    {
+      "id": "assignment-4",
+      "role_id": "communications_officer",
+      "person_id": "person-04",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-08",
+        "person-09"
+      ]
+    },
+    {
+      "id": "assignment-5",
+      "role_id": "safety_officer",
+      "person_id": "person-05",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-09",
+        "person-10"
+      ]
+    },
+    {
+      "id": "assignment-6",
+      "role_id": "situation_officer",
+      "person_id": "person-06",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-10",
+        "person-08"
+      ]
+    },
+    {
+      "id": "assignment-7",
+      "role_id": "medical_officer",
+      "person_id": "person-07",
+      "effective_from": "2026-11-16T03:45:12.495578Z",
+      "effective_to": "2026-12-17T03:45:12.495578Z",
+      "shift_id": "A",
+      "status": "ACTIVE",
+      "backups": [
+        "person-08",
+        "person-09"
+      ]
+    }
+  ],
+  "subject": {
+    "id": "site-demo",
+    "name": "가상 지하상가 침수",
+    "target_mode": "VIRTUAL",
+    "scenario_factuality": "SIMULATED",
+    "map_context": "SYNTHETIC",
+    "latitude": 37.5,
+    "longitude": 127.0,
+    "north_rotation": 0.0,
+    "elevation": 0.0,
+    "buildings": [
+      {
+        "id": "B01",
+        "name": "지하상가 연결시설 A동",
+        "use": "지하상가 연결시설 · 지하구역 위치는 주석",
+        "floors": 3,
+        "floor_height": 4.0,
+        "width": 32.0,
+        "depth": 22.0,
+        "x": 0.0,
+        "z": 0.0,
+        "rotation": 0.0,
+        "color": "#b3bdc4",
+        "entrances": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "footprint": [],
+        "accuracy": "SIMULATED",
+        "basement_floors": 0,
+        "roof_style": "FLAT",
+        "window_style": "REGULAR",
+        "wall_finish": "CONCRETE",
+        "floor_outlines": []
+      },
+      {
+        "id": "B02",
+        "name": "인접 공장 B동",
+        "use": "공장",
+        "floors": 2,
+        "floor_height": 4.0,
+        "width": 22.0,
+        "depth": 18.0,
+        "x": 48.0,
+        "z": -12.0,
+        "rotation": 0.0,
+        "color": "#bda88f",
+        "entrances": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "footprint": [],
+        "accuracy": "SIMULATED",
+        "basement_floors": 0,
+        "roof_style": "FLAT",
+        "window_style": "REGULAR",
+        "wall_finish": "CONCRETE",
+        "floor_outlines": []
+      },
+      {
+        "id": "B03",
+        "name": "인접 창고 C동",
+        "use": "창고",
+        "floors": 2,
+        "floor_height": 4.0,
+        "width": 26.0,
+        "depth": 16.0,
+        "x": -45.0,
+        "z": -18.0,
+        "rotation": 0.0,
+        "color": "#8fa7af",
+        "entrances": [
+          "NORTH",
+          "SOUTH"
+        ],
+        "footprint": [],
+        "accuracy": "SIMULATED",
+        "basement_floors": 0,
+        "roof_style": "FLAT",
+        "window_style": "REGULAR",
+        "wall_finish": "CONCRETE",
+        "floor_outlines": []
+      }
+    ],
+    "features": [
+      {
+        "id": "B01-F01-Z01",
+        "name": "주대상물 1층 북측",
+        "kind": "ZONE",
+        "building_id": "B01",
+        "floor": 1,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "smoke": 0,
+          "fire": 0,
+          "casualties": 0
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "B01-F02-Z01",
+        "name": "주대상물 2층 북측",
+        "kind": "ZONE",
+        "building_id": "B01",
+        "floor": 2,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "smoke": 0,
+          "fire": 0,
+          "casualties": 0
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "B01-F03-Z01",
+        "name": "주대상물 3층 북측",
+        "kind": "ZONE",
+        "building_id": "B01",
+        "floor": 3,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "smoke": 0,
+          "fire": 0,
+          "casualties": 0
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "B02",
+        "name": "인접 공장 B동",
+        "kind": "ZONE",
+        "building_id": "B02",
+        "floor": 0,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "warning": false
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "B03",
+        "name": "인접 창고 C동",
+        "kind": "ZONE",
+        "building_id": "B03",
+        "floor": 0,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "warning": false
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "ROAD01",
+        "name": "북측 진입로",
+        "kind": "ROAD",
+        "building_id": null,
+        "floor": 0,
+        "x": 0.0,
+        "z": -35.0,
+        "state": {
+          "closed": false
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "ROAD02",
+        "name": "동측 우회로",
+        "kind": "ROAD",
+        "building_id": null,
+        "floor": 0,
+        "x": 32.0,
+        "z": 0.0,
+        "state": {
+          "closed": false
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "ENT01",
+        "name": "북측 출입구",
+        "kind": "ENTRANCE",
+        "building_id": "B01",
+        "floor": 0,
+        "x": 0.0,
+        "z": -11.0,
+        "state": {
+          "closed": false
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "H01",
+        "name": "가상 소화전 H01",
+        "kind": "HYDRANT",
+        "building_id": null,
+        "floor": 0,
+        "x": -28.0,
+        "z": 26.0,
+        "state": {
+          "water": "UNCONFIRMED"
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "H02",
+        "name": "가상 소화전 H02",
+        "kind": "HYDRANT",
+        "building_id": null,
+        "floor": 0,
+        "x": 55.0,
+        "z": 27.0,
+        "state": {
+          "water": "AVAILABLE"
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "V01",
+        "name": "모의 펌프차 01",
+        "kind": "VEHICLE",
+        "building_id": null,
+        "floor": 0,
+        "x": 6.0,
+        "z": 25.0,
+        "state": {
+          "status": "WAITING",
+          "communication": "NORMAL"
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "PERIMETER01",
+        "name": "훈련 위험통제선",
+        "kind": "PERIMETER",
+        "building_id": null,
+        "floor": 0,
+        "x": 0.0,
+        "z": 0.0,
+        "state": {
+          "radius": 15
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "ASSEMBLY01",
+        "name": "가상 자원집결지",
+        "kind": "ASSEMBLY",
+        "building_id": null,
+        "floor": 0,
+        "x": -48.0,
+        "z": 30.0,
+        "state": {
+          "status": "AVAILABLE"
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "HOSPITAL01",
+        "name": "모의 협력병원",
+        "kind": "HOSPITAL",
+        "building_id": null,
+        "floor": 0,
+        "x": 65.0,
+        "z": -35.0,
+        "state": {
+          "status": "UNCONFIRMED"
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      },
+      {
+        "id": "UG01",
+        "name": "지하상가 북측 침수구역 (위치 주석)",
+        "kind": "ZONE",
+        "building_id": "B01",
+        "floor": 0,
+        "x": 0.0,
+        "z": -20.0,
+        "state": {
+          "water": 0,
+          "casualties": 0
+        },
+        "data_origin": "SIMULATED",
+        "source_layer_id": null,
+        "width": 4.0,
+        "depth": 4.0,
+        "height": 2.5,
+        "rotation": 0.0,
+        "linked_building_id": null
+      }
+    ],
+    "source": {
+      "provider": "FIRE-COMMAND 절차 생성 합성자료",
+      "as_of": "2026-11-17",
+      "rights": "approved",
+      "confidence": "simulated",
+      "classification": "SYNTHETIC",
+      "url": "",
+      "reviewer": ""
+    },
+    "model_accuracy": "SIMULATED",
+    "interior_verified": false,
+    "external_layers": [],
+    "asset_bindings": []
+  },
+  "external_reviews": [],
+  "asset_reviews": [],
+  "events": [
+    {
+      "id": "EV-01",
+      "title": "지하상가 초기 침수 신고",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "situation_officer",
+        "incident_commander"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 현장대: 지하상가 북측에서 침수 신고가 들어왔습니다. 수위·인원·전기설비 상태는 미확인입니다.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "UG01",
+          "field": "water",
+          "before": 0,
+          "after": 1,
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-02"
+      ],
+      "terminal": false,
+      "simulated_at": 0,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-02",
+      "title": "인접동과 진입로 확인",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "field_officer",
+        "safety_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 상황실: 인접 B·C동 용도와 진입로 현황을 확인해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "ROAD01",
+          "field": "closed",
+          "before": false,
+          "after": true,
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-03"
+      ],
+      "terminal": false,
+      "simulated_at": 180,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-03",
+      "title": "배수·급수 자원 사용 여부 미확인",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "resource_officer"
+      ],
+      "visibility": "PRIVATE",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 자원대: 급수시설 사용 여부와 배수장비 도착 시각을 확인해야 합니다. 가용 장비·대체 자원을 요청해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "H01",
+          "field": "water",
+          "before": "UNCONFIRMED",
+          "after": "UNAVAILABLE",
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-04"
+      ],
+      "terminal": false,
+      "simulated_at": 360,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-04",
+      "title": "지하구역 침수 범위 증가",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "situation_officer",
+        "safety_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "HIGH",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 현장대: 북측 지하구역 침수 범위가 늘었다는 보고입니다. 실제 수위 계측값은 없으며 위치 주석은 훈련용 연출입니다.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "UG01",
+          "field": "water",
+          "before": 1,
+          "after": 3,
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-05"
+      ],
+      "terminal": false,
+      "simulated_at": 540,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-05",
+      "title": "피난 출입구 혼잡·안전구역 확대",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "safety_officer",
+        "field_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "HIGH",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 현장대: B동 노출 우려, 주출입구 혼잡. 위험 통제 범위를 검토해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "B02",
+          "field": "warning",
+          "before": false,
+          "after": true,
+          "visual_kind": "ILLUSTRATIVE"
+        },
+        {
+          "feature_id": "PERIMETER01",
+          "field": "radius",
+          "before": 15,
+          "after": 30,
+          "visual_kind": "ILLUSTRATIVE"
+        },
+        {
+          "feature_id": "ENT01",
+          "field": "closed",
+          "before": false,
+          "after": true,
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-06"
+      ],
+      "terminal": false,
+      "simulated_at": 720,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-06",
+      "title": "현장대 무전 불량",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "communications_officer"
+      ],
+      "visibility": "PRIVATE",
+      "priority": "HIGH",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 현장대: 교신 장애 발생. 예비 연락과 전달 확인이 필요합니다.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "V01",
+          "field": "communication",
+          "before": "NORMAL",
+          "after": "FAILED",
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-07"
+      ],
+      "terminal": false,
+      "simulated_at": 900,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-07",
+      "title": "지하구역 요구조자 신고",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "medical_officer"
+      ],
+      "visibility": "PRIVATE",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 구급대: 요구조자 신고와 병원 수용 정보가 상충합니다. 출처를 확인해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [
+        {
+          "feature_id": "UG01",
+          "field": "casualties",
+          "before": 0,
+          "after": 3,
+          "visual_kind": "ILLUSTRATIVE"
+        }
+      ],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-08"
+      ],
+      "terminal": false,
+      "simulated_at": 1080,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-08",
+      "title": "외부 참관객 브리핑 요청",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "incident_commander",
+        "safety_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 외부 관계자: 브리핑을 요청합니다. 현장 안전과 구조를 우선해 담당자를 정해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-09"
+      ],
+      "terminal": false,
+      "simulated_at": 1260,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-09",
+      "title": "통제단 가동 검토",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "incident_commander",
+        "field_officer",
+        "resource_officer",
+        "communications_officer",
+        "safety_officer",
+        "situation_officer",
+        "medical_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "모의 상황실: 대응 확대에 따른 통제단 전환·부서 재배치·인계 검토를 요청합니다.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [],
+      "media_cues": [],
+      "next_event_ids": [
+        "EV-10"
+      ],
+      "terminal": false,
+      "simulated_at": 1440,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "EV-10",
+      "title": "최종 지휘결론·미완료 확인",
+      "kind": "INJECT",
+      "category": "지하공간",
+      "objective": "정보검증·역할 협업·안전한 지휘결정",
+      "sender": "모의 119상황실",
+      "recipient_role_ids": [
+        "incident_commander",
+        "field_officer",
+        "resource_officer",
+        "communications_officer",
+        "safety_officer",
+        "situation_officer",
+        "medical_officer"
+      ],
+      "visibility": "PUBLIC",
+      "priority": "NORMAL",
+      "channel": "RADIO_SIM",
+      "truth_status": "UNCONFIRMED",
+      "text": "각 담당자는 미완료 사항, 담당자와 재보고 시각을 정리해 최종 지휘결론을 확인해 주세요.",
+      "expected_actions": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+      "trigger": {
+        "kind": "MANUAL",
+        "at_seconds": 0,
+        "action": "",
+        "condition": {},
+        "auto_release": false
+      },
+      "patches": [],
+      "media_cues": [],
+      "next_event_ids": [],
+      "terminal": true,
+      "simulated_at": 1620,
+      "evaluation_links": [
+        "mission",
+        "collaboration"
+      ]
+    }
+  ],
+  "start_event_id": "EV-01",
+  "pass_score": 80,
+  "readiness": {},
+  "reviews": {},
+  "published": false,
+  "revision": 1,
+  "rehearsal_passed": false,
+  "organization_approval": "",
+  "simulated_roles": [],
+  "publication": null,
+  "rehearsal_report": null,
+  "practice_owner_person_id": null,
+  "practice_difficulty": "BEGINNER"
+}

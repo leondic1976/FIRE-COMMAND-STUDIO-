@@ -1,0 +1,128 @@
+[
+  {
+    "id": "incident_commander",
+    "name": "지휘대장",
+    "tasks": [
+      "재난현장 지휘·조정·통제",
+      "위험과 자원 제약에 따른 우선순위·지휘결론",
+      "통제단 가동 전 지휘와 전환 판단"
+    ],
+    "reports_to": null,
+    "department": "기관 확인 필요",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "field_officer",
+    "name": "현장지휘요원",
+    "tasks": [
+      "지휘대장 지휘 보좌",
+      "초기 대응활동 계획 수립 지원",
+      "현장 대응방안과 소방력 배치 제안"
+    ],
+    "reports_to": "incident_commander",
+    "department": "현장지휘부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "resource_officer",
+    "name": "자원지원요원",
+    "tasks": [
+      "자원집결지·대기소 선정 지원",
+      "동원자원 현황 관리",
+      "지원기관·대체자원 요청과 회신 확인"
+    ],
+    "reports_to": "incident_commander",
+    "department": "자원지원부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "communications_officer",
+    "name": "통신지원요원",
+    "tasks": [
+      "통신체계 유지·관리",
+      "무전지휘 지원과 전달 확인",
+      "교신 장애 시 예비통신계획 보고"
+    ],
+    "reports_to": "incident_commander",
+    "department": "현장지휘부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "safety_officer",
+    "name": "안전관리요원",
+    "tasks": [
+      "현장 안전사고 예방계획 검토",
+      "안전진단과 위험요인 보고",
+      "대원 보호·안전조치 권고"
+    ],
+    "reports_to": "incident_commander",
+    "department": "현장지휘부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "situation_officer",
+    "name": "상황조사요원",
+    "tasks": [
+      "현장·119상황실 정보 지원",
+      "상황판단 정보 수집·제공",
+      "확인 사실과 미확인 정보를 구분해 종합 보고"
+    ],
+    "reports_to": "incident_commander",
+    "department": "대응계획부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  },
+  {
+    "id": "medical_officer",
+    "name": "구급지휘요원",
+    "tasks": [
+      "재난의료체계 가동 지원",
+      "사상자 현황과 수용능력 확인",
+      "이송·의료자원 조정안 보고"
+    ],
+    "reports_to": "incident_commander",
+    "department": "현장지휘부",
+    "authority_limits": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+    "first_minute": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+    "output": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+    "source": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+    "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+    "version": 1,
+    "critical": true
+  }
+]

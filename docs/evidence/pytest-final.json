@@ -1,0 +1,10 @@
+{
+  "tests": 226,
+  "errors": 0,
+  "failures": 0,
+  "skipped": 0,
+  "passed": 226,
+  "seconds": 43.655,
+  "browser_tests_executed": true,
+  "note": "API/단위/통합/보안 회귀 결과. 브라우저 실행 결과는 별도 보고서에 기록한다."
+}

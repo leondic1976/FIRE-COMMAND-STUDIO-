@@ -1,0 +1,20 @@
+{
+  "synthetic_only": true,
+  "pages": 3,
+  "required_missing": [],
+  "text_outside_pages": [],
+  "private_review_note_absent": true,
+  "internal_event_code_absent": true,
+  "pdf_sha256": "1cc21e6337e92fbeb4a40987a8cbba15f9b9183356a394e24c897f650084ef51",
+  "renderer": "PyMuPDF 1.27.2.3",
+  "visually_reviewed": true,
+  "reviewed_pages": [
+    1,
+    2,
+    3
+  ],
+  "visual_findings": [],
+  "file": "output/pdf/media-provenance-chromium.pdf",
+  "api_source_sha256": "498c867409023e0df78828dad25aa381e18957d680bf71870384946d0ed814a2",
+  "institutional_release_approved": false
+}

@@ -1,0 +1,28 @@
+{
+  "synthetic_only": true,
+  "pages": 5,
+  "renderer": "PyMuPDF 1.27.2.3",
+  "required_text_present": true,
+  "text_outside_page_boxes": [],
+  "visual_review_required": false,
+  "pdf_bytes": 174830,
+  "visual_review_complete": true,
+  "reviewed_aar_pages": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "reviewed_role_card_pages": [
+    1
+  ],
+  "aar_pdf_sha256": "91a17a8c72bc37c47c5c7c71db3fe543e2ae85f38b58ade37d6e9c7724917a10",
+  "role_card_pdf_sha256": "866a212d71e8e944db7aba9dc1d07e6cd9b6f89ac5ce927bff9412cfc2d07bd9",
+  "checks": [
+    "한글·표·워터마크·쪽번호",
+    "인계 메모·관찰·개선·승인 내용",
+    "잘림·겹침 없음"
+  ],
+  "institutional_approval": false
+}

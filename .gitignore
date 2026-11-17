@@ -1,0 +1,16 @@
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
+runtime/
+artifacts/
+output/pdf/
+tmp/pdfs/
+playwright-report/
+test-results/
+*.pyc
+*.tsbuildinfo

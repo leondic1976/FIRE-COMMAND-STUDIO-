@@ -1,0 +1,21 @@
+import {useEffect,useState} from 'react';
+import {ArrowRight,BookOpen,Flame,Pause,Play,Square,Users} from 'lucide-react';
+import {Identity,Role,SessionState} from '../../../packages/domain-schemas';
+import {api,post} from './api';
+import {Badge,Empty,Field} from './components';
+import {Run} from './App';
+
+export function Solo({user,run,onSession}:{user:Identity;run:Run;onSession:(id:string)=>Promise<void>}){
+ const [roles,setRoles]=useState<Role[]>([]),[roleId,setRoleId]=useState('safety_officer'),[difficulty,setDifficulty]=useState('BEGINNER'),[template,setTemplate]=useState('factory');
+ useEffect(()=>{void run(async()=>setRoles((await api<{roles:Role[]}>('/roles/templates')).roles));},[run]);
+ if(user.role!=='participant')return <Empty title="참가자 계정의 개인 연습">모의 동료와 함께 한 역할을 연습합니다.</Empty>;
+ const role=roles.find(r=>r.id===roleId);
+ return <div className="guide-grid"><section className="panel guide-card"><Badge tone="orange">SOLO · 개인 임무 숙달</Badge><h2>한 역할에 집중하는 연습</h2><p>모의 동료의 보고를 받고, 3D 상황을 보며 내 임무에 맞게 확인·보고·조치합니다. AI와 진행자 연결 없이 실행할 수 있습니다.</p><div className="alert info" style={{marginTop:20}}>사전 숙지 미확인 상태의 개인 연습입니다. 모의 피드백은 정답 판정·인사평정·공동훈련 점수가 아닙니다.</div><Field label="연습할 역할"><select value={roleId} onChange={e=>setRoleId(e.target.value)}>{roles.map(r=><option key={r.id} value={r.id}>{r.name}</option>)}</select></Field><Field label="난이도"><select value={difficulty} onChange={e=>setDifficulty(e.target.value)}><option value="BEGINNER">초급 · 확인 도움말</option><option value="STANDARD">실무 · 정보 일부 누락</option><option value="ADVANCED">고급 · 복수 미확인 정보</option></select></Field><Field label="가상 훈련 대상"><select value={template} onChange={e=>setTemplate(e.target.value)}><option value="factory">물류창고·인접 공장</option><option value="highrise">고층 공동주택</option><option value="underground">지하상가 침수</option><option value="compound">복합재난</option></select></Field><button className="button primary" onClick={()=>void run(async()=>{const r=await post<{id:string}>('/practice',{role_id:roleId,difficulty,template});await onSession(r.id);},'개인 임무연습을 준비했습니다.')}><Flame size={15}/>개인 연습 만들기 <ArrowRight size={15}/></button></section><section className="panel guide-card"><BookOpen size={25}/><h2>{role?.name||'선택한 역할'}의 핵심 임무</h2>{role?.tasks.map((t,i)=><p key={i}>{i+1}. {t}</p>)}<div className="process-strip"><Users size={16}/>다른 역할은 ‘모의 동료’로 명시됩니다.</div><p style={{marginTop:20}}>보고 단계마다 출처·불확실성·담당자·재보고 시각을 확인하세요. ‘보고·협조’ 또는 ‘종결’을 기록하면 사전 작성된 모의 동료 피드백이 생성됩니다.</p><small>{role?.source}</small></section></div>;
+}
+
+export function PracticeControls({session,run,refresh}:{session:SessionState;run:Run;refresh:()=>Promise<void>}){
+ if(!session.practice)return null;
+ const control=(operation:string,values:Record<string,unknown>={})=>run(async()=>{await post(`/practice/${session.id}/control`,{expected_state_version:session.state_version,operation,...values});await refresh();});
+ const next=session.practice.next_candidates[0];
+ return <section className="panel facilitator-controls"><div className="panel-title"><div><Flame size={18}/>개인 연습 진행</div><Badge tone="orange">모의 동료 · AI OFF</Badge></div><div className="padded"><p className="small">{session.practice.readiness} · 공동훈련과 단순 서열 비교하지 않습니다.</p><div className="button-row"><button className="button primary" disabled={!['READY','PAUSED'].includes(session.status)} onClick={()=>void control(session.status==='READY'?'start':'resume')}><Play size={14}/>{session.status==='PAUSED'?'재개':'연습 시작'}</button><button className="button" disabled={session.status!=='RUNNING'||!next?.condition_met} onClick={()=>void control('release',{event_id:next?.id})}><ArrowRight size={14}/>다음 모의 상황</button><button className="button" disabled={session.status!=='RUNNING'} onClick={()=>void control('pause')}><Pause size={14}/>일시정지</button><button className="button" disabled={!['RUNNING','PAUSED'].includes(session.status)} onClick={()=>void control('end',{reason:'개인 임무연습 종료 · 자가 재훈련으로 연결'})}><Square size={14}/>연습 종료</button></div>{session.practice.difficulty==='BEGINNER'&&<p className="small muted">확인 도움말: {session.practice.role.output}</p>}{session.practice_feedback?.map((f,i)=><article className="message-card" key={i}><Badge>모의 동료 피드백 · {f.event_id}</Badge><p style={{marginTop:12}}>{f.text}</p><small>다음 연습: {f.retraining}</small></article>)}</div></section>;
+}

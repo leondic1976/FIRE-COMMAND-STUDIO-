@@ -1,0 +1,77 @@
+{
+  "kind": "AUTHENTICATED_HEADLESS_SCENE_SAMPLE",
+  "synthetic_only": true,
+  "browser_version": "151.0.7922.34",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "gpu_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "authenticated_scene_ready_seconds": 0.543,
+  "samples": [
+    {
+      "elapsed_seconds": 3.39,
+      "displayed_fps": 24,
+      "display": "L1 · 24 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 5.45,
+      "displayed_fps": 25,
+      "display": "L1 · 25 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 7.51,
+      "displayed_fps": 27,
+      "display": "L1 · 27 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 9.59,
+      "displayed_fps": 25,
+      "display": "L1 · 25 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 11.68,
+      "displayed_fps": 28,
+      "display": "L1 · 28 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 13.74,
+      "displayed_fps": 26,
+      "display": "L1 · 26 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 15.82,
+      "displayed_fps": 26,
+      "display": "L1 · 26 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 17.89,
+      "displayed_fps": 25,
+      "display": "L1 · 25 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 19.99,
+      "displayed_fps": 27,
+      "display": "L1 · 27 FPS · 7,344 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 22.05,
+      "displayed_fps": 26,
+      "display": "L1 · 26 FPS · 7,344 tri",
+      "fallback_visible": false
+    }
+  ],
+  "median_displayed_fps": 26.0,
+  "target_pc_verified": false,
+  "actual_institutional_projector_verified": false,
+  "note": "별도 headless 브라우저의 로컬 합성 장면 표본. 최초 로그인 전체 시간·기준 PC/GPU 24fps 수용시험과 구분."
+}

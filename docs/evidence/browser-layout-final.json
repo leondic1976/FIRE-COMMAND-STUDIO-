@@ -1,0 +1,32 @@
+{
+  "scope": "Targeted browser regressions listed in cases; source/version scope is recorded with the release evidence",
+  "results": [
+    {
+      "tests": 3,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "chromium",
+      "seconds": 15.714,
+      "cases": [
+        "test_sdk_failure_preserves_local_scene_and_state[network]",
+        "test_sdk_failure_preserves_local_scene_and_state[timeout]",
+        "test_sdk_failure_preserves_local_scene_and_state[roadview_absent]"
+      ]
+    },
+    {
+      "tests": 3,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "firefox",
+      "seconds": 26.782,
+      "cases": [
+        "test_sdk_failure_preserves_local_scene_and_state[network]",
+        "test_sdk_failure_preserves_local_scene_and_state[timeout]",
+        "test_sdk_failure_preserves_local_scene_and_state[roadview_absent]"
+      ]
+    }
+  ],
+  "synthetic_only": true
+}

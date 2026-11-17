@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: fire_command
+      POSTGRES_USER: fire_command
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a unique database password in the deployment environment}
+    volumes:
+      - training_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fire_command -d fire_command"]
+      interval: 5s
+      retries: 12
+    restart: unless-stopped
+    # No host database port is exposed. Connect the institutional app on this private network.
+volumes:
+  training_db:

@@ -1,0 +1,28 @@
+{
+  "scope": "2D fallback overlay and keyboard scrolling after final layout adjustment",
+  "results": [
+    {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "chromium",
+      "seconds": 5.539,
+      "cases": [
+        "test_webgl_unavailable_preserves_scene_state_in_2d"
+      ]
+    },
+    {
+      "tests": 1,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "firefox",
+      "seconds": 9.694,
+      "cases": [
+        "test_webgl_unavailable_preserves_scene_state_in_2d"
+      ]
+    }
+  ],
+  "synthetic_only": true
+}

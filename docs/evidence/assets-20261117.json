@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-11-17T02:05:42.651856+00:00",
+  "kind": "SYNTHETIC_ASSET_IMPLEMENTATION_VERIFICATION",
+  "api_source_sha256": "49dcd590af46c71990dee0a71ec0e19e880b762aa997d8a8d18e9c7efc3a289f",
+  "institutional_release_approved": false,
+  "real_user_pilot": false,
+  "actual_av_verified": false,
+  "actual_facility_assets_used": false,
+  "python": {
+    "tests": 192,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "seconds": 36.464,
+    "junit_sha256": "4e2cbf54d63effd8c0689f64199eb023ede82ca457765ce884cdf167c0d61eab",
+    "report": "pytest-assets-current.xml",
+    "passed": 192
+  },
+  "browsers": [
+    {
+      "engine": "chromium",
+      "tests": 8,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 121.395,
+      "junit_sha256": "1b3419a6b98d9c55e7315bac6657caef75dd2ec81093f90539f9ceb0f1a6a316",
+      "report": "browser-assets-final-chromium.xml",
+      "passed": 8,
+      "environment": {
+        "engine": "chromium",
+        "browser_version": "151.0.7922.34",
+        "playwright": "1.62.0",
+        "headless": true,
+        "base_url": "http://127.0.0.1:8011",
+        "existing_browser_profile_used": false,
+        "real_user_pilot": false,
+        "target_pc_fps_verified": false
+      }
+    },
+    {
+      "engine": "firefox",
+      "tests": 8,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 157.796,
+      "junit_sha256": "7aee2abb5b261392dddae573f2f3020a77e5d11dd541f7d291f5cbc8fe5478b4",
+      "report": "browser-assets-final-firefox.xml",
+      "passed": 8,
+      "environment": {
+        "engine": "firefox",
+        "browser_version": "153.0",
+        "playwright": "1.62.0",
+        "headless": true,
+        "base_url": "http://127.0.0.1:8011",
+        "existing_browser_profile_used": false,
+        "real_user_pilot": false,
+        "target_pc_fps_verified": false
+      }
+    }
+  ],
+  "initial_failed_browser_run": {
+    "tests": 8,
+    "errors": 0,
+    "failures": 2,
+    "skipped": 0,
+    "seconds": 117.345,
+    "junit_sha256": "fc79386726c35f1ac6ebd278762608f5a06258100d657a106d5ca99b3642d65d",
+    "report": "browser-assets-chromium-initial-failed.xml",
+    "passed": 6
+  },
+  "failed_run_resolution": "Initial data readiness and actual details open-state assumptions fixed in test selectors; full suite rerun. Failure report retained.",
+  "web_tests": {
+    "passed": 15,
+    "files": 4,
+    "typecheck_build_passed": true,
+    "large_lazy_3d_chunk_warning_retained": true
+  },
+  "npm_audit": {
+    "findings": 0,
+    "known_at_test_time_only": true
+  },
+  "python_advisories": {
+    "packages": 37,
+    "query_failures": 0,
+    "packages_with_findings": 0,
+    "source": "PyPI release vulnerability metadata",
+    "sha256": "a1502b8e4208316898d74bf94b21fb0f200c0a440b3a163642aa3f9d950d442a"
+  },
+  "pdf": {
+    "kind": "SYNTHETIC_ASSET_AAR_PDF",
+    "pages": 3,
+    "sha256": "851326bc4372d7cf4e35c1f6463bbf28f01b383628c4c4e3e84a703755c6e478",
+    "required_text_present": true,
+    "private_review_sentinel_absent": true,
+    "text_outside_page_boxes": [],
+    "renderer": "PyMuPDF 1.27.2.3",
+    "visual_review_completed": true,
+    "visual_review_note": "3쪽을 개별 이미지로 열어 한글·표·출처·워터마크·쪽번호·겹침/잘림을 확인했다."
+  },
+  "ifc": {
+    "version": "IfcOpenShell IfcConvert 0.8.5-1c5b825 (OCC 7.8.1)",
+    "manifest_sha256": "112a4d32189d06c7e3595587d8c88b0c7c86e6833d61519fe4133b72089daa40",
+    "synthetic_native_conversion_and_windows_limits_tested": true,
+    "actual_av_or_offline_host_network_policy_verified": false
+  },
+  "soak_at_recording": {
+    "started_at": "2026-11-17T01:55:50.680349+00:00",
+    "elapsed_seconds": 557.18,
+    "clients": 12,
+    "commands": 49,
+    "errors": [],
+    "complete": false,
+    "passed": false
+  },
+  "plan_copy_byte_equal": true,
+  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf",
+  "notes": [
+    "Soak is in progress; this file does not assert a completed 60-minute pass.",
+    "Actual API keys, facility rights/accuracy, AV/offline host policy, target PC, institution experts and approximately 10-person room pilot remain unverified.",
+    "Source/data contracts and synthetic fixture manifests regenerated and verified; runtime databases/cookies/raw screenshots/PDFs are excluded from Git."
+  ]
+}

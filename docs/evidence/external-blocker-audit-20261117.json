@@ -1,0 +1,46 @@
+{
+  "kind": "FULL_GOAL_EXTERNAL_BLOCKER_AUDIT",
+  "checked_at": "2026-11-17T05:14:04.016367+00:00",
+  "previous_goal_turn_classification": "progress: CI Python advisory integration and actual local 37-package query",
+  "same_blocker_consecutive_goal_turns": 3,
+  "observations": [
+    {
+      "turn": "local implementation verification and handoff completed",
+      "at": "2026-11-17 14:10 KST",
+      "condition": "Institutional expert/SOP/security/rights approval, real target environment and about 10 actual room participants not provided"
+    },
+    {
+      "turn": "CI follow-up improvement completed",
+      "at": "2026-11-17 14:12 KST",
+      "condition": "Same institutional inputs still not provided; responsible roles/date requested, no reply received"
+    },
+    {
+      "turn": "current authoritative revalidation",
+      "at": "2026-11-17 14:14 KST",
+      "condition": "Same condition; acceptance form retains 8 unprovided prerequisite rows and all actual trial judgments are NOT RUN"
+    }
+  ],
+  "product_source_hashes_unchanged": true,
+  "ci_config_hash_unchanged": true,
+  "institutional_release_approved": false,
+  "real_room_pilot_executed": false,
+  "acceptance_form": "docs/INSTITUTION_ACCEPTANCE.md",
+  "scope_authority": [
+    "plan.md §15.1/15.2",
+    "plan.md §17.2",
+    "plan.md §20",
+    "plan.md §22",
+    "AGENTS.md 검증과 완료"
+  ],
+  "no_required_autonomous_local_work_identified": true,
+  "additional_green_tests_would_not_supply_missing_real_evidence": true,
+  "required_next_inputs": [
+    "Institution training owner and SOP/expert reviewer role names, approved SOP version",
+    "Real pilot date, actual about 10 participants plus facilitator/evaluator and approved room/PC/projector/LAN",
+    "Approved real-asset rights/security/AV/provider-key and operational-environment references in institution-controlled storage"
+  ],
+  "sensitive_data_requested_in_chat": false,
+  "overall_objective_preserved": true,
+  "goal_marked_complete": false,
+  "next_action": "request update_goal status blocked; resume after user input/external state change"
+}

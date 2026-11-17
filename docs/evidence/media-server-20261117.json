@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-11-17T02:44:43.584945+00:00",
+  "kind": "PARTIAL_SYNTHETIC_MEDIA_SERVER_VERIFICATION",
+  "api_source_sha256": "2f0a57de6803b0f455fc5070d3cf48ed3e4aa84235dbfa3b48615bf9714c7591",
+  "reports": {
+    "pytest-media-current.xml": {
+      "tests": 206,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 42.034,
+      "report_sha256": "e11f24110b2a89837b39127053bae53ab52898b1ab88eb2d57080d007d732a92"
+    },
+    "media-contract-and-workflow.xml": {
+      "tests": 12,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 3.464,
+      "report_sha256": "1719e1179e1819c71e09a5d8904b5d6c4200b601a30e16f46ca2184719974b76"
+    },
+    "media-validation-current.xml": {
+      "tests": 9,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 1.31,
+      "report_sha256": "bffbffd7c1b16890910bb670e3b32b5dcd6d17099cff3fd9bdb87bf57286bbf6"
+    }
+  },
+  "actual_av_verified": false,
+  "actual_host_network_isolation_verified": false,
+  "actual_institution_approval": false,
+  "real_videos_or_people_used": false,
+  "video_browser_flow_verified": false,
+  "current_local_servers_restarted_to_media_version": false,
+  "processing_tool_manifest_sha256": "2ee159e584c91aa77a0acab7d46968f7de5bed7f0d3b5526332e03b476848dce",
+  "synthetic_normalized_video_sha256": "d72125dcfaa4227266c757c43723de987cd130ead4b6f2c76860baa90d4704a1",
+  "native_manifest": {
+    "bounds": [],
+    "nodes": [],
+    "triangles": 0,
+    "texture_pixels": 0,
+    "width": 320,
+    "height": 180,
+    "copyright_notice": "Generated QA video; no real institution.",
+    "duration_seconds": 3.008,
+    "frame_rate": 20.0,
+    "has_audio": true,
+    "video_codec": "vp8",
+    "processing_tool": "FFmpeg 9.0.2",
+    "processing_manifest_sha256": "2ee159e584c91aa77a0acab7d46968f7de5bed7f0d3b5526332e03b476848dce"
+  },
+  "prior_soak": {
+    "api_source_sha256": "49dcd590af46c71990dee0a71ec0e19e880b762aa997d8a8d18e9c7efc3a289f",
+    "elapsed_seconds": 1887.81,
+    "clients": 12,
+    "commands": 135,
+    "errors": [],
+    "complete": false,
+    "passed": false
+  },
+  "plan_copy_equal": true,
+  "contract_manifest_files_verified": 8,
+  "implemented": [
+    "bounded MP4/WebM normalization with pinned FFmpeg and metadata stripping",
+    "upload quarantine/scanner/review/canonical storage",
+    "event cue references and publication gates",
+    "future/role/board REST and WS metadata plus byte isolation",
+    "reverted cue and cloned approval cleanup"
+  ],
+  "remaining": [
+    "event editor and synchronized video renderer",
+    "actual headless media playback, pause/resume/undo/replay/reconnect flows",
+    "AAR media attribution and current-source final regression and 60-minute soak",
+    "institution data/rights/AV/host/expert/target-PC/room pilot"
+  ],
+  "notes": [
+    "Full 206-case run preceded a narrow tool-configuration exception wrapper; the affected 12 cases were rerun afterward.",
+    "Protocol injection integration tests are not actual media decoding or AV evidence. A separate explicit native test performed real conversion of generated synthetic content.",
+    "The preserved 1887.81-second soak is incomplete and cannot be republished as a 60-minute pass."
+  ]
+}

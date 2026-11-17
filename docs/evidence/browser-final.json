@@ -1,0 +1,68 @@
+{
+  "synthetic_only": true,
+  "browser_results": [
+    {
+      "tests": 13,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "chromium",
+      "browser_version": "151.0.7922.34",
+      "playwright": "1.62.0",
+      "headless": true,
+      "base_url": "http://127.0.0.1:8011",
+      "existing_browser_profile_used": false,
+      "real_user_pilot": false,
+      "target_pc_fps_verified": false,
+      "seconds": 227.314,
+      "cases": [
+        "test_new_exercise_readiness_publish_and_ten_injects",
+        "test_participant_solo_feedback_and_account_isolation",
+        "test_old_session_selection_reconnect_and_role_switch",
+        "test_phone_layout_and_modal_keyboard",
+        "test_public_board_uses_public_network_projection",
+        "test_webgl_unavailable_preserves_scene_state_in_2d",
+        "test_candidate_preview_defer_skip_and_public_isolation",
+        "test_public_data_review_apply_and_reference_labels",
+        "test_glb_preview_floor_mapping_photo_and_public_content",
+        "test_video_intake_event_clock_pause_undo_reconnect_replay_and_aar",
+        "test_oversized_procedural_entrances_use_2d_before_allocating_webgl",
+        "test_floor_interior_preset_copy_save_cutaway_and_scene_package",
+        "test_environment_summary_3d_2d_and_private_public_state"
+      ]
+    },
+    {
+      "tests": 13,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "engine": "firefox",
+      "browser_version": "153.0",
+      "playwright": "1.62.0",
+      "headless": true,
+      "base_url": "http://127.0.0.1:8011",
+      "existing_browser_profile_used": false,
+      "real_user_pilot": false,
+      "target_pc_fps_verified": false,
+      "seconds": 261.09,
+      "cases": [
+        "test_new_exercise_readiness_publish_and_ten_injects",
+        "test_participant_solo_feedback_and_account_isolation",
+        "test_old_session_selection_reconnect_and_role_switch",
+        "test_phone_layout_and_modal_keyboard",
+        "test_public_board_uses_public_network_projection",
+        "test_webgl_unavailable_preserves_scene_state_in_2d",
+        "test_candidate_preview_defer_skip_and_public_isolation",
+        "test_public_data_review_apply_and_reference_labels",
+        "test_glb_preview_floor_mapping_photo_and_public_content",
+        "test_video_intake_event_clock_pause_undo_reconnect_replay_and_aar",
+        "test_oversized_procedural_entrances_use_2d_before_allocating_webgl",
+        "test_floor_interior_preset_copy_save_cutaway_and_scene_package",
+        "test_environment_summary_3d_2d_and_private_public_state"
+      ]
+    }
+  ],
+  "institutional_release_approved": false,
+  "real_lan_pilot": false,
+  "target_pc_fps_verified": false
+}

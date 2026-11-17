@@ -1,0 +1,82 @@
+{
+  "kind": "LOCAL_HEADLESS_SCENE_SAMPLE",
+  "synthetic_only": true,
+  "base_url": "http://127.0.0.1:8011",
+  "browser_version": "151.0.7922.34",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "api_source_sha256": "498c867409023e0df78828dad25aa381e18957d680bf71870384946d0ed814a2",
+  "frontend_build_index_sha256": "8ddb316e900c720c682b703ad6c66fa765db7889464a1566c0cbf26258c338a7",
+  "demo_login_through_ui": true,
+  "readiness_scope": "Navigation, optional automated demo UI login, selected session, mounted canvas/genuine 2D fallback and two animation frames; includes automation overhead, excludes human thinking time.",
+  "gpu_renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "authenticated_scene_ready_seconds": 4.151,
+  "samples": [
+    {
+      "elapsed_seconds": 6.45,
+      "displayed_fps": 22,
+      "display": "L1 · 22 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 8.52,
+      "displayed_fps": 36,
+      "display": "L0 · 36 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 10.55,
+      "displayed_fps": 39,
+      "display": "L0 · 39 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 12.6,
+      "displayed_fps": 38,
+      "display": "L0 · 38 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 14.67,
+      "displayed_fps": 39,
+      "display": "L0 · 39 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 16.72,
+      "displayed_fps": 39,
+      "display": "L0 · 39 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 18.76,
+      "displayed_fps": 38,
+      "display": "L0 · 38 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 20.82,
+      "displayed_fps": 38,
+      "display": "L0 · 38 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 22.88,
+      "displayed_fps": 38,
+      "display": "L0 · 38 FPS · 5,892 tri",
+      "fallback_visible": false
+    },
+    {
+      "elapsed_seconds": 24.93,
+      "displayed_fps": 38,
+      "display": "L0 · 38 FPS · 5,892 tri",
+      "fallback_visible": false
+    }
+  ],
+  "median_displayed_fps": 38.0,
+  "target_pc_verified": false,
+  "actual_institutional_projector_verified": false,
+  "note": "별도 headless 브라우저의 로컬 합성 장면 표본. 기관 기준 PC/GPU·LAN·실제 프로젝터 수용시험과 구분."
+}

@@ -1,0 +1,52 @@
+{
+  "kind": "AUTOMATED_SYNTHETIC_SOAK",
+  "real_user_pilot": false,
+  "api_source_sha256": "498c867409023e0df78828dad25aa381e18957d680bf71870384946d0ed814a2",
+  "environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "cpu_count": 20,
+    "python": "3.14.3",
+    "transport": "loopback HTTP/WebSocket",
+    "renderer": "not_measured",
+    "database": "SQLite local development"
+  },
+  "started_at": "2026-11-17T03:53:08.764668+00:00",
+  "requested_seconds": 3600,
+  "elapsed_seconds": 3600.6,
+  "clients": 12,
+  "snapshots": {
+    "facilitator": 247,
+    "evaluator": 247,
+    "person-01": 247,
+    "person-02": 247,
+    "person-03": 247,
+    "person-04": 247,
+    "person-05": 247,
+    "person-06": 247,
+    "person-07": 247,
+    "person-08": 247,
+    "person-09": 247,
+    "person-10": 247
+  },
+  "latest_versions": {
+    "facilitator": 247,
+    "evaluator": 247,
+    "person-01": 247,
+    "person-02": 247,
+    "person-03": 247,
+    "person-04": 247,
+    "person-05": 247,
+    "person-06": 247,
+    "person-07": 247,
+    "person-08": 247,
+    "person-09": 247,
+    "person-10": 247
+  },
+  "commands": 246,
+  "max_sync_seconds": 0.503,
+  "p95_sync_seconds": 0.378,
+  "errors": [],
+  "session_id": "session-c8b99e9b1a67",
+  "complete": true,
+  "passed": true
+}
