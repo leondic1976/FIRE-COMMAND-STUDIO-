@@ -1,0 +1,101 @@
+{
+  "site_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/",
+  "access": "public-no-login",
+  "build_source_commit": "2902bb8641a07d38f574dc675a53a2403499c3d9",
+  "pages_deployment": {
+    "conclusion": "success",
+    "headSha": "2902bb8641a07d38f574dc675a53a2403499c3d9",
+    "status": "completed",
+    "updatedAt": "2026-11-17T11:31:16Z",
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/actions/runs/44074688598"
+  },
+  "source_ci": {
+    "conclusion": "success",
+    "headSha": "2902bb8641a07d38f574dc675a53a2403499c3d9",
+    "status": "completed",
+    "updatedAt": "2026-11-17T11:32:01Z",
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/actions/runs/44074688551"
+  },
+  "http": {
+    "base_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/",
+    "anonymous_https": true,
+    "files": [
+      {
+        "file": "index.html",
+        "sha256": "5f82a72c08f48e62b63928348c3af0a8aae904d6c1b8277424990425c306f7ee",
+        "matched": true
+      },
+      {
+        "file": "app.js",
+        "sha256": "719aaeb3042c70637abd7b9309c04f2b6e1c0b100739ee3f45fe41452d89d661",
+        "matched": true
+      },
+      {
+        "file": "style.css",
+        "sha256": "6c61a3ba1aa2e50f4e3dbd1026655986825d560005c5b370d24a90b4c1cb2c37",
+        "matched": true
+      },
+      {
+        "file": "release.json",
+        "sha256": "9bcfeb2f739b56353af3ade76cd5a9d62ef5266d21e46c7a2a1c9e8da6eb6595",
+        "matched": true
+      },
+      {
+        "file": "robots.txt",
+        "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+        "matched": true
+      },
+      {
+        "file": "assets/board-preview.png",
+        "sha256": "2285b280e31a3fb05a9faf15b610ee5301437c7392e6f38b4a10b261553d6b2f",
+        "matched": true
+      },
+      {
+        "file": "assets/favicon.svg",
+        "sha256": "5a38019ba924aaf5f2429df9d2f04a703c8b2b332bd4d402fe98de25e6d1a4bd",
+        "matched": true
+      }
+    ]
+  },
+  "browser": {
+    "base_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-",
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 6,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true
+  },
+  "installer_head": {
+    "status": 200,
+    "bytes": 31535358,
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v0.1.0/FIRE-Command-Studio-Setup-0.1.0-x64.exe"
+  },
+  "visual_inspection": [
+    "chromium-1440",
+    "firefox-390"
+  ],
+  "plan_original_unchanged": true,
+  "windows_installer_changed": false,
+  "institutional_approval": false
+}

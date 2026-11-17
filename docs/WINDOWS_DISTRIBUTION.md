@@ -47,3 +47,6 @@
 - 원시 결과는 artifacts/desktop 하위, 공개 가능한 요약은 [Windows 배포 증거](evidence/windows-release-20261117.json)에 보존한다. 기관 전문가 검수·약10명 회의실 시범훈련·기준 PC/실제 프로젝터 성능은 여전히 미실행이다.
 
 정적 [다운로드·사용 안내 사이트](https://fire-command-studio-download.leondic.chatgpt.site)는 버전1/source235586e9/배포succeeded이며 기존 소유자 전용 접근을 유지한다. 설치파일은 위 공개 GitHub 릴리스에서 로그인 없이 내려받을 수 있다.
+
+
+U27 호스팅 대상 정정: 현재 기본 다운로드·사용 안내는 **[공개 GitHub Pages](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/)**다. 로그인 없이 열리며 Pages 배포/소스CI·공개 자원7개 해시·두 엔진 PC/모바일·설치파일 링크 검증을 완료했다. 이전 Sites 주소는 과거 보조 배포 기록이다. 설치파일0.1.0은 변경하지 않았다.

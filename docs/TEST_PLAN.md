@@ -289,4 +289,4 @@ python -m pytest tests/e2e/test_browser.py tests/e2e/test_external_browser.py te
 
 ### U27 GitHub Pages 수용 계약
 
-Pages workflow/main 전용·최소 권한·site/dist만 게시, 공개 HTTPS/로그인 불필요, 프로젝트 하위 경로의 상대 CSS/JS/이미지/배포 JSON·정확한 설치파일 링크/SHA256, 두 엔진1440/390px·키보드·오류/가로 넘침·잘못된 배포 메타데이터 거절을 확인한다. 빌드7개 파일과 원본 자원 바이트·YAML/권한/컴파일은 확인했다. 실제 원격 배포와 공개 브라우저 검증은 아직 미실행이다.
+Pages workflow/main 전용·최소 권한·site/dist만 게시, 공개 HTTPS/로그인 불필요, 프로젝트 하위 경로의 상대 CSS/JS/이미지/배포 JSON·정확한 설치파일 링크/SHA256, 두 엔진1440/390px·키보드·오류/가로 넘침·잘못된 배포 메타데이터 거절을 확인한다. 빌드7개 파일과 원본 자원 바이트·YAML/권한/컴파일은 확인했다. 이후2902bb8/Pages 실행44074688598과 소스 전체CI44074688551이 success로 종료됐다. 실제 공개 HTTPS 사이트에서 Chromium/Firefox×1440/390px의 링크·SHA·키보드/복사·넘침 검증4개와 잘못된 메타데이터 거절6개, JS오류0/외부 런타임 요청0을 확인했다. 두 실제 화면을 직접 시각 확인했고 자원7개 모두 빌드 SHA와 일치했다. 설치파일 HEAD200/31,535,358바이트이며 원본 plan/사본 SHA는 같다. [GitHub Pages 증거](evidence/github-pages-20261117.json).

@@ -6,7 +6,7 @@
 
 ## 현재 호스팅 지시 U27
 
-사용자는 정적호스팅 대상을 GitHub로 명시했다. 공개 GitHub Pages 주소는 `https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/`이며, Pages를 workflow 방식으로 활성화했다. `.github/workflows/pages.yml`이 main의 site 변경을 빌드해 site/dist만 배포한다. GitHub Pages는 로그인 없이 열도록 설정한다. 현재 배포 실행과 실제 공개 URL 검증을 진행 중이며 성공 전 통과로 기록하지 않는다.
+사용자는 정적호스팅 대상을 GitHub로 명시했다. 공개 GitHub Pages 주소는 `https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/`이며, Pages를 workflow 방식으로 활성화했다. `.github/workflows/pages.yml`이 main의 site 변경을 빌드해 site/dist만 배포한다. GitHub Pages는 로그인 없이 열도록 설정한다. 배포 실행44074688598과 소스 전체 CI44074688551이 성공했다. 실제 공개 URL에서 두 브라우저의1440/390px·다운로드/체크섬·키보드·잘못된 메타데이터 거절6개·페이지 오류0을 확인했다. 공개 자원7개 해시가 빌드와 같고 설치파일 HEAD200/31,535,358바이트다. [실제 GitHub Pages 증거](evidence/github-pages-20261117.json).
 
 ## 이전 배포 결과
 
