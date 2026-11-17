@@ -1,0 +1,11 @@
+{
+  "status": "released",
+  "version": "0.1.0",
+  "published_date": "2026-11-17",
+  "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v0.1.0/FIRE-Command-Studio-Setup-0.1.0-x64.exe",
+  "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0",
+  "sha256": "393d7c9e21fd454af9940652b57bdc219773d75541b92714c0fa76df6ced993d",
+  "bytes": 31535358,
+  "authenticode": "NotSigned",
+  "source_commit": "bd78c0e50e838a005d827e21f6cd6e1d75f25ea5"
+}

@@ -276,3 +276,12 @@ python -m pytest tests/e2e/test_browser.py tests/e2e/test_external_browser.py te
 설치형 실행기 최초 시험2통과/2실패→SPA 상태 경로 수정/201 기대값 교정 후4통과3.83초. Python 경로 없는 실제 독립.exe에서 schema2/홈200/로그인/합성 훈련201을 확인했다. 이는 Python3.14.3의 최초 QA 후보이며 최종 설치/업데이트/백업/GUI/배포·Python3.14.10 빌더 검증은 아직 남았다.7개 실제 후보 브라우저 흐름 실행 중이다.
 
 설치형 후속: 신선한 DB의 과거 실행본 fixture를 강화한 실제 후보 Chromium7개115.35초 통과. SQLite 연결 닫기 수정/손상 백업/자동 이전 기록/복원 실패 주입 롤백7개11.28초 통과. 전체 서버232개117.56초·웹39·타입/빌드 통과. 설치형 공개 지도 설정 추가8개13.91초 통과이며 새 Windows 빌더/최종 설치물 검증은 별도로 이어간다.
+
+
+### Windows 설치형 실제 수용 시험 (2026-11-17 18:18 KST)
+
+최종 빌드bd78c0e/Windows 실행44050912074 success. 249수집/231통과/18skip/실패0이며 독립 frozen 실행기 자체 검사도 성공했다. 배포된 정확한 파일을 Windows11 Pro26300에 설치해 동일784개 payload 해시·한글 제어 창·Python 없는 PATH·schema2/로그인/훈련 생성·재시작/백업/복원·종료 권한 거절을 확인했다. 설치본 Chromium7개107.54초/Firefox7개130.66초, 지도 합성 장애 각3개15.04/26.72초 통과. 동일 버전 재설치·제거·제거 후 재설치에서 훈련13개와 설정/백업을 보존했다. 다른 버전 업그레이드, Windows10, 실제 AV·기관 승인·약10명 실제 회의실 실증은 미실행이다. Authenticode는NotSigned이며 다운로드와 SHA256을 안내한다.
+
+최종 공개 URL의31,535,358바이트를 다시 받아 SHA256393d7c9e21fd454af9940652b57bdc219773d75541b92714c0fa76df6ced993d 일치를 확인했다. 정적 사이트1440/390px×두 엔진의 링크·체크섬·키보드·가로 넘침·6개 잘못된 배포 메타데이터 거절을 확인했고 페이지 오류/외부 런타임 요청0이다. 첫 부정 fixture의 callback이 Playwright Request를 JSON 값으로 받은 TypeError는 시험 코드 문제로 기록하고 시그니처를 고친 후 전체 재실행했다. 원시 artifacts/download-site, 요약 docs/evidence/windows-release-20261117.json. 이후 Site source235586e9/버전1/배포appgdep_6afc1c1b2c908191bb94f5185d7079ee가18:19:36 KST에 succeeded로 종료됐다. 소유자 전용 접근을 유지하며 공개 설치파일은 GitHub에서 제공한다.
+
+실제 호스팅 후에는 비인증401/소유자 읽기 접근200과 공개 웹자원5개 SHA256 일치를 확인했다. HTML은 서비스가 추가한 관찰된 Cloudflare challenge1개를 제외한 원본 바이트가 일치했다. 사이트의 보안 스크립트/인증은 수정하지 않았다. 자격증명은 증거/소스/파일에 포함하지 않는다.

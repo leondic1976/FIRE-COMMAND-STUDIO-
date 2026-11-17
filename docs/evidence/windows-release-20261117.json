@@ -1,0 +1,172 @@
+{
+  "chromium": {
+    "tests": "7",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "107.541"
+  },
+  "firefox": {
+    "tests": "7",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "130.660"
+  },
+  "chromium_maps": {
+    "tests": "3",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "15.043"
+  },
+  "firefox_maps": {
+    "tests": "3",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "26.717"
+  },
+  "frozen": {
+    "frozen_executable": true,
+    "python_removed_from_path": true,
+    "png_and_xlsx_processed": true,
+    "native_schema_version": 2,
+    "per_user_persistence": true,
+    "backup_restore_roundtrip": true,
+    "unauthorized_shutdown_rejected": true,
+    "browser_tests_included": false,
+    "build_interpreter": "3.14.10",
+    "synthetic_only": true,
+    "real_av_scan_claimed": false
+  },
+  "payload": {
+    "files_matched": 784,
+    "bytes": 67116339,
+    "source_commit": "bd78c0e50e838a005d827e21f6cd6e1d75f25ea5",
+    "installer_additions_only": [
+      "unins000.dat",
+      "unins000.exe"
+    ],
+    "gui_korean_window_observed": true,
+    "antivirus_available": false,
+    "authenticode": "NotSigned",
+    "synthetic_only": true
+  },
+  "lifecycle": {
+    "same_version_reinstall": true,
+    "uninstall": true,
+    "reinstall_after_removal": true,
+    "training_records_preserved": true,
+    "backup_and_settings_preserved": true,
+    "installed_payload_removed": true,
+    "exercise_count_preserved": 13,
+    "different_version_upgrade_tested": false,
+    "qa_workspace_only": true,
+    "normal_user_data_touched": false
+  },
+  "installer_sha256": "393d7c9e21fd454af9940652b57bdc219773d75541b92714c0fa76df6ced993d",
+  "installer_bytes": 31535358,
+  "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0",
+  "released_at": "2026-11-17T09:15:46Z",
+  "public_download_sha256_matches": true,
+  "build_commit": "bd78c0e50e838a005d827e21f6cd6e1d75f25ea5",
+  "windows_ci": {
+    "run_id": 44050912074,
+    "tests": 249,
+    "passed": 231,
+    "skipped": 18,
+    "errors": 0,
+    "failures": 0
+  },
+  "test_os": {
+    "caption": "Windows 11 Pro",
+    "version": "10.0.26300",
+    "architecture": "64-bit"
+  },
+  "institutional_approval": false,
+  "real_room_pilot": false,
+  "download_site_browser": {
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 6,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true,
+    "visual_inspection": [
+      "chromium-1440",
+      "firefox-390"
+    ]
+  },
+  "site": {
+    "project_id": "appgprj_6afc134d1e0c81918829649d56e3dba8",
+    "source_commit": "235586e9e1bc16371522798f4a338ba8f2df6112",
+    "version_id": "appgprj_6afc134d1e0c81918829649d56e3dba8~appgver_de910905c8b88191a4474e3c2bc824c5",
+    "deployment_id": "appgdep_6afc1c1b2c908191bb94f5185d7079ee",
+    "deployment_status": "succeeded",
+    "url": "https://fire-command-studio-download.leondic.chatgpt.site",
+    "access": "owner-only",
+    "updated_at": "2026-11-17T09:19:36.453922+00:00",
+    "hosted_http": {
+      "url": "https://fire-command-studio-download.leondic.chatgpt.site",
+      "access": "owner-only",
+      "anonymous_status": 401,
+      "hosted_resources": [
+        {
+          "file": "index.html",
+          "sha256": "038703b93212d9e6c34353035a9552e13364f311bfd5a6ff141ce2676b1502de",
+          "exact_match": false
+        },
+        {
+          "file": "app.js",
+          "sha256": "719aaeb3042c70637abd7b9309c04f2b6e1c0b100739ee3f45fe41452d89d661",
+          "exact_match": true
+        },
+        {
+          "file": "style.css",
+          "sha256": "6c61a3ba1aa2e50f4e3dbd1026655986825d560005c5b370d24a90b4c1cb2c37",
+          "exact_match": true
+        },
+        {
+          "file": "release.json",
+          "sha256": "9bcfeb2f739b56353af3ade76cd5a9d62ef5266d21e46c7a2a1c9e8da6eb6595",
+          "exact_match": true
+        },
+        {
+          "file": "assets/board-preview.png",
+          "sha256": "2285b280e31a3fb05a9faf15b610ee5301437c7392e6f38b4a10b261553d6b2f",
+          "exact_match": true
+        },
+        {
+          "file": "assets/favicon.svg",
+          "sha256": "5a38019ba924aaf5f2429df9d2f04a703c8b2b332bd4d402fe98de25e6d1a4bd",
+          "exact_match": true
+        }
+      ],
+      "private_header_retained": false,
+      "own_html_exact_after_observed_provider_challenge": true,
+      "provider_challenge_bypassed": false
+    },
+    "archive_sha256": "db4a96d8ac67a69f2024b742c8c696291f1dd29184ad46b0ec3902d2f699b80e"
+  }
+}

@@ -3,19 +3,24 @@
 No provider traffic, real SDK or actual key/approval is used or claimed.
 """
 import os
+import re
 from pathlib import Path
 from uuid import uuid4
 import pytest
 
 pytestmark=pytest.mark.skipif(os.getenv('RUN_MAP_BROWSER_TESTS')!='1',reason='Explicit isolated synthetic map QA fixture required')
-BASE='http://127.0.0.1:8012'
+BASE=os.getenv('STUDIO_MAP_BROWSER_BASE','http://127.0.0.1:8012')
+DESKTOP=os.getenv('RUN_DESKTOP_BROWSER_TESTS')=='1'
+if BASE!='http://127.0.0.1:8012' and not (DESKTOP and re.fullmatch(r'http://127\.0\.0\.1:[0-9]{1,5}',BASE)):
+    raise ValueError('Map browser QA must use an isolated loopback server')
+ARTIFACTS=Path('artifacts/desktop/maps') if DESKTOP else Path('artifacts/browser')
 
 
 @pytest.mark.parametrize('failure',['network','timeout','roadview_absent'])
 def test_sdk_failure_preserves_local_scene_and_state(failure):
     from playwright.sync_api import sync_playwright,expect
     engine=os.getenv('BROWSER_ENGINE','chromium');assert engine in {'chromium','firefox'}
-    Path('artifacts/browser').mkdir(exist_ok=True)
+    ARTIFACTS.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=getattr(pw,engine).launch(headless=True);context=browser.new_context(viewport={'width':1440,'height':1000})
         errors=[];sdk_requests=[];outside=[]
@@ -31,6 +36,9 @@ def test_sdk_failure_preserves_local_scene_and_state(failure):
         context.route('**/*',route_request)
         page=context.new_page();page.on('pageerror',lambda error:errors.append(str(error)))
         try:
+            if DESKTOP:
+                status=context.request.get(BASE+'/_desktop/status').json()
+                assert status['application']=='fire-command-studio' and status['loopback_only']
             assert context.request.post(BASE+'/api/v1/auth/demo',data={'profile':'facilitator'}).ok
             created=context.request.post(BASE+'/api/v1/exercises',data={'template':'factory','name':'합성 지도 장애 QA '+uuid4().hex[:8]});assert created.ok
             ex=created.json();version=ex.pop('state_version');ex['subject'].update(target_mode='VIRTUAL_ON_REAL_MAP',map_context='REAL')
@@ -49,5 +57,5 @@ def test_sdk_failure_preserves_local_scene_and_state(failure):
             expect(page.locator('.building-strip button.selected')).to_contain_text('B02')
             assert len(sdk_requests)==1 and not outside and not errors
             assert context.request.get(BASE+'/api/v1/exercises/'+ex['id']).json()['exercise']['subject']['target_mode']=='VIRTUAL_ON_REAL_MAP'
-            page.screenshot(path=f'artifacts/browser/{engine}-map-{failure}.png',full_page=True)
+            page.screenshot(path=str(ARTIFACTS/f'{engine}-map-{failure}.png'),full_page=True)
         finally:context.close();browser.close()
