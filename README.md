@@ -6,7 +6,7 @@
 
 ## Windows 설치판
 
-[Windows 설치 프로그램 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0) · [다운로드·운영 안내 사이트](https://fire-command-studio-download.leondic.chatgpt.site)(소유자 전용) · 로컬 훈련 시범판. Python·Node를 별도로 설치할 필요가 없습니다. 설치 후 바로가기를 실행하고 **훈련 스튜디오 열기**를 누르세요.
+[Windows 설치 프로그램 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0) · [GitHub Pages 다운로드·운영 안내](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/) · 로컬 훈련 시범판. Python·Node를 별도로 설치할 필요가 없습니다. 설치 후 바로가기를 실행하고 **훈련 스튜디오 열기**를 누르세요.
 
 운영 PC 한 대에서 준비·대리 입력하고, **공용화면**을 프로젝터에 띄워 구두로 토론합니다. 데이터는 `%LOCALAPPDATA%\FIRECommandStudio`에 저장합니다. 전체 백업·복원과 제거 후 데이터 보존은 [설치·운영 안내](docs/WINDOWS_DISTRIBUTION.md)를 따릅니다. 전자서명은 적용하지 않았으며 릴리스의 SHA256으로 파일을 확인할 수 있습니다. 기관 정규 출시 승인과 실제 회의실 시범훈련은 별도입니다.
 

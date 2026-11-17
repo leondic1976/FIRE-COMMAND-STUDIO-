@@ -4,7 +4,11 @@
 
 2026-11-17 사용자가 커밋/푸시/배포/정적호스팅을 명시 승인하고, 정적호스팅에서도 모든 기능이 동작하도록 개선을 요청했다. 이전의 원격 게시 금지는 이 요청 범위에서 해소됐다. 기관 정규 출시·실자료/전문가 승인은 별도다. 원본 plan.md는 변경하지 않는다.
 
-## 현재 배포 결과
+## 현재 호스팅 지시 U27
+
+사용자는 정적호스팅 대상을 GitHub로 명시했다. 공개 GitHub Pages 주소는 `https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/`이며, Pages를 workflow 방식으로 활성화했다. `.github/workflows/pages.yml`이 main의 site 변경을 빌드해 site/dist만 배포한다. GitHub Pages는 로그인 없이 열도록 설정한다. 현재 배포 실행과 실제 공개 URL 검증을 진행 중이며 성공 전 통과로 기록하지 않는다.
+
+## 이전 배포 결과
 
 - [Windows 설치파일·체크섬·릴리스](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0): 공개 다운로드 제공. Python/Node 없이 설치 실행하며 훈련 기능은 설치 PC에서 동작한다.
 - [정적 다운로드·운영 안내](https://fire-command-studio-download.leondic.chatgpt.site): source235586e9e1bc16371522798f4a338ba8f2df6112/버전1/배포succeeded(2026-11-17 18:19 KST). 기존 소유자 전용 접근을 유지한다. 설치파일의 공개성은 GitHub 릴리스와 구분한다.

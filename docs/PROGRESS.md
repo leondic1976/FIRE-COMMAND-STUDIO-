@@ -1,5 +1,7 @@
 # 현재 진행 현황
 
+2026-11-17 20:30 KST: U27에 따라 **GitHub Pages 공개 정적호스팅으로 배포 진행 중**이다. 이전 Sites 주소는 보조 기록이며 주 안내 주소를 https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/ 로 정정했다. 설치판0.1.0과 기능 소스는 변경하지 않는다.
+
 2026-11-17 18:20 KST: **요청한 Windows 설치판 공개·정적 안내 사이트 배포 완료**다. 단일 운영 PC·대형 공용화면·구두 토론·진행자 대리 입력으로 확정했다. 여러 PC 동기화와 브라우저 전용 전환 질문은 현재 차단이 아니다.
 
 [설치 프로그램/체크섬](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0): 실제 Windows11 설치·두 엔진 각7개/지도 각3개·Python 없는 PATH·기록/백업복원·재설치/제거·13훈련 보존·공개 재다운로드 해시를 확인했다. 전자서명 없음/실제 AV 검사 미실행/다른 버전 업그레이드 미실행을 명시한다. [설치형 배포 기록](WINDOWS_DISTRIBUTION.md)과 [검증 증거](evidence/windows-release-20261117.json)를 따른다. [안내 사이트](https://fire-command-studio-download.leondic.chatgpt.site)는 기존 소유자 전용 접근을 유지했고 설치파일은 공개 GitHub에서 내려받는다. 기관 정규 출시의 실제 검수/약10명 회의실 시범훈련은 여전히 별도다.

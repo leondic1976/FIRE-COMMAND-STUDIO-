@@ -326,3 +326,11 @@
 - 정적 사이트 준비 상태를 빌드하지 못하도록 하는 검사도 GitHub CI에 추가했다. 형식 검사/타입 검사/계획 원본 사본 SHA 일치/243개 공개 소스 경로·제한 키패턴 검사는 통과했다. 미존재 스크립트 경로 check_data.py를 실행하려 한 명령은 실행되지 않았고 실제 원본/사본 SHA를 직접 대조했다. 원본 plan.md는 변경하지 않았다.
 
 - 실제 호스팅의 JS/CSS/릴리스JSON/상황판PNG/아이콘5개가 로컬 빌드 SHA256과 모두 일치했다. 루트 HTML에는 서비스의 Cloudflare challenge script1개만 추가됐고, 관찰한 제공자 블록을 비교 과정에서만 분리하면 원본 바이트가 완전히 일치했다. 실제 사이트의 보안 스크립트/접근 정책은 바꾸거나 우회하지 않았다. HTTP 비교 결과와 서비스 주입 구분을 Windows 배포 증거에 기록했다. 실행기 QA 프로세스/임시 사이트 helper는 모두 종료됐다.
+
+
+### 2026-11-17 20:30 KST U27 GitHub Pages 호스팅 정정
+
+- 사용자는 정적호스팅을 GitHub에 요청했다고 명시했다. 이전의 소유자 전용 Sites 배포만으로 호스팅 대상을 충족했다고 안내한 점을 정정하고, 공개 저장소 Pages 설정을 조회했다. has_pages=false/404이며 admin 권한을 확인한 뒤 기존 저장소에 build_type=workflow로 Pages를 활성화했다. 반환된 정확한 공개 주소는 https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/ 이고 public=true/https_enforced=true다. Sites 권한이나 다른 프로젝트는 변경하지 않는다.
+- 공식 GitHub 문서와 실제 공식 액션 태그/선언을 확인해 configure-pages6/upload-pages-artifact5/deploy-pages5로 배포를 구성했다. main만 발행하며 빌드는 읽기 권한, 배포 작업만 pages:write/id-token:write를 사용한다. 업로드 대상은 site/dist 전용으로 저장소·DB·설정·쿠키를 포함하지 않는다.
+- 정적 빌더에서 특정 Sites ID 의존 검사를 제거해 GitHub에서도 같은 검증된 배포 메타데이터로 빌드한다. Sites 게시의 프로젝트 검증은 해당 source helper에 그대로 있다. 실제 출력7개와 원본 웹자원 바이트 일치, YAML/최소 권한/업로드 경로·Python 검사기 컴파일/빌드/공백 검사를 확인했다. 공개 프로젝트 하위 경로를 실제 두 브라우저로 검사할 수 있게 검사기 시작 주소에 정확한 GitHub Pages 주소만 추가했다.
+- 원격 배포/실제 브라우저/공개 자원 해시/설치 링크는 실행 후 별도 증거에 남긴다. 설치판·DB 스키마·원본 plan.md는 변경하지 않았다. 미실행 시험은 통과로 기록하지 않는다.

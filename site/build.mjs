@@ -11,10 +11,6 @@ if (release.status !== 'released' || !/^\d+\.\d+\.\d+$/.test(version) ||
     release.release_url !== `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v${version}`) {
   throw new Error('A verified, published installer and checksum are required before building.');
 }
-const manifest = JSON.parse(await readFile(path.join(root, '.openai/hosting.json'), 'utf8'));
-if (manifest.project_id !== 'appgprj_6afc134d1e0c81918829649d56e3dba8' || manifest.static?.directory !== 'dist') {
-  throw new Error('Unexpected hosting destination.');
-}
 const output = path.join(root, 'dist');
 await mkdir(output, { recursive: true });
 for (const name of ['index.html', 'style.css', 'app.js', 'release.json', 'assets']) {

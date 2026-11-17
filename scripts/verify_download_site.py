@@ -1,5 +1,6 @@
 """Background browser checks for the static installer download page."""
 import json
+import argparse
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright, expect
@@ -23,7 +24,7 @@ def verify():
             context.route('**/*', lambda route: route.continue_() if route.request.url.startswith(BASE + '/') else (outside.append(route.request.url.split('?')[0]), route.abort())[-1])
             for width in [1440, 390]:
                 page.set_viewport_size({'width': width, 'height': 1000})
-                page.goto(BASE)
+                page.goto(BASE + '/')
                 expect(page.locator('#download-state')).to_contain_text('v0.1.0')
                 assert page.locator('.download').count() == 2
                 for anchor in page.locator('.download').all():
@@ -47,7 +48,7 @@ def verify():
             for change in [{'download_url': 'https://example.invalid/other.exe'}, {'status': 'preparing'}, {'sha256': 'invalid'}]:
                 bad = {**RELEASE, **change}
                 page.route('**/release.json', lambda route, request, body=bad: route.fulfill(json=body))
-                page.goto(BASE)
+                page.goto(BASE + '/')
                 expect(page.locator('#download-state')).not_to_contain_text('상태를 확인하고 있습니다')
                 for anchor in page.locator('.download').all():
                     expect(anchor).to_have_attribute('aria-disabled', 'true')
@@ -56,11 +57,17 @@ def verify():
             assert not errors and not outside, (errors, outside)
             context.close()
             browser.close()
-    return {'responsive_browser_checks': result, 'invalid_release_metadata_rejected': 6,
+    return {'base_url': BASE, 'responsive_browser_checks': result, 'invalid_release_metadata_rejected': 6,
             'page_errors': 0, 'external_runtime_requests': 0, 'synthetic_image_only': True}
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--base', default=BASE, choices=[BASE, 'https://leondic1976.github.io/FIRE-COMMAND-STUDIO-'])
+    args = parser.parse_args()
+    BASE = args.base
+    if BASE.startswith('https://'):
+        OUT = Path('artifacts/github-pages')
     result = verify()
     (OUT / 'result.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(result))
