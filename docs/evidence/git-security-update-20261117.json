@@ -1,0 +1,24 @@
+{
+  "before": "git version 2.53.0.windows.1",
+  "after": "git version 2.56.1.windows.1",
+  "installer_exit_code": 0,
+  "official_sha256": "sha256:c330c72e10b408cc39994bfefdb63542b0d93d21699325c3e0bd874af8a5a559",
+  "signature": "Valid",
+  "repository_head_unchanged": true,
+  "credential_helper_preserved": true,
+  "release": "https://github.com/git-for-windows/git/releases/tag/v2.56.1.windows.1",
+  "project_dependencies": {
+    "npm_vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "python_packages": 37,
+    "python_query_failures": 0,
+    "python_known_advisories": 0,
+    "scope": "Known advisories queried at the recorded time; not institutional certification"
+  }
+}

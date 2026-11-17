@@ -290,3 +290,10 @@ python -m pytest tests/e2e/test_browser.py tests/e2e/test_external_browser.py te
 ### U27 GitHub Pages 수용 계약
 
 Pages workflow/main 전용·최소 권한·site/dist만 게시, 공개 HTTPS/로그인 불필요, 프로젝트 하위 경로의 상대 CSS/JS/이미지/배포 JSON·정확한 설치파일 링크/SHA256, 두 엔진1440/390px·키보드·오류/가로 넘침·잘못된 배포 메타데이터 거절을 확인한다. 빌드7개 파일과 원본 자원 바이트·YAML/권한/컴파일은 확인했다. 이후2902bb8/Pages 실행44074688598과 소스 전체CI44074688551이 success로 종료됐다. 실제 공개 HTTPS 사이트에서 Chromium/Firefox×1440/390px의 링크·SHA·키보드/복사·넘침 검증4개와 잘못된 메타데이터 거절6개, JS오류0/외부 런타임 요청0을 확인했다. 두 실제 화면을 직접 시각 확인했고 자원7개 모두 빌드 SHA와 일치했다. 설치파일 HEAD200/31,535,358바이트이며 원본 plan/사본 SHA는 같다. [GitHub Pages 증거](evidence/github-pages-20261117.json).
+
+
+### 웹 전용판 기반 및 Git 보안 업데이트
+
+web 타입검사/프로덕션 빌드와 기존 웹39개/타입·빌드를 통과했다. 기존 의존성 버전·integrity는 바뀌지 않았고 workspace 링크/선언26줄만 lock에 추가했다. 최초 bootstrap은 존재하지 않는 선택적 @types/node를 가정한 KeyError였으며 Node 전역을 쓰지 않는 설정으로 수정했다. 첫 두 브라우저 부팅은 새8015 Origin이 합성 서버 허용 목록에 없어403으로 실패했다. 해당 QA 서버에 정확한8015 Origin만 설정하고 다른 Origin403 검증을 더해 Chromium/Firefox 기본2개를 재검증했다. 최초 실패 JUnit을 별도 보존했다. 이는 공통 UI 개발 기반 시험이며 저장 어댑터·기관 계정·전체 웹 운영/공개 배포 시험은 아직 아니다.
+
+Git2.56.1의 공식 GitHub 자산 SHA256/유효 Authenticode를 확인 후 실제 업데이트·버전/저장소HEAD·인증 도우미 설정 보존과 원격 main 조회를 확인했다. npm audit취약점0, Python37조회 실패0/알려진 권고0. 전체 기관 보안 인증을 뜻하지 않는다. 실제 결과는 evidence/git-security-update-20261117.json 및 web-workspace-baseline-20261117.json을 따른다.

@@ -1,0 +1,27 @@
+{
+  "scope": "Shared web UI baseline only; production runtime selection pending",
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "2",
+    "time": "10.978",
+    "timestamp": "2026-11-17T20:45:14.537785+09:00",
+    "hostname": "DESKTOP-0L160QD"
+  },
+  "web_typecheck": true,
+  "web_build": true,
+  "original_web_build": true,
+  "existing_web_unit_tests_passed": 39,
+  "private_qa_backend": {
+    "loopback_port": 8016,
+    "synthetic_only": true,
+    "allowed_ui_origin": "http://127.0.0.1:8015",
+    "other_origins_rejected": true
+  },
+  "original_user_backend_port_8010_untouched": true,
+  "public_web_runtime_deployed": false,
+  "runtime_choice_pending": true,
+  "existing_dependency_versions_and_integrities_changed": false
+}

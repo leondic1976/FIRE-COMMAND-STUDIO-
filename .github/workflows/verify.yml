@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
       - run: python -m pip install -r requirements.txt
       - run: npm run build
+      - name: Build separate web workspace
+        run: npm run build --workspace web
       - name: Build verified installer download page
         run: node site/build.mjs
       - name: Create ignored runtime directory
