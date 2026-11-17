@@ -16,7 +16,9 @@ import pytest
 from tests.conftest import control, prepare, release_n
 
 BASE = os.getenv('STUDIO_BROWSER_BASE','http://127.0.0.1:8010')
-if BASE not in {'http://127.0.0.1:8010','http://127.0.0.1:8011'}:
+DESKTOP = os.getenv('RUN_DESKTOP_BROWSER_TESTS') == '1'
+ARTIFACTS = Path('artifacts/desktop/browser') if DESKTOP else Path('artifacts/browser')
+if BASE not in {'http://127.0.0.1:8010','http://127.0.0.1:8011'} and not (DESKTOP and re.fullmatch(r'http://127\.0\.0\.1:[0-9]{1,5}', BASE)):
     raise ValueError('Browser checks are limited to the two local synthetic servers')
 pytestmark = pytest.mark.skipif(
     os.environ.get('RUN_BROWSER_TESTS') != '1',
@@ -33,13 +35,16 @@ def browser_context(request):
         health = client.get('/api/v1/health')
         health.raise_for_status()
         assert client.get('/api/v1/auth/profiles').json()['demo'] is True
-    Path('artifacts/browser').mkdir(parents=True, exist_ok=True)
+        if DESKTOP:
+            status = client.get('/_desktop/status').json()
+            assert status['application'] == 'fire-command-studio' and status['loopback_only']
+    ARTIFACTS.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as playwright:
         engine = os.environ.get('BROWSER_ENGINE', 'chromium')
         if engine not in {'chromium', 'firefox'}:
             pytest.fail('BROWSER_ENGINE must be chromium or firefox')
         browser = getattr(playwright, engine).launch(headless=True)
-        Path(f'artifacts/browser/{engine}-environment.json').write_text(json.dumps({
+        (ARTIFACTS / f'{engine}-environment.json').write_text(json.dumps({
             'engine':engine,'browser_version':browser.version,'playwright':version('playwright'),
             'headless':True,'base_url':BASE,'existing_browser_profile_used':False,
             'real_user_pilot':False,'target_pc_fps_verified':False,
@@ -53,8 +58,8 @@ def browser_context(request):
             for index, page in enumerate(context.pages):
                 if not page.is_closed():
                     page.evaluate('window.scrollTo(0,0)')
-                    page.screenshot(path=f'artifacts/browser/{engine}-{request.node.name}-{index}.png', full_page=True)
-            Path(f'artifacts/browser/{engine}-{request.node.name}-errors.json').write_text(
+                    page.screenshot(path=str(ARTIFACTS / f'{engine}-{request.node.name}-{index}.png'), full_page=True)
+            (ARTIFACTS / f'{engine}-{request.node.name}-errors.json').write_text(
                 json.dumps(errors, ensure_ascii=False, indent=2), encoding='utf-8'
             )
             context.close()
@@ -160,7 +165,7 @@ def test_new_exercise_readiness_publish_and_ten_injects(browser_context):
         else:
             expect(page.locator('.scene-fallback')).to_be_visible()
         page.get_by_label('카메라 원위치').click()
-    page.screenshot(path='artifacts/browser/facilitator-board.png', full_page=True)
+    page.screenshot(path=str(ARTIFACTS / 'facilitator-board.png'), full_page=True)
     assert page.locator('canvas').count() or page.get_by_text('2D', exact=False).count()
 
     actions = page.locator('.action-panel')
@@ -223,7 +228,7 @@ def test_new_exercise_readiness_publish_and_ten_injects(browser_context):
     expect(page.locator('.aar-export .success-text')).to_be_visible()
     with page.expect_download() as exported:
         page.get_by_role('button', name='JSON', exact=True).click()
-    report_path = Path('artifacts/browser') / f'aar-{os.environ.get("BROWSER_ENGINE", "chromium")}.json'
+    report_path = ARTIFACTS / f'aar-{os.environ.get("BROWSER_ENGINE", "chromium")}.json'
     exported.value.save_as(report_path)
     report = json.loads(report_path.read_text(encoding='utf-8'))
     assert len(report['observations']) == 1 and report['improvements'][0]['status'] == 'COMPLETED'
@@ -233,7 +238,7 @@ def test_new_exercise_readiness_publish_and_ten_injects(browser_context):
     expect(page.get_by_role('dialog')).to_contain_text(observation)
     expect(page.locator('.report-paper section').nth(1)).to_contain_text('GUI 합성 교대 절차 검증')
     expect(page.locator('.report-paper section').nth(1)).to_contain_text('대체·인계 단계 변경')
-    page.screenshot(path=f'artifacts/browser/aar-{os.environ.get("BROWSER_ENGINE", "chromium")}.png', full_page=True)
+    page.screenshot(path=str(ARTIFACTS / f'aar-{os.environ.get("BROWSER_ENGINE", "chromium")}.png'), full_page=True)
     page.keyboard.press('Escape')
     expect(page.get_by_role('dialog')).to_have_count(0)
 
@@ -276,6 +281,12 @@ def test_old_session_selection_reconnect_and_role_switch(browser_context):
         assert client.post('/api/v1/auth/demo', json={'profile': 'facilitator'}).status_code == 200
         exercise = client.post('/api/v1/exercises', json={'template': 'factory', 'name': 'GUI 재접속·권한 전환 합성 ' + uuid4().hex[:8]}).json()
         sid = prepare(client, exercise['id'])
+        # A fresh installation has no historical runs. Create later runs rather
+        # than depending on previous tests or a developer's long-lived database.
+        for _ in range(4):
+            later = client.post('/api/v1/exercises/' + exercise['id'] + '/sessions')
+            assert later.status_code == 201
+            assert later.json()['id'] != sid
         assert control(client, sid, 'start').status_code == 200
         release_n(client, sid, 3)
         page = browser_context.new_page()
@@ -327,7 +338,7 @@ def test_phone_layout_and_modal_keyboard(browser_context):
     page.keyboard.press('Escape')
     expect(page.get_by_role('dialog')).to_have_count(0)
     expect(page.locator('.toast')).to_have_count(0, timeout=6000)
-    page.screenshot(path='artifacts/browser/phone.png', full_page=True)
+    page.screenshot(path=str(ARTIFACTS / 'phone.png'), full_page=True)
 
 
 def test_public_board_uses_public_network_projection(browser_context):
@@ -352,7 +363,7 @@ def test_public_board_uses_public_network_projection(browser_context):
     assert all(state['scene']['H01']['water'] != 'UNAVAILABLE' for state in snapshots)
     expect(page.get_by_text('소방용수 사용 여부 미확인', exact=True)).to_have_count(0)
     expect(page.get_by_text('진행자 제어', exact=False)).to_have_count(0)
-    page.screenshot(path='artifacts/browser/public-board.png', full_page=True)
+    page.screenshot(path=str(ARTIFACTS / 'public-board.png'), full_page=True)
 
 
 def test_webgl_unavailable_preserves_scene_state_in_2d(browser_context):
@@ -426,7 +437,7 @@ def test_candidate_preview_defer_skip_and_public_isolation(browser_context):
     candidate.get_by_role('spinbutton',name='훈련시계 기준 연기 시간 (초)',exact=True).fill('0')
     expect(submit).to_be_disabled()
     candidate.get_by_role('spinbutton',name='훈련시계 기준 연기 시간 (초)',exact=True).fill('60')
-    candidate.screenshot(path=f'artifacts/browser/{os.getenv("BROWSER_ENGINE","chromium")}-candidate-preview-and-defer.png')
+    candidate.screenshot(path=str(ARTIFACTS / f'{os.getenv("BROWSER_ENGINE","chromium")}-candidate-preview-and-defer.png'))
     submit.click()
     expect(candidate).to_contain_text('까지 연기')
     expect(candidate.get_by_role('button',name='승인·공개',exact=True)).to_be_disabled()

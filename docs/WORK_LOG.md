@@ -289,3 +289,21 @@
 
 - 수정 커밋0437ecf855abaf5f2f160a70db0c26eed0092415의 원격 실행44042858035가 success로 종료됐다. 서버223통과/19skip/24.78초, 웹39통과·타입/빌드·의존성 인벤토리·Python37조회 실패0/알려진 권고0·npm audit발견0이다. Windows 네이티브/선택 브라우저의 skip을 통과로 합산하지 않는다. raw로그/상태JSON은 artifacts/ci-clean-checkout-success.*에 보존했고 공개 메타데이터 github-publish-20261117.json을 기록했다.
 - 사용자 요청의 커밋/푸시는 완료했다. 모든 기능 정적호스팅 전환은 단순 dist게시로 대체하지 않으며 서버리스 사용 범위의 필수 질문 답변 대기다. 사이트를 만들거나 기능이 빠진 미리보기를 배포하지 않았다. 기관 검수/실제 시범훈련 미완료 조건도 유지한다.
+
+### 2026-11-17 17:34 KST 단일 PC 정정·Windows 설치형 선택과 첫 실행 증거
+
+- U25에 따라 참가자는 PC로 토론하지 않고 대형 화면으로 구두 토론하며 한 운영자가 대리 입력하는 범위로 정정했다. 여러 PC 동기화를 필수로 잡은 해석을 바로잡고 이전 서버리스 질문을 차단에서 해제했다. U26은 원래 기능을 Windows 로컬 설치 프로그램으로 별도 내려받도록 선택했다. WINDOWS_DISTRIBUTION 계약을 먼저 작성했으며 정적 사이트는 다운로드/운영 안내로 한다.
+- 브라우저 Python 검토에서 고정 Pyodide314.0.8의 의존성/자체 호스팅 가능성을 조사했으나 사용자 설치형 선택으로 중단했다. 시험 배포본의 Pillow12.2.0에는 알려진 권고가 있어 제품에 포함하지 않았다. 추가했던3개 npm 의존성만 원래 항목과 대조해 되돌렸고 미완성 브라우저 소스도 제품에서 제외했다. 조사 캐시는 runtime에만 남으며 원래 Pillow13.0.0/Python 앱을 유지한다. 원본 plan.md는 변경하지 않았다.
+- PyInstaller6.22.3/hooks2026.10과 공식 InnoSetup6.7.3을 준비했다. winget이 공식 설치기 SHA9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732를 확인했고 pip check도 통과했다. 실행기·per-user 저장/중복 잠금·loopback/포트 충돌·종료 키/출처 검증·초기 설치 계약을 추가했다.
+- 첫4개 시험은2통과/2실패였다: SPA fallback이 새 상태 경로를 가로채 HTML을 반환한 실제 결함과, 시험이 새 훈련201을200으로 기대한 오류다. 상태 경로를 fallback보다 앞에 두고 정확한201 단언으로 수정했다.4개/3.83초 통과(desktop-routes-fixed.xml), 첫 실패 desktop-first.xml 보존.
+- 최초 독립 패키지는76초/104,248,237바이트/1739파일이며 QA 후보이다. Python/PYTHONHOME/PYTHONPATH를 제외한 환경에서 실제.exe를 실행해 schema2/정적홈200/로그인/합성 새훈련201을 확인했다. 상태만 artifacts/desktop-first-exe-smoke.json에 보존하며 instance.json의 종료키/DB/쿠키는 출력/게시하지 않았다. 이 후보의 Python3.14.3은 배포 완료로 표시하지 않고 최종본은 별도의 깨끗한 빌더 Python3.14.10으로 만들 예정이다.
+- 패키지의 실제 loopback 주소를 명시한 경우에만 기존7개 브라우저 흐름을 실행하도록 테스트 드라이버를 확장했다. desktop/status 검증·127.0.0.1 제한을 유지하고 캡처/결과는 artifacts/desktop/browser에 분리했다. 현재 Chromium 전체7개를 실제 후보.exe에 실행 중이며 통과 전 완료로 기록하지 않는다.
+
+### 2026-11-17 17:54 KST 설치형 기능·복구 검증과 최종 빌더 준비
+
+- 최초 후보.exe의 Chromium 기본7개는 처음6통과/1실패111.35초였다. 새 설치 DB에는 과거 실행본이 없어 '>4목록' 가정이 성립하지 않았으며, 나중 실행본4개를 시험이 직접 만들어 과거 선택/재접속을 확인하도록 강화했다. 재실행7개115.35초 통과(desktop-second-chromium.xml), 최초 실패 desktop-first-chromium.xml 보존.
+- 전체 백업 저장/복원·자동 현재 백업·실패 시 되돌림·손상 manifest 거절·복원 후 재시작을 실행기/GUI에 연결했다. 실제 Windows 시험에서 SQLite context manager가 연결을 닫지 않아 WAL 파일 잠금이 남는 실패를 발견했다. scripts/backup_restore와 실행기의 연결을 closing으로 명시 종료해 보완했다. 정상/변조/복원 실패 주입→이전 데이터 복구까지7개11.28초 통과(desktop-rollback.xml), 실패 desktop-backup.xml 보존.
+- 전체 서버 회귀232개117.56초 통과(pytest-desktop-candidate.xml, 실제 고정 IFC/영상 도구 포함). 웹39개/타입/빌드 통과. 이후 설치형 승인 지도 공개키의 런타임 설정을 더했으며 관련8개13.91초 통과(desktop-map-config.xml). 공개 응답은 승인된 공개 JS 키만 포함하고 기관 API 비밀키/DB 경로 설정은 제외한다. 세션 중 설정은 시작 시점으로 고정했다.
+- Python 없는 PC를 위한 설치 확인 명령·PNG/XLSX 실제 형식 처리·loopback/권한·DB 재실행·백업복원 독립 실행 스모크를 추가했다. IFC는 별도 승인 오프라인 CLI 경로를 같은.exe에 보존하며 HTTP 서비스에서 실행하지 않는다. 사용자 데이터/키를 번들에 넣지 않는 검사와 실제 의존성 고지144항목을 준비했다. notice 스크립트의 최초 괄호 구문 오류는 수정 후 생성/컴파일 확인했다.
+- 최종 배포본은 깨끗한 Windows2025/Python3.14.10·PyInstaller6.22.3/hooks2026.10·공식 SHA 확인 Inno6.7.3의 명시 빌더를 사용한다. 출력물의 실제 설치/업데이트/제거·기록 보존·GUI·새 브라우저·다운로드 해시는 빌드 후 검증하며 아직 완료로 표시하지 않는다.
+- 다운로드 사이트를 사용자 승인 범위에서1회 생성했다. ID appgprj_6afc134d1e0c81918829649d56e3dba8을 site/.openai/hosting.json에 즉시 보존했다. 생성된 예상 주소는 https://fire-command-studio-download.leondic.chatgpt.site 이며 아직 배포 성공 URL이 아니다. 자격증명은 세션 메모리에만 보관하고 Git/파일/로그에 넣지 않았다.

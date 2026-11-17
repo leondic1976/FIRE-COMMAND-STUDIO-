@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import sqlite3
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,7 +22,7 @@ def backup(source, destination):
         raise ValueError('원본 파일과 존재하지 않는 별도 백업 경로를 지정하세요.')
     destination.parent.mkdir(parents=True,exist_ok=True)
     # sqlite backup() includes committed WAL contents, unlike an ordinary file copy.
-    with sqlite3.connect(f'file:{source.as_posix()}?mode=ro',uri=True) as src,sqlite3.connect(destination) as dst:
+    with closing(sqlite3.connect(f'file:{source.as_posix()}?mode=ro',uri=True)) as src,closing(sqlite3.connect(destination)) as dst:
         src.backup(dst)
         if dst.execute('PRAGMA integrity_check').fetchone()[0]!='ok':
             raise ValueError('백업 무결성 검사 실패')

@@ -1,0 +1,55 @@
+name: Build Windows installer
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2025
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.14.10'
+          cache: pip
+      - run: npm ci
+      - run: python -m pip install -r requirements.txt -r requirements-build.txt
+      - run: npm run build
+      - run: python -c "from pathlib import Path; Path('runtime').mkdir(exist_ok=True)"
+      - run: python -m pytest tests -q --basetemp=runtime/pytest-windows --junitxml=runtime/windows-tests.xml
+      - run: python -m scripts.desktop_notices
+      - run: python -m PyInstaller --noconfirm --distpath runtime/desktop-dist --workpath runtime/desktop-build packaging/windows/studio.spec
+      - run: python scripts/verify_desktop_executable.py runtime/desktop-dist/FIRECommandStudio/FIRECommandStudio.exe --data-dir runtime/frozen-smoke --output runtime/release/frozen-smoke.json
+      - run: python scripts/check_windows_bundle.py runtime/desktop-dist/FIRECommandStudio --output runtime/release/bundle-manifest.json
+      - name: Compile per-user installer
+        shell: pwsh
+        run: |
+          $tools = Join-Path (Get-Location) 'runtime\inno-tools'
+          New-Item -ItemType Directory -Force -Path $tools | Out-Null
+          $setup = Join-Path $tools 'innosetup-6.7.3.exe'
+          Invoke-WebRequest -Uri 'https://github.com/jrsoftware/issrc/releases/download/is-6_7_3/innosetup-6.7.3.exe' -OutFile $setup
+          if ((Get-FileHash -LiteralPath $setup -Algorithm SHA256).Hash.ToLower() -ne '9c73c3bae7ed48d44112a0f48e66742c00090bdb5bef71d9d3c056c66e97b732') { throw 'Compiler installer hash mismatch' }
+          $compilerDir = Join-Path $tools 'compiler'
+          $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/CURRENTUSER',"/DIR=$compilerDir") -WindowStyle Hidden -Wait -PassThru
+          if ($install.ExitCode -ne 0) { throw 'Compiler preparation failed' }
+          $compiler = Join-Path $compilerDir 'ISCC.exe'
+          if (-not (Test-Path -LiteralPath $compiler)) { throw 'Compiler is missing' }
+          $bundle = (Resolve-Path -LiteralPath runtime/desktop-dist/FIRECommandStudio).Path
+          $output = Join-Path (Get-Location) 'runtime\release'
+          & $compiler "/DBundleDir=$bundle" "/DOutputDir=$output" packaging/windows/installer.iss
+          if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed' }
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fire-command-studio-windows
+          path: |
+            runtime/release/
+            runtime/windows-tests.xml
+            runtime/frozen-smoke/last-startup-error.json
+            runtime/frozen-smoke/installation-check.json
+          retention-days: 14
