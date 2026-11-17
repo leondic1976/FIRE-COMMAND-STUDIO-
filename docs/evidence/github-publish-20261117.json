@@ -1,0 +1,40 @@
+{
+  "kind": "AUTHORIZED_GITHUB_SOURCE_PUBLICATION",
+  "checked_at": "2026-11-17 17:01 KST",
+  "repository": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-",
+  "visibility": "public",
+  "branch": "main",
+  "initial_commit": "998074eacafc37cd46d98fae57e195cff7af36d4",
+  "ci_fix_commit": "0437ecf855abaf5f2f160a70db0c26eed0092415",
+  "first_ci": {
+    "id": 44042619512,
+    "conclusion": "failure",
+    "passed": 137,
+    "skipped": 19,
+    "setup_errors": 86,
+    "cause": "Git-excluded runtime parent directory missing on clean checkout"
+  },
+  "corrected_ci": {
+    "id": 44042858035,
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/actions/runs/44042858035",
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 223,
+    "skipped": 19,
+    "seconds": 24.78,
+    "web_passed": 39,
+    "typecheck_build_passed": true,
+    "python_advisory_packages": 37,
+    "python_query_failures": 0,
+    "python_known_advisories": 0,
+    "npm_audit_findings": 0
+  },
+  "workflow_sha256": "7920ac82b4637fd7947ce389c442f9e33c282aaf33d38cd05929a750530dfe9d",
+  "runtime_db_cookies_keys_and_local_artifacts_excluded": true,
+  "index_reviewed_bytes_preserved": true,
+  "hosting_deployed": false,
+  "all_features_static_migration_complete": false,
+  "hosting_architecture_question_pending": true,
+  "institutional_release_approved": false,
+  "note": "Native Windows/tool and opt-in browser checks remain separately evidenced; Linux skips are not passes. User explicitly authorized source publication. No deployment URL exists yet."
+}

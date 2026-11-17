@@ -87,4 +87,4 @@ python scripts/backup_restore.py restore runtime/backups/studio-snapshot.db runt
 - [의존성·라이선스 선언 기록](docs/DEPENDENCIES.md), [합성 예시](data/README.md)
 - [M0~M6 단계별 상태](docs/MILESTONES.md)
 
-런타임 DB·토큰·백업·시험 임시파일·생성 캡처는 Git에서 제외한다. 이 작업에서 원격 GitHub 게시나 외부 호스팅 배포는 수행하지 않았다.
+런타임 DB·토큰·백업·시험 임시파일·생성 캡처는 Git에서 제외한다. 2026-11-17 사용자 명시 승인으로 검증본을 [GitHub main](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-)에 게시했고 [원격 CI](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/actions/runs/44042858035)가 통과했다. 정적호스팅의 모든 기능 전환/배포는 [전환 조건](docs/STATIC_HOSTING.md)의 필수 구조 확인 후 진행한다. 기관 정규 출시 승인과는 별도다.

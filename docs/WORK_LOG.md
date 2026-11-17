@@ -284,3 +284,8 @@
 - 초기 커밋998074eacafc37cd46d98fae57e195cff7af36d4/215파일을 main에 생성하고 origin/main 푸시 성공·원격 SHA 일치를 확인했다. 사용자 명시 승인 범위의 게시이며 기존 Chrome/기관 승인을 뜻하지 않는다.
 - 원격 실행44042619512는 Ubuntu/Python3.14.10에서 설치/웹 타입·빌드는 통과했지만 Pytest137통과/19skip/86준비오류로 실패했다. runtime은 Git 제외라 깨끗한 체크아웃에는 부모 폴더가 없었으며 --basetemp 생성에서 FileNotFoundError였다. 뒤 npm test/인벤토리/Python·npm 보안 단계는 skip이므로 통과로 기록하지 않는다. raw로그 artifacts/ci-first-failed.log/공개 실행 URL 보존.
 - CI에 Pytest 전 runtime.mkdir(parents=True,exist_ok=True)를 추가하고 YAML/순서를 확인했다(IMP072). 제품 코드는 변경하지 않았다. 같은 원격 전체 검증을 재실행하며 통과 전에는 배포 완료로 기록하지 않는다. 정적 전체 기능 구조의 필수 질문은 계속 답변 대기다.
+
+### 2026-11-17 17:01 KST GitHub 원격 전체 CI 통과
+
+- 수정 커밋0437ecf855abaf5f2f160a70db0c26eed0092415의 원격 실행44042858035가 success로 종료됐다. 서버223통과/19skip/24.78초, 웹39통과·타입/빌드·의존성 인벤토리·Python37조회 실패0/알려진 권고0·npm audit발견0이다. Windows 네이티브/선택 브라우저의 skip을 통과로 합산하지 않는다. raw로그/상태JSON은 artifacts/ci-clean-checkout-success.*에 보존했고 공개 메타데이터 github-publish-20261117.json을 기록했다.
+- 사용자 요청의 커밋/푸시는 완료했다. 모든 기능 정적호스팅 전환은 단순 dist게시로 대체하지 않으며 서버리스 사용 범위의 필수 질문 답변 대기다. 사이트를 만들거나 기능이 빠진 미리보기를 배포하지 않았다. 기관 검수/실제 시범훈련 미완료 조건도 유지한다.
