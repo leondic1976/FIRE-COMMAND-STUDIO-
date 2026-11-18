@@ -371,5 +371,20 @@
       "synthetic_image_only": true
     }
   },
-  "qa_services_stopped": true
+  "qa_services_stopped": true,
+  "local_web_preview": {
+    "url": "http://127.0.0.1:8080/",
+    "version": "0.2.0",
+    "track": "web",
+    "demo": true,
+    "internet_public": false,
+    "login_json_controls_visible": true,
+    "page_errors": 0,
+    "previous_8010_database_reused": false
+  },
+  "final_document_ci": {
+    "source_commit": "6ed93ed9aa4f08ae8899db760519c60cce9d357b",
+    "run_id": 44214600891,
+    "status": "success"
+  }
 }
