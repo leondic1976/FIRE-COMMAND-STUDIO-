@@ -19,7 +19,10 @@ def browser():
     engine = os.getenv('BROWSER_ENGINE', 'chromium')
     assert engine in ('chromium', 'firefox')
     with sync_playwright() as p:
-        browser = getattr(p, engine).launch(headless=True)
+        headed = os.getenv('SCREEN_BROWSER_HEADED') == '1'
+        browser = getattr(p, engine).launch(headless=not headed)
+        (OUT / (engine + '-environment.json')).write_text(json.dumps({'engine': engine, 'version': browser.version,
+            'headless': not headed, 'synthetic_only': True, 'real_user_profile_used': False}), encoding='utf-8')
         yield browser
         browser.close()
 

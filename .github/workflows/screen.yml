@@ -43,7 +43,7 @@ jobs:
             sleep 1
           done
           BROWSER_ENGINE=chromium python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/chromium.xml
-          BROWSER_ENGINE=firefox python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/firefox.xml
+          xvfb-run -a -s "-screen 0 1920x1080x24" env LIBGL_ALWAYS_SOFTWARE=1 MOZ_WEBRENDER=1 SCREEN_BROWSER_HEADED=1 BROWSER_ENGINE=firefox python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/firefox.xml
       - uses: actions/upload-artifact@v7
         if: always()
         with:
