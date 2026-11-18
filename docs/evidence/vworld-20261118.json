@@ -7,7 +7,7 @@
   "real_key_supplied": false,
   "real_sdk_or_building_verified": false,
   "institutional_approval": false,
-  "status": "local adapter implementation and synthetic acceptance passed; remote package verification in progress",
+  "status": "adapter implemented; local/remote synthetic acceptance and distribution verified; SCREEN0.2 preview published; own key and first real facility validation pending",
   "tests": {
     "vworld-contract-first": [
       {
@@ -200,5 +200,239 @@
     "key_sent": false,
     "tls_validation_disabled": false,
     "actual_search_or_sdk_verified": false
+  },
+  "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+  "remote": {
+    "main": {
+      "run": 44231639050,
+      "conclusion": "success",
+      "passed": 305,
+      "skipped": 27,
+      "seconds": 26.41,
+      "javascript_passed": 49
+    },
+    "containers": {
+      "run": 44231639065,
+      "conclusion": "success",
+      "tracks": [
+        "web",
+        "screen"
+      ],
+      "screen_fixable_high_critical": 0
+    },
+    "browsers": {
+      "run": 44231638932,
+      "conclusion": "success",
+      "platform": "Linux",
+      "junit": {
+        "chromium": [
+          {
+            "tests": "3",
+            "failures": "0",
+            "errors": "0",
+            "skipped": "0",
+            "time": "81.158"
+          }
+        ],
+        "firefox": [
+          {
+            "tests": "3",
+            "failures": "0",
+            "errors": "0",
+            "skipped": "0",
+            "time": "94.185"
+          }
+        ],
+        "vworld-chromium": [
+          {
+            "tests": "4",
+            "failures": "0",
+            "errors": "0",
+            "skipped": "0",
+            "time": "75.592"
+          }
+        ],
+        "vworld-firefox": [
+          {
+            "tests": "4",
+            "failures": "0",
+            "errors": "0",
+            "skipped": "0",
+            "time": "82.445"
+          }
+        ]
+      }
+    }
+  },
+  "local_extracted_windows": {
+    "version": "0.2.0",
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+    "source_dirty": false,
+    "extracted_payload_hashes_verified": 134,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "final_ci_package_extracted_windows": {
+    "version": "0.2.0",
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+    "source_dirty": false,
+    "extracted_payload_hashes_verified": 134,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "final_ci_package_extracted_linux": {
+    "version": "0.2.0",
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+    "source_dirty": false,
+    "extracted_payload_hashes_verified": 134,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "user_preview": {
+    "version": "0.2.0",
+    "url": "http://127.0.0.1:8090",
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+    "existing_ready_run_preserved": 1,
+    "new_provider_setup_visible": true,
+    "missing_key_search_disabled": true,
+    "page_errors": [],
+    "external_requests": [],
+    "real_key_configured": false,
+    "synthetic_provider_injected": false,
+    "backup_before_upgrade": true,
+    "legacy_web8080_preserved": true
+  },
+  "qa_server8093_stopped": true,
+  "release": {
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.2.0",
+    "version": "0.2.0",
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02",
+    "bytes": 643379,
+    "sha256": "759465d5d1055edc056e2fce0f59dde7b10bff0d3a8ed38a8711bd920429cbce",
+    "prerelease": true,
+    "public_redownload_hash_verified": true
+  },
+  "windows_and_ci_package_comparison": {
+    "program_resources_equal": 132,
+    "differing_files": [
+      "notices/DEPENDENCY_INVENTORY.json",
+      "notices/THIRD_PARTY_NOTICES.txt"
+    ],
+    "reason": "generated dependency notices reflect the build environments; final CI package was separately extracted and executed on Windows"
+  },
+  "download_site_local": {
+    "base_url": "http://127.0.0.1:8020",
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 20,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true
+  },
+  "download_site_public": {
+    "base_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-",
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 20,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true
+  },
+  "download_site_resources": {
+    "base": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/",
+    "verified_resources": [
+      {
+        "path": "app.js",
+        "sha256": "a27d612b07c2cd01f4c062851258a1e3cab914c9a9ee2ccbf66759bf940c81ce"
+      },
+      {
+        "path": "index.html",
+        "sha256": "bce82fb59157c08fae5d480c69201a42c0616afa457846ed66992534c6b0fe13"
+      },
+      {
+        "path": "release.json",
+        "sha256": "cdc67396f7fe65a9171dfe0024e7eb3d985bb4965e006991fc2d19668844b74b"
+      },
+      {
+        "path": "robots.txt",
+        "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95"
+      },
+      {
+        "path": "style.css",
+        "sha256": "28fabead8216a2df9f592d5c880ebb3364cbb410c7cb3354398ee83d207fddde"
+      },
+      {
+        "path": "assets/board-preview.png",
+        "sha256": "2285b280e31a3fb05a9faf15b610ee5301437c7392e6f38b4a10b261553d6b2f"
+      },
+      {
+        "path": "assets/favicon.svg",
+        "sha256": "5a38019ba924aaf5f2429df9d2f04a703c8b2b332bd4d402fe98de25e6d1a4bd"
+      }
+    ],
+    "all_match": true,
+    "tls_validation_disabled": false
+  },
+  "download_site_deployment": {
+    "source_commit": "d272ff6f30e5ab341498ffc14abfb78a0aa0d498",
+    "pages_run": 44233158619,
+    "pages_conclusion": "success",
+    "main_run": 44233158576,
+    "main_conclusion": "success"
   }
 }
