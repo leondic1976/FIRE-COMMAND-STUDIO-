@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-18",
+  "request": "U-30",
+  "version": "0.2.0",
+  "status": "local implementation verified; remote packaging and native upgrade pending",
+  "tracks": [
+    "web-server",
+    "windows-local"
+  ],
+  "configuration_schema": 1,
+  "database_schema": 2,
+  "public_server_deployed": false,
+  "institutional_acceptance": false,
+  "tests": {
+    "dual-track-full-api-first": {
+      "tests": "295",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "19",
+      "time": "58.953"
+    },
+    "web-server-chromium-first": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "122.364"
+    },
+    "web-server-firefox-first": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "163.416"
+    },
+    "web-json-final-chromium": {
+      "tests": "1",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "0",
+      "time": "7.878"
+    },
+    "web-json-final-chromium-fixed": {
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.997"
+    },
+    "web-json-final-firefox": {
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "8.142"
+    },
+    "configuration-isolation-concurrency": {
+      "tests": "14",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.284"
+    },
+    "web-server-restore": {
+      "tests": "16",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "2.177"
+    },
+    "web-construction-isolation": {
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.149"
+    },
+    "web-account-cli": {
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.788"
+    }
+  },
+  "web_unit_tests": 39,
+  "root_and_web_typecheck_build": true,
+  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf"
+}

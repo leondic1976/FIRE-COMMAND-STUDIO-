@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "settings": {
+    "MEDIA_HOST_ISOLATION_CONFIRMED": false,
+    "VITE_KAKAO_MAPS_APPROVED": false,
+    "MEDIA_PROCESSING_APPROVED": false,
+    "ASSET_SCAN_APPROVED": false,
+    "IFC_OFFLINE_HOST_CONFIRMED": false,
+    "EXTERNAL_DATA_APPROVED": false,
+    "IFC_CONVERSION_APPROVED": false,
+    "CLAMD_PORT": 3310
+  }
+}

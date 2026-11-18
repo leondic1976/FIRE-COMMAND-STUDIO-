@@ -1,0 +1,69 @@
+name: Verify web server deployment
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'apps/**'
+      - 'packages/**'
+      - 'data/**'
+      - 'scripts/**'
+      - 'package*.json'
+      - 'requirements.txt'
+      - '.dockerignore'
+      - '.github/workflows/web-server.yml'
+permissions:
+  contents: read
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build non-root web image
+        run: docker build --pull --file web/Dockerfile --tag fire-studio-web-qa .
+      - name: Validate production Compose configuration
+        env:
+          STUDIO_DOMAIN: synthetic.invalid
+        run: docker compose --file web/compose.yaml config --quiet
+      - name: Verify container isolation and restart persistence
+        run: |
+          mkdir -p artifacts
+          docker run --detach --name fire-studio-web-qa --cap-drop ALL --security-opt no-new-privileges --read-only --tmpfs /tmp --publish 127.0.0.1:8080:8080 --volume fire-studio-web-qa:/data fire-studio-web-qa --production --host 0.0.0.0 --public-url https://synthetic.invalid
+          for attempt in $(seq 1 40); do
+            if curl --fail --silent http://127.0.0.1:8080/api/v1/health > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/api/v1/runtime/status > artifacts/web-container-status.json
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:8080/api/v1/auth/me)" = 401
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -H 'Host: untrusted.invalid' http://127.0.0.1:8080/api/v1/health)" = 400
+          curl --fail --silent http://127.0.0.1:8080/ | grep -q '웹 훈련'
+          docker exec fire-studio-web-qa python -c "import os,json,pathlib; assert os.getuid()!=0; p=pathlib.Path('/data/settings.json'); d=json.loads(p.read_text()); d['settings']['CLAMD_PORT']=3311; p.write_text(json.dumps(d))"
+          docker restart fire-studio-web-qa
+          for attempt in $(seq 1 40); do
+            if curl --fail --silent http://127.0.0.1:8080/api/v1/health > /dev/null; then break; fi
+            sleep 1
+          done
+          docker exec fire-studio-web-qa python -c "import json,pathlib; assert json.loads(pathlib.Path('/data/settings.json').read_text())['settings']['CLAMD_PORT']==3311"
+          docker exec fire-studio-web-qa python -c "from apps.api.runtime_settings import strict_json; from pathlib import Path; d=strict_json(Path('/data/server.json').read_bytes()); assert d['mode']=='production'; print('non-root/read-only/private JSON persistence verified')"
+      - name: Stop only the QA container
+        if: always()
+        run: docker rm --force fire-studio-web-qa || true
+      - name: Check fixable high and critical runtime image advisories
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: fire-studio-web-qa
+          format: json
+          output: artifacts/web-image-vulnerabilities.json
+          scanners: vuln
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: '1'
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: web-server-container-proof
+          path: |
+            artifacts/web-container-status.json
+            artifacts/web-image-vulnerabilities.json

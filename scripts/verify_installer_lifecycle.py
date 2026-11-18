@@ -50,7 +50,8 @@ def verify(installer, qa_root):
     command(common + ['--backup-to', str(backup)])
 
     def fingerprint():
-        names = ['storage/studio.db', 'settings.env', 'backups/lifecycle.db', 'backups/lifecycle.db.manifest.json']
+        names = ['storage/studio.db', 'backups/lifecycle.db', 'backups/lifecycle.db.manifest.json']
+        names += [name for name in ['settings.env', 'settings.json', 'settings.previous.json'] if (data / name).is_file()]
         return {name: hashlib.sha256((data / name).read_bytes()).hexdigest() for name in names}
 
     def install():

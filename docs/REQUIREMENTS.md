@@ -59,3 +59,6 @@ U27 호스팅 대상 정정: 공개 정적 다운로드/사용 안내를 GitHub 
 
 
 U28/U29: 별도 web 워크스페이스로 설치 없는 웹판을 개발한다. TypeScript 런타임/버전 명령/공개 표시 계약과 React/Three.js 공통 화면 부팅을 먼저 준비했다. 브라우저 저장은 기관 서버 권한과 동일하지 않아 원본 AC23/29/30/35를 임의 통과로 바꾸지 않는다. 필수 배포 선택을 사용자에게 질문했고 답변 전 종속 구현/운영 서버 생성을 하지 않는다. Git 공식 보안판2.56.1 업데이트와 알려진 의존성 권고 조회는 [보안 증거](evidence/git-security-update-20261117.json), 기본 UI 검증 범위는 [웹 기반 증거](evidence/web-workspace-baseline-20261117.json)에 기록한다.
+
+
+U30 확정: 웹서버+Windows 로컬 두 방식이 공통 훈련/JSON 형식을 사용한다. 실행 설정 settings.json·서버 설정 server.json(schema1), 휴대용 훈련 JSON의 새 편집본 가져오기·승인 초기화·기관/역할·체크섬/멱등성이 구현됐다. 전체276통과/19skip·웹39·웹서버 Chromium/Firefox 각8개 통과. [투트랙 증거](evidence/dual-track-20261118.json) 및 [운영 방법](WEB_DEPLOYMENT.md). 실제 공개 서버 배포와 새 Windows0.2 설치/업그레이드·컨테이너는 검증 후 추가 기록한다. 기존 AC38행/기관 수용 조건과 원본 계획은 유지한다. 이전 U28 방식 질문은 U30으로 해소됐다.

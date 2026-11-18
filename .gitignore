@@ -14,3 +14,7 @@ playwright-report/
 test-results/
 *.pyc
 *.tsbuildinfo
+settings.json
+settings.previous.json
+server.json
+server.previous.json

@@ -1,0 +1,55 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": 1,
+      "maximum": 1,
+      "minimum": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "mode": {
+      "default": "demo",
+      "enum": [
+        "demo",
+        "production"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "host": {
+      "default": "127.0.0.1",
+      "enum": [
+        "127.0.0.1",
+        "localhost",
+        "::1",
+        "0.0.0.0",
+        "::"
+      ],
+      "title": "Host",
+      "type": "string"
+    },
+    "port": {
+      "default": 8080,
+      "maximum": 65535,
+      "minimum": 1,
+      "title": "Port",
+      "type": "integer"
+    },
+    "public_url": {
+      "default": "http://127.0.0.1:8080",
+      "title": "Public Url",
+      "type": "string"
+    },
+    "development_origins": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "title": "Development Origins",
+      "type": "array"
+    }
+  },
+  "title": "WebSettings",
+  "type": "object"
+}

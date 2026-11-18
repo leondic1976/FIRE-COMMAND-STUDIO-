@@ -29,3 +29,15 @@ jobs:
       - run: python scripts/dependency_inventory.py
       - run: python scripts/audit_python_dependencies.py
       - run: npm audit --audit-level=high
+      - name: Build web server distribution with dependency notices
+        run: |
+          python -m scripts.desktop_notices
+          python -m scripts.build_web_package --output runtime/release/FIRE-Command-Studio-Web-0.2.0.zip
+          python -m scripts.verify_web_package runtime/release/FIRE-Command-Studio-Web-0.2.0.zip --data-dir runtime/extracted-server-qa --output artifacts/extracted-server-proof.json
+      - uses: actions/upload-artifact@v7
+        with:
+          name: fire-command-studio-web-server
+          path: |
+            runtime/release/FIRE-Command-Studio-Web-0.2.0.zip
+            runtime/release/FIRE-Command-Studio-Web-0.2.0.manifest.json
+            artifacts/extracted-server-proof.json

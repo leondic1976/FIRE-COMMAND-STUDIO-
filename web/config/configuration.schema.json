@@ -1,0 +1,1883 @@
+{
+  "$defs": {
+    "AssetBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "building_id": {
+          "pattern": "^B[0-9]{2,4}$",
+          "title": "Building Id",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "MODEL",
+            "FACADE",
+            "REFERENCE",
+            "VIDEO"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "STAFF",
+          "enum": [
+            "PUBLIC",
+            "STAFF"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "photo_face": {
+          "default": "NORTH",
+          "enum": [
+            "NORTH",
+            "SOUTH",
+            "EAST",
+            "WEST"
+          ],
+          "title": "Photo Face",
+          "type": "string"
+        },
+        "unit_scale": {
+          "default": 1,
+          "maximum": 1000,
+          "minimum": 0.001,
+          "title": "Unit Scale",
+          "type": "number"
+        },
+        "rotation_y": {
+          "default": 0,
+          "maximum": 360,
+          "minimum": -360,
+          "title": "Rotation Y",
+          "type": "number"
+        },
+        "offset": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "title": "Offset",
+          "type": "array"
+        },
+        "floor_map": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "maxProperties": 2000,
+          "title": "Floor Map",
+          "type": "object"
+        },
+        "object_map": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxProperties": 2000,
+          "title": "Object Map",
+          "type": "object"
+        },
+        "id": {
+          "pattern": "^binding-[a-f0-9]{32}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "asset_id": {
+          "pattern": "^asset-[a-f0-9]{32}$",
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "GLB",
+            "PHOTO",
+            "VIDEO"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "mime": {
+          "enum": [
+            "model/gltf-binary",
+            "image/png",
+            "video/webm"
+          ],
+          "title": "Mime",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "manifest": {
+          "$ref": "#/$defs/AssetManifest"
+        },
+        "reviewed_at": {
+          "title": "Reviewed At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "building_id",
+        "purpose",
+        "id",
+        "asset_id",
+        "sha256",
+        "kind",
+        "mime",
+        "label",
+        "source",
+        "manifest",
+        "reviewed_at"
+      ],
+      "title": "AssetBinding",
+      "type": "object"
+    },
+    "AssetManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "bounds": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "maxItems": 2,
+          "title": "Bounds",
+          "type": "array"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/AssetNode"
+          },
+          "maxItems": 2000,
+          "title": "Nodes",
+          "type": "array"
+        },
+        "triangles": {
+          "default": 0,
+          "maximum": 200000,
+          "minimum": 0,
+          "title": "Triangles",
+          "type": "integer"
+        },
+        "texture_pixels": {
+          "default": 0,
+          "maximum": 8388608,
+          "minimum": 0,
+          "title": "Texture Pixels",
+          "type": "integer"
+        },
+        "width": {
+          "default": 0,
+          "maximum": 4096,
+          "minimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "default": 0,
+          "maximum": 4096,
+          "minimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "copyright_notice": {
+          "default": "",
+          "maxLength": 500,
+          "title": "Copyright Notice",
+          "type": "string"
+        },
+        "duration_seconds": {
+          "default": 0,
+          "maximum": 181,
+          "minimum": 0,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "frame_rate": {
+          "default": 0,
+          "maximum": 60,
+          "minimum": 0,
+          "title": "Frame Rate",
+          "type": "number"
+        },
+        "has_audio": {
+          "default": false,
+          "title": "Has Audio",
+          "type": "boolean"
+        },
+        "video_codec": {
+          "default": "",
+          "maxLength": 40,
+          "title": "Video Codec",
+          "type": "string"
+        },
+        "processing_tool": {
+          "default": "",
+          "maxLength": 150,
+          "title": "Processing Tool",
+          "type": "string"
+        },
+        "processing_manifest_sha256": {
+          "default": "",
+          "pattern": "^(?:[a-f0-9]{64})?$",
+          "title": "Processing Manifest Sha256",
+          "type": "string"
+        }
+      },
+      "title": "AssetManifest",
+      "type": "object"
+    },
+    "AssetMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "building_id": {
+          "pattern": "^B[0-9]{2,4}$",
+          "title": "Building Id",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "MODEL",
+            "FACADE",
+            "REFERENCE",
+            "VIDEO"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "STAFF",
+          "enum": [
+            "PUBLIC",
+            "STAFF"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "photo_face": {
+          "default": "NORTH",
+          "enum": [
+            "NORTH",
+            "SOUTH",
+            "EAST",
+            "WEST"
+          ],
+          "title": "Photo Face",
+          "type": "string"
+        },
+        "unit_scale": {
+          "default": 1,
+          "maximum": 1000,
+          "minimum": 0.001,
+          "title": "Unit Scale",
+          "type": "number"
+        },
+        "rotation_y": {
+          "default": 0,
+          "maximum": 360,
+          "minimum": -360,
+          "title": "Rotation Y",
+          "type": "number"
+        },
+        "offset": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "title": "Offset",
+          "type": "array"
+        },
+        "floor_map": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "maxProperties": 2000,
+          "title": "Floor Map",
+          "type": "object"
+        },
+        "object_map": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "maxProperties": 2000,
+          "title": "Object Map",
+          "type": "object"
+        }
+      },
+      "required": [
+        "building_id",
+        "purpose"
+      ],
+      "title": "AssetMapping",
+      "type": "object"
+    },
+    "AssetNode": {
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "maximum": 1999,
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 200,
+          "title": "Name",
+          "type": "string"
+        },
+        "bounds": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "title": "Bounds",
+          "type": "array"
+        }
+      },
+      "required": [
+        "index",
+        "name",
+        "bounds"
+      ],
+      "title": "AssetNode",
+      "type": "object"
+    },
+    "AssetReview": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "binding_id": {
+          "title": "Binding Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 1000,
+          "minLength": 3,
+          "title": "Note",
+          "type": "string"
+        },
+        "action": {
+          "enum": [
+            "ATTACH",
+            "DETACH"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "mapping": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetMapping"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "prior_mapping": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetMapping"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "supersedes_asset_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes Asset Id"
+        }
+      },
+      "required": [
+        "asset_id",
+        "binding_id",
+        "actor_id",
+        "at",
+        "note",
+        "action"
+      ],
+      "title": "AssetReview",
+      "type": "object"
+    },
+    "Assignment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "role_id": {
+          "title": "Role Id",
+          "type": "string"
+        },
+        "person_id": {
+          "title": "Person Id",
+          "type": "string"
+        },
+        "effective_from": {
+          "format": "date-time",
+          "title": "Effective From",
+          "type": "string"
+        },
+        "effective_to": {
+          "format": "date-time",
+          "title": "Effective To",
+          "type": "string"
+        },
+        "shift_id": {
+          "default": "A",
+          "title": "Shift Id",
+          "type": "string"
+        },
+        "status": {
+          "default": "ACTIVE",
+          "enum": [
+            "ACTIVE",
+            "PLANNED",
+            "ENDED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "backups": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Backups",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "role_id",
+        "person_id",
+        "effective_from",
+        "effective_to"
+      ],
+      "title": "Assignment",
+      "type": "object"
+    },
+    "Building": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^B[0-9]{2,4}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "use": {
+          "default": "창고",
+          "title": "Use",
+          "type": "string"
+        },
+        "floors": {
+          "default": 3,
+          "maximum": 80,
+          "minimum": 1,
+          "title": "Floors",
+          "type": "integer"
+        },
+        "floor_height": {
+          "default": 4,
+          "maximum": 10,
+          "minimum": 2,
+          "title": "Floor Height",
+          "type": "number"
+        },
+        "width": {
+          "default": 32,
+          "maximum": 300,
+          "minimum": 3,
+          "title": "Width",
+          "type": "number"
+        },
+        "depth": {
+          "default": 22,
+          "maximum": 300,
+          "minimum": 3,
+          "title": "Depth",
+          "type": "number"
+        },
+        "x": {
+          "default": 0,
+          "maximum": 2000,
+          "minimum": -2000,
+          "title": "X",
+          "type": "number"
+        },
+        "z": {
+          "default": 0,
+          "maximum": 2000,
+          "minimum": -2000,
+          "title": "Z",
+          "type": "number"
+        },
+        "rotation": {
+          "default": 0,
+          "maximum": 360,
+          "minimum": -360,
+          "title": "Rotation",
+          "type": "number"
+        },
+        "color": {
+          "default": "#b3bdc4",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "title": "Color",
+          "type": "string"
+        },
+        "entrances": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Entrances",
+          "type": "array"
+        },
+        "footprint": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "maxItems": 100,
+          "title": "Footprint",
+          "type": "array"
+        },
+        "accuracy": {
+          "default": "SIMULATED",
+          "enum": [
+            "SIMULATED",
+            "APPROXIMATE",
+            "VERIFIED"
+          ],
+          "title": "Accuracy",
+          "type": "string"
+        },
+        "basement_floors": {
+          "default": 0,
+          "maximum": 20,
+          "minimum": 0,
+          "title": "Basement Floors",
+          "type": "integer"
+        },
+        "roof_style": {
+          "default": "FLAT",
+          "enum": [
+            "FLAT",
+            "GABLE",
+            "SHED"
+          ],
+          "title": "Roof Style",
+          "type": "string"
+        },
+        "window_style": {
+          "default": "REGULAR",
+          "enum": [
+            "REGULAR",
+            "NONE"
+          ],
+          "title": "Window Style",
+          "type": "string"
+        },
+        "wall_finish": {
+          "default": "CONCRETE",
+          "enum": [
+            "CONCRETE",
+            "BRICK",
+            "METAL",
+            "GLASS"
+          ],
+          "title": "Wall Finish",
+          "type": "string"
+        },
+        "floor_outlines": {
+          "items": {
+            "$ref": "#/$defs/FloorOutline"
+          },
+          "maxItems": 100,
+          "title": "Floor Outlines",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "Building",
+      "type": "object"
+    },
+    "EventDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,64}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "kind": {
+          "default": "INJECT",
+          "maxLength": 80,
+          "title": "Kind",
+          "type": "string"
+        },
+        "category": {
+          "default": "화재",
+          "maxLength": 80,
+          "title": "Category",
+          "type": "string"
+        },
+        "objective": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Objective",
+          "type": "string"
+        },
+        "sender": {
+          "default": "모의 119상황실",
+          "maxLength": 120,
+          "title": "Sender",
+          "type": "string"
+        },
+        "recipient_role_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Recipient Role Ids",
+          "type": "array"
+        },
+        "visibility": {
+          "default": "PUBLIC",
+          "enum": [
+            "PUBLIC",
+            "PRIVATE"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "priority": {
+          "default": "NORMAL",
+          "enum": [
+            "NORMAL",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "channel": {
+          "default": "RADIO_SIM",
+          "enum": [
+            "RADIO_SIM",
+            "PHONE_SIM",
+            "MESSENGER_SIM",
+            "OBSERVATION",
+            "VIDEO"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "truth_status": {
+          "default": "UNCONFIRMED",
+          "enum": [
+            "CONFIRMED",
+            "UNCONFIRMED",
+            "FALSE_REPORT"
+          ],
+          "title": "Truth Status",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 5000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "expected_actions": {
+          "default": "담당 임무에 맞는 확인·보고·협조를 관찰한다.",
+          "maxLength": 3000,
+          "title": "Expected Actions",
+          "type": "string"
+        },
+        "trigger": {
+          "$ref": "#/$defs/Trigger"
+        },
+        "patches": {
+          "items": {
+            "$ref": "#/$defs/Patch"
+          },
+          "maxItems": 100,
+          "title": "Patches",
+          "type": "array"
+        },
+        "media_cues": {
+          "items": {
+            "$ref": "#/$defs/MediaCue"
+          },
+          "maxItems": 10,
+          "title": "Media Cues",
+          "type": "array"
+        },
+        "next_event_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Next Event Ids",
+          "type": "array"
+        },
+        "terminal": {
+          "default": false,
+          "title": "Terminal",
+          "type": "boolean"
+        },
+        "simulated_at": {
+          "default": 0,
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Simulated At",
+          "type": "integer"
+        },
+        "evaluation_links": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evaluation Links",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "objective",
+        "recipient_role_ids",
+        "text"
+      ],
+      "title": "EventDefinition",
+      "type": "object"
+    },
+    "Exercise": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "organization_name": {
+          "default": "가상 훈련기관",
+          "title": "Organization Name",
+          "type": "string"
+        },
+        "objective": {
+          "default": "임무 숙지·정보검증·협업·안전·지휘결정",
+          "title": "Objective",
+          "type": "string"
+        },
+        "mode": {
+          "default": "GROUP",
+          "enum": [
+            "GROUP",
+            "PARTIAL",
+            "SOLO",
+            "DIAGNOSTIC"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "organization_type": {
+          "default": "FIELD_COMMAND",
+          "enum": [
+            "FIELD_COMMAND",
+            "CONTROL_GROUP",
+            "COMBINED",
+            "CUSTOM"
+          ],
+          "title": "Organization Type",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Roles",
+          "type": "array"
+        },
+        "persons": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "maxItems": 500,
+          "title": "Persons",
+          "type": "array"
+        },
+        "assignments": {
+          "items": {
+            "$ref": "#/$defs/Assignment"
+          },
+          "maxItems": 1000,
+          "title": "Assignments",
+          "type": "array"
+        },
+        "subject": {
+          "$ref": "#/$defs/Subject"
+        },
+        "external_reviews": {
+          "items": {
+            "$ref": "#/$defs/ExternalReview"
+          },
+          "maxItems": 500,
+          "title": "External Reviews",
+          "type": "array"
+        },
+        "asset_reviews": {
+          "items": {
+            "$ref": "#/$defs/AssetReview"
+          },
+          "maxItems": 500,
+          "title": "Asset Reviews",
+          "type": "array"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/EventDefinition"
+          },
+          "maxItems": 1000,
+          "minItems": 1,
+          "title": "Events",
+          "type": "array"
+        },
+        "start_event_id": {
+          "title": "Start Event Id",
+          "type": "string"
+        },
+        "pass_score": {
+          "default": 80,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Pass Score",
+          "type": "integer"
+        },
+        "readiness": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Readiness",
+          "type": "object"
+        },
+        "reviews": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Reviews",
+          "type": "object"
+        },
+        "published": {
+          "default": false,
+          "title": "Published",
+          "type": "boolean"
+        },
+        "revision": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "rehearsal_passed": {
+          "default": false,
+          "title": "Rehearsal Passed",
+          "type": "boolean"
+        },
+        "organization_approval": {
+          "default": "",
+          "title": "Organization Approval",
+          "type": "string"
+        },
+        "simulated_roles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Simulated Roles",
+          "type": "array"
+        },
+        "publication": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publication"
+        },
+        "rehearsal_report": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rehearsal Report"
+        },
+        "practice_owner_person_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Practice Owner Person Id"
+        },
+        "practice_difficulty": {
+          "default": "BEGINNER",
+          "enum": [
+            "BEGINNER",
+            "STANDARD",
+            "ADVANCED"
+          ],
+          "title": "Practice Difficulty",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "roles",
+        "persons",
+        "assignments",
+        "subject",
+        "events",
+        "start_event_id"
+      ],
+      "title": "Exercise",
+      "type": "object"
+    },
+    "ExternalFact": {
+      "additionalProperties": false,
+      "properties": {
+        "external_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "External Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "fields": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Fields",
+          "type": "object"
+        }
+      },
+      "required": [
+        "external_id",
+        "name",
+        "fields"
+      ],
+      "title": "ExternalFact",
+      "type": "object"
+    },
+    "ExternalLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,100}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "import_id": {
+          "pattern": "^external-[a-f0-9]{32}$",
+          "title": "Import Id",
+          "type": "string"
+        },
+        "provider": {
+          "enum": [
+            "building_registry",
+            "weather",
+            "hydrant"
+          ],
+          "title": "Provider",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "retrieved_at": {
+          "maxLength": 100,
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "raw_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Raw Sha256",
+          "type": "string"
+        },
+        "records": {
+          "items": {
+            "$ref": "#/$defs/ExternalFact"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Records",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "import_id",
+        "provider",
+        "source",
+        "retrieved_at",
+        "raw_sha256",
+        "records"
+      ],
+      "title": "ExternalLayer",
+      "type": "object"
+    },
+    "ExternalReview": {
+      "additionalProperties": false,
+      "properties": {
+        "import_id": {
+          "title": "Import Id",
+          "type": "string"
+        },
+        "layer_id": {
+          "title": "Layer Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "at": {
+          "title": "At",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 1000,
+          "minLength": 3,
+          "title": "Note",
+          "type": "string"
+        },
+        "selected_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Selected Ids",
+          "type": "array"
+        },
+        "applied_fields": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Applied Fields",
+          "type": "array"
+        },
+        "supersedes_import_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes Import Id"
+        }
+      },
+      "required": [
+        "import_id",
+        "layer_id",
+        "actor_id",
+        "at",
+        "note",
+        "selected_ids"
+      ],
+      "title": "ExternalReview",
+      "type": "object"
+    },
+    "Feature": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,80}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ZONE",
+            "ENTRANCE",
+            "HYDRANT",
+            "VEHICLE",
+            "ROAD",
+            "PERIMETER",
+            "ASSEMBLY",
+            "HOSPITAL",
+            "PARKING",
+            "ROOM",
+            "CORRIDOR",
+            "STAIR",
+            "ELEVATOR",
+            "COMPARTMENT",
+            "EVAC_ROUTE",
+            "FIRE_EQUIPMENT",
+            "HAZMAT",
+            "PASSAGE"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "building_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Building Id"
+        },
+        "floor": {
+          "default": 0,
+          "maximum": 80,
+          "minimum": -20,
+          "title": "Floor",
+          "type": "integer"
+        },
+        "x": {
+          "default": 0,
+          "maximum": 2000,
+          "minimum": -2000,
+          "title": "X",
+          "type": "number"
+        },
+        "z": {
+          "default": 0,
+          "maximum": 2000,
+          "minimum": -2000,
+          "title": "Z",
+          "type": "number"
+        },
+        "state": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "State",
+          "type": "object"
+        },
+        "data_origin": {
+          "default": "SIMULATED",
+          "enum": [
+            "SIMULATED",
+            "REFERENCE"
+          ],
+          "title": "Data Origin",
+          "type": "string"
+        },
+        "source_layer_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Layer Id"
+        },
+        "width": {
+          "default": 4,
+          "maximum": 300,
+          "minimum": 0.3,
+          "title": "Width",
+          "type": "number"
+        },
+        "depth": {
+          "default": 4,
+          "maximum": 300,
+          "minimum": 0.3,
+          "title": "Depth",
+          "type": "number"
+        },
+        "height": {
+          "default": 2.5,
+          "maximum": 10,
+          "minimum": 0.1,
+          "title": "Height",
+          "type": "number"
+        },
+        "rotation": {
+          "default": 0,
+          "maximum": 360,
+          "minimum": -360,
+          "title": "Rotation",
+          "type": "number"
+        },
+        "linked_building_id": {
+          "anyOf": [
+            {
+              "pattern": "^B[0-9]{2,4}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Linked Building Id"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind"
+      ],
+      "title": "Feature",
+      "type": "object"
+    },
+    "FloorOutline": {
+      "additionalProperties": false,
+      "properties": {
+        "floor": {
+          "maximum": 80,
+          "minimum": -20,
+          "title": "Floor",
+          "type": "integer"
+        },
+        "footprint": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "maxItems": 100,
+          "minItems": 3,
+          "title": "Footprint",
+          "type": "array"
+        }
+      },
+      "required": [
+        "floor",
+        "footprint"
+      ],
+      "title": "FloorOutline",
+      "type": "object"
+    },
+    "MediaCue": {
+      "additionalProperties": false,
+      "properties": {
+        "binding_id": {
+          "pattern": "^binding-[a-f0-9]{32}$",
+          "title": "Binding Id",
+          "type": "string"
+        },
+        "feature_id": {
+          "pattern": "^[A-Za-z0-9_-]{1,80}$",
+          "title": "Feature Id",
+          "type": "string"
+        },
+        "clip_start_seconds": {
+          "default": 0,
+          "exclusiveMaximum": 181,
+          "minimum": 0,
+          "title": "Clip Start Seconds",
+          "type": "number"
+        },
+        "clip_end_seconds": {
+          "exclusiveMinimum": 0,
+          "maximum": 181,
+          "title": "Clip End Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "binding_id",
+        "feature_id",
+        "clip_end_seconds"
+      ],
+      "title": "MediaCue",
+      "type": "object"
+    },
+    "Patch": {
+      "additionalProperties": false,
+      "properties": {
+        "feature_id": {
+          "title": "Feature Id",
+          "type": "string"
+        },
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Before"
+        },
+        "after": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "After"
+        },
+        "visual_kind": {
+          "default": "ILLUSTRATIVE",
+          "enum": [
+            "ILLUSTRATIVE",
+            "ANNOTATION"
+          ],
+          "title": "Visual Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "feature_id",
+        "field",
+        "before",
+        "after"
+      ],
+      "title": "Patch",
+      "type": "object"
+    },
+    "Person": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "display_name": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "available": {
+          "default": true,
+          "title": "Available",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "display_name"
+      ],
+      "title": "Person",
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9_-]{1,63}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "tasks": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Tasks",
+          "type": "array"
+        },
+        "reports_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reports To"
+        },
+        "department": {
+          "default": "기관 확인 필요",
+          "title": "Department",
+          "type": "string"
+        },
+        "authority_limits": {
+          "default": "승인된 임무 범위에서 보고·제안. 기관 SOP 검수 전.",
+          "title": "Authority Limits",
+          "type": "string"
+        },
+        "first_minute": {
+          "default": "현재 상황과 정보 출처, 담당자 및 보고경로를 확인한다.",
+          "title": "First Minute",
+          "type": "string"
+        },
+        "output": {
+          "default": "확인된 정보 / 미확인 정보 / 조치 제안 / 재보고 시각",
+          "title": "Output",
+          "type": "string"
+        },
+        "source": {
+          "default": "긴급구조현장지휘규칙 별표 5 훈련용 요약 · 기관 SOP 검수 전",
+          "title": "Source",
+          "type": "string"
+        },
+        "source_url": {
+          "default": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=287771",
+          "title": "Source Url",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "critical": {
+          "default": true,
+          "title": "Critical",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "tasks"
+      ],
+      "title": "Role",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Provider",
+          "type": "string"
+        },
+        "as_of": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "As Of",
+          "type": "string"
+        },
+        "rights": {
+          "default": "approved",
+          "enum": [
+            "approved",
+            "restricted",
+            "unknown"
+          ],
+          "title": "Rights",
+          "type": "string"
+        },
+        "confidence": {
+          "default": "simulated",
+          "enum": [
+            "verified",
+            "approximate",
+            "unverified",
+            "simulated"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "classification": {
+          "default": "SYNTHETIC",
+          "enum": [
+            "SYNTHETIC",
+            "INTERNAL",
+            "PUBLIC"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "url": {
+          "default": "",
+          "maxLength": 500,
+          "title": "Url",
+          "type": "string"
+        },
+        "reviewer": {
+          "default": "",
+          "maxLength": 100,
+          "title": "Reviewer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider",
+        "as_of"
+      ],
+      "title": "Source",
+      "type": "object"
+    },
+    "Subject": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "default": "site-demo",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "target_mode": {
+          "default": "VIRTUAL",
+          "enum": [
+            "REAL",
+            "VIRTUAL",
+            "VIRTUAL_ON_REAL_MAP"
+          ],
+          "title": "Target Mode",
+          "type": "string"
+        },
+        "scenario_factuality": {
+          "default": "SIMULATED",
+          "enum": [
+            "SIMULATED",
+            "HISTORICAL"
+          ],
+          "title": "Scenario Factuality",
+          "type": "string"
+        },
+        "map_context": {
+          "default": "SYNTHETIC",
+          "enum": [
+            "SYNTHETIC",
+            "REAL"
+          ],
+          "title": "Map Context",
+          "type": "string"
+        },
+        "latitude": {
+          "default": 37.5,
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "default": 127.0,
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "north_rotation": {
+          "default": 0,
+          "maximum": 360,
+          "minimum": -360,
+          "title": "North Rotation",
+          "type": "number"
+        },
+        "elevation": {
+          "default": 0,
+          "maximum": 9000,
+          "minimum": -500,
+          "title": "Elevation",
+          "type": "number"
+        },
+        "buildings": {
+          "items": {
+            "$ref": "#/$defs/Building"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Buildings",
+          "type": "array"
+        },
+        "features": {
+          "items": {
+            "$ref": "#/$defs/Feature"
+          },
+          "maxItems": 3000,
+          "title": "Features",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "model_accuracy": {
+          "default": "SIMULATED",
+          "enum": [
+            "SIMULATED",
+            "APPROXIMATE",
+            "VERIFIED"
+          ],
+          "title": "Model Accuracy",
+          "type": "string"
+        },
+        "interior_verified": {
+          "default": false,
+          "title": "Interior Verified",
+          "type": "boolean"
+        },
+        "external_layers": {
+          "items": {
+            "$ref": "#/$defs/ExternalLayer"
+          },
+          "maxItems": 100,
+          "title": "External Layers",
+          "type": "array"
+        },
+        "asset_bindings": {
+          "items": {
+            "$ref": "#/$defs/AssetBinding"
+          },
+          "maxItems": 100,
+          "title": "Asset Bindings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "buildings",
+        "source"
+      ],
+      "title": "Subject",
+      "type": "object"
+    },
+    "Trigger": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "MANUAL",
+          "enum": [
+            "MANUAL",
+            "AT_TIME",
+            "ON_ACTION",
+            "ON_CONDITION",
+            "ON_COMBINATION"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "at_seconds": {
+          "default": 0,
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "At Seconds",
+          "type": "integer"
+        },
+        "action": {
+          "default": "",
+          "maxLength": 80,
+          "title": "Action",
+          "type": "string"
+        },
+        "condition": {
+          "additionalProperties": true,
+          "title": "Condition",
+          "type": "object"
+        },
+        "auto_release": {
+          "default": false,
+          "title": "Auto Release",
+          "type": "boolean"
+        }
+      },
+      "title": "Trigger",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "FIRE_COMMAND_STUDIO_CONFIGURATION",
+      "title": "Format",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "created_at": {
+      "maxLength": 80,
+      "title": "Created At",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "configuration": {
+      "$ref": "#/$defs/Exercise"
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "created_at",
+    "sha256",
+    "configuration"
+  ],
+  "title": "ConfigurationFile",
+  "type": "object"
+}

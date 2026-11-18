@@ -37,6 +37,8 @@ from .external_routes import install_external_routes
 from .asset_routes import install_asset_routes
 from .asset_scanner import LocalClamScanner
 from .media_validation import MediaProcessor
+from .configuration_files import install_configuration_routes
+from apps.version import VERSION
 
 ROOT = Path(__file__).resolve().parents[2]
 DEMO_ORG = "org-synthetic"
@@ -47,7 +49,7 @@ def demo_profiles():
     return profiles + [{"id": f"person-{i:02}", "label": f"훈련요원 {i:02}", "role": "participant"} for i in range(1, 11)]
 
 
-def create_app(db_url=None, demo_mode=None, external_settings=None, external_transport=None,asset_scanner=None,media_processor=None):
+def create_app(db_url=None, demo_mode=None, external_settings=None, external_transport=None,asset_scanner=None,media_processor=None,web_directory=None):
     demo = (os.environ.get("TRAINING_MODE", "demo") == "demo") if demo_mode is None else demo_mode
     secure_cookie = os.environ.get("COOKIE_SECURE", "false" if demo else "true").lower() == "true"
     if not demo and not secure_cookie:
@@ -79,9 +81,10 @@ def create_app(db_url=None, demo_mode=None, external_settings=None, external_tra
         finally:
             stop.set()
             await task
-    app = FastAPI(title="FIRE-COMMAND STUDIO", version="0.1.0", lifespan=lifespan, docs_url="/api/docs" if demo else None, openapi_url="/api/openapi.json" if demo else None)
+    app = FastAPI(title="FIRE-COMMAND STUDIO", version=VERSION, lifespan=lifespan, docs_url="/api/docs" if demo else None, openapi_url="/api/openapi.json" if demo else None)
     app.state.store = store
     app.state.demo = demo
+    install_configuration_routes(app)
     app.state.external_data = PublicDataRegistry(external_settings,transport=external_transport)
     install_external_routes(app)
     app.state.asset_scanner=asset_scanner or LocalClamScanner()
@@ -96,6 +99,15 @@ def create_app(db_url=None, demo_mode=None, external_settings=None, external_tra
     websocket_origins = " ".join(sorted(origin.replace("https://", "wss://", 1).replace("http://", "ws://", 1) for origin in allowed_origins if origin.startswith(("http://", "https://"))))
     frame_sources = "https://*.kakao.com https://*.daum.net" if maps_enabled else "'none'"
     content_security_policy = f"default-src 'self'; script-src 'self'{map_sources}; style-src 'self' 'unsafe-inline'{map_sources}; img-src 'self' data: blob:{map_sources}; media-src 'self' blob:; connect-src 'self' {websocket_origins}{map_sources}; worker-src 'self' blob:{map_sources}; frame-src {frame_sources}; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+
+    @app.get('/api/v1/runtime/map-config')
+    def public_map_configuration():
+        return {'approved': maps_enabled, 'public_key': public_map_key if maps_enabled else ''}
+
+    @app.get('/api/v1/runtime/status')
+    def runtime_status():
+        return {'application': 'fire-command-studio', 'version': VERSION,
+                'track': getattr(app.state, 'runtime_track', 'local'), 'json_configuration_schema': 1}
     rate = {}
 
     @app.middleware("http")
@@ -823,14 +835,15 @@ def create_app(db_url=None, demo_mode=None, external_settings=None, external_tra
         except (WebSocketDisconnect, RuntimeError):
             pass
 
-    if (ROOT / "dist" / "assets").exists():
-        app.mount("/assets", StaticFiles(directory=ROOT / "dist" / "assets"), name="assets")
+    frontend = Path(web_directory).resolve() if web_directory is not None else ROOT / 'dist'
+    if (frontend / "assets").exists():
+        app.mount("/assets", StaticFiles(directory=frontend / "assets"), name="assets")
 
     @app.get("/{path:path}")
     def spa(path: str):
         if path.startswith(("api/", "ws/")):
             raise HTTPException(404, "경로를 찾을 수 없습니다.")
-        index = ROOT / "dist" / "index.html"
+        index = frontend / "index.html"
         if not index.exists():
             return PlainTextResponse("웹 빌드가 필요합니다: npm install && npm run build", status_code=503)
         return FileResponse(index)

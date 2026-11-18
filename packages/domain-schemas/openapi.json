@@ -2,9 +2,136 @@
   "openapi": "3.1.0",
   "info": {
     "title": "FIRE-COMMAND STUDIO",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "paths": {
+    "/api/v1/exercises/{id}/configuration": {
+      "get": {
+        "summary": "Export",
+        "operationId": "export_api_v1_exercises__id__configuration_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/configurations/preview": {
+      "post": {
+        "summary": "Preview",
+        "operationId": "preview_api_v1_configurations_preview_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_preview_api_v1_configurations_preview_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/configurations/import": {
+      "post": {
+        "summary": "Import File",
+        "operationId": "import_file_api_v1_configurations_import_post",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_import_file_api_v1_configurations_import_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/exercises/{id}/external-data/preview": {
       "post": {
         "summary": "Preview",
@@ -726,6 +853,38 @@
                 "schema": {
                   "$ref": "#/components/schemas/HTTPValidationError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runtime/map-config": {
+      "get": {
+        "summary": "Public Map Configuration",
+        "operationId": "public_map_configuration_api_v1_runtime_map_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/runtime/status": {
+      "get": {
+        "summary": "Runtime Status",
+        "operationId": "runtime_status_api_v1_runtime_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           }
@@ -3120,6 +3279,20 @@
         ],
         "title": "Body_asset_api_v1_assets_validate_post"
       },
+      "Body_import_file_api_v1_configurations_import_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_import_file_api_v1_configurations_import_post"
+      },
       "Body_import_roster_api_v1_imports_roster_post": {
         "properties": {
           "file": {
@@ -3157,6 +3330,20 @@
           "expected_state_version"
         ],
         "title": "Body_intake_api_v1_exercises__id__assets_post"
+      },
+      "Body_preview_api_v1_configurations_preview_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_preview_api_v1_configurations_preview_post"
       },
       "Building": {
         "properties": {

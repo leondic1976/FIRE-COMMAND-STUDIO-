@@ -1,4 +1,4 @@
 """Windows single-operator launcher; training rules remain in apps.api."""
 
-VERSION = '0.1.0'
+from apps.version import VERSION
 APPLICATION_ID = 'fire-command-studio'

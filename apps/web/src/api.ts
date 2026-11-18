@@ -1,7 +1,7 @@
 export async function api<T>(path:string, options:RequestInit = {}):Promise<T> {
   const headers = new Headers(options.headers);
   if (!(options.body instanceof FormData)) headers.set('Content-Type','application/json');
-  if (options.method && !['GET','HEAD'].includes(options.method)) headers.set('Idempotency-Key', crypto.randomUUID());
+  if (options.method && !['GET','HEAD'].includes(options.method) && !headers.has('Idempotency-Key')) headers.set('Idempotency-Key', crypto.randomUUID());
   const response = await fetch('/api/v1'+path, {...options, headers, credentials:'same-origin'});
   if (!response.ok) {
     if(response.status===401&&typeof window!=='undefined')window.dispatchEvent(new Event('studio:auth-lost'));

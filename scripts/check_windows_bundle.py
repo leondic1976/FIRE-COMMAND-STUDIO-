@@ -17,7 +17,7 @@ def inspect(directory):
         if not source.is_file():
             continue
         name = source.relative_to(directory).as_posix()
-        if re.search(r'(?i)(?:^|/)(?:\.env(?:\..*)?|instance\.json|studio\.db|auth_sessions|cookies)(?:/|$)', name) or source.suffix.lower() in {'.db','.sqlite','.sqlite3'}:
+        if re.search(r'(?i)(?:^|/)(?:\.env(?:\..*)?|instance\.json|settings\.json|settings\.previous\.json|server\.json|studio\.db|auth_sessions|cookies)(?:/|$)', name) or source.suffix.lower() in {'.db','.sqlite','.sqlite3'}:
             raise ValueError('Forbidden runtime payload: ' + name)
         with source.open('rb') as stream:
             if stream.read(16) == b'SQLite format 3\x00':

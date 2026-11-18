@@ -98,6 +98,40 @@ class Store:
             except IntegrityError:raise HTTPException(409,'같은 자산 수집 요청이 이미 저장됐습니다.')
         return payload
 
+    def create_idempotent(self, kind, id, org, payload, actor, key, request):
+        if not key:
+            raise HTTPException(428, '멱등키가 필요합니다.')
+        if not 8 <= len(key) <= 100:
+            raise HTTPException(400, '멱등키는 8~100자입니다.')
+        resource = f'{kind}/configuration-import'
+        fp = fingerprint({'actor': actor, 'request': request})
+        response = {'id': id, 'state_version': 1}
+
+        def prior(conn):
+            row = conn.execute(select(commands).where((commands.c.organization_id == org) &
+                (commands.c.resource == resource) & (commands.c.key == key))).mappings().first()
+            if row:
+                if row['fingerprint'] != fp:
+                    raise HTTPException(409, '같은 멱등키에 다른 설정을 사용할 수 없습니다.')
+                return row['response']
+            return None
+
+        try:
+            with self.engine.begin() as conn:
+                previous = prior(conn)
+                if previous is not None:
+                    return previous
+                conn.execute(records.insert().values(kind=kind, id=id, organization_id=org, version=1, payload=payload))
+                self.log(conn, org, actor, 'CONFIGURATION_IMPORTED', f'{kind}/{id}')
+                conn.execute(commands.insert().values(organization_id=org, resource=resource, key=key, fingerprint=fp, response=response))
+            return response
+        except IntegrityError:
+            with self.engine.connect() as conn:
+                previous = prior(conn)
+                if previous is not None:
+                    return previous
+            raise HTTPException(409, '동시에 설정이 저장됐습니다. 목록을 확인한 뒤 다시 시도하세요.') from None
+
     def asset_bytes(self,id,org,original=False):
         with self.engine.connect() as conn:
             value=conn.execute(select(asset_blobs.c.original if original else asset_blobs.c.canonical).where(

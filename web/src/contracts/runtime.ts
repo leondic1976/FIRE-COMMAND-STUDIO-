@@ -1,11 +1,11 @@
 import type { Exercise, Message, SessionState, Subject } from '../../../packages/domain-schemas';
 
-/** A browser workspace and a hosted identity boundary have different guarantees. */
-export type RuntimeMode = 'browser' | 'hosted';
+/** Both tracks enforce identity and public projections in their Python service. */
+export type RuntimeMode = 'local' | 'web';
 export interface RuntimeCapabilities {
   mode: RuntimeMode;
-  persistence: 'browser' | 'server';
-  serverEnforcedIdentity: boolean;
+  persistence: 'local' | 'server';
+  serverEnforcedIdentity: true;
   nativeProcessingApproved: boolean;
   externalSecretsSupported: boolean;
 }

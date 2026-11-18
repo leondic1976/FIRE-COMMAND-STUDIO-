@@ -19,31 +19,15 @@ from urllib.request import Request, urlopen
 
 from . import APPLICATION_ID, VERSION
 
-SETTINGS_KEYS = {'EXTERNAL_DATA_APPROVED','EXTERNAL_DATA_APPROVAL_REF','DATA_GOV_BUILDING_KEY','KMA_SERVICE_KEY','DATA_GOV_HYDRANT_KEY','HYDRANT_DATASET_PATH','HYDRANT_CATALOG_URL','VITE_KAKAO_MAPS_APPROVED','VITE_KAKAO_JAVASCRIPT_KEY','ASSET_SCAN_APPROVED','ASSET_SCAN_APPROVAL_REF','CLAMD_PORT','MEDIA_PROCESSING_APPROVED','MEDIA_PROCESSING_APPROVAL_REF','MEDIA_HOST_ISOLATION_CONFIRMED','MEDIA_TOOL_MANIFEST','MEDIA_TOOL_MANIFEST_SHA256','IFC_CONVERSION_APPROVED','IFC_CONVERSION_APPROVAL_REF','IFC_OFFLINE_HOST_CONFIRMED','IFC_TOOL_MANIFEST','IFC_TOOL_MANIFEST_SHA256'}
+from apps.api.runtime_settings import SETTINGS_KEYS, apply_settings, runtime_environment, load_settings as load_json_settings
 
 
-class AlreadyRunning(RuntimeError):
-    pass
+from apps.api.process_lock import AlreadyRunning, InstanceLock
 
 
 def load_settings(directory):
-    """Explicit private user settings; authority/secret values are never bundled."""
-    from dotenv import dotenv_values
-    directory = Path(directory)
-    directory.mkdir(parents=True, exist_ok=True)
-    settings = directory / 'settings.env'
-    if not settings.exists():
-        settings.write_text('# 승인된 기관 설정만 입력하세요. 이 파일을 Git/채팅에 넣지 마세요.\n'
-                            'ASSET_SCAN_APPROVED=false\nASSET_SCAN_APPROVAL_REF=\nCLAMD_PORT=3310\n'
-                            'EXTERNAL_DATA_APPROVED=false\nEXTERNAL_DATA_APPROVAL_REF=\n'
-                            'IFC_CONVERSION_APPROVED=false\nIFC_CONVERSION_APPROVAL_REF=\n'
-                            'IFC_OFFLINE_HOST_CONFIRMED=false\nIFC_TOOL_MANIFEST=\nIFC_TOOL_MANIFEST_SHA256=\n'
-                            'MEDIA_PROCESSING_APPROVED=false\nMEDIA_PROCESSING_APPROVAL_REF=\n'
-                            'MEDIA_HOST_ISOLATION_CONFIRMED=false\nMEDIA_TOOL_MANIFEST=\nMEDIA_TOOL_MANIFEST_SHA256=\n', encoding='utf-8')
-    for key, value in dotenv_values(settings).items():
-        if key in SETTINGS_KEYS and value is not None:
-            os.environ[key] = value
-    os.environ['PYTHON_DOTENV_DISABLED'] = '1'
+    """Private JSON settings; legacy env files migrate without deleting originals."""
+    apply_settings(load_json_settings(directory))
 
 
 def data_directory(override=None):
@@ -56,47 +40,6 @@ def data_directory(override=None):
 
 def storage_id(directory):
     return hashlib.sha256(str(Path(directory).resolve()).casefold().encode()).hexdigest()[:24]
-
-
-class InstanceLock:
-    def __init__(self, directory):
-        self.path = Path(directory) / 'instance.lock'
-        self.stream = None
-
-    def acquire(self):
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        stream = self.path.open('a+b')
-        stream.seek(0, 2)
-        if stream.tell() == 0:
-            stream.write(b'0')
-            stream.flush()
-        stream.seek(0)
-        try:
-            if os.name == 'nt':
-                import msvcrt
-                msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
-            else:
-                import fcntl
-                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except OSError:
-            stream.close()
-            raise AlreadyRunning('같은 저장소의 스튜디오가 이미 실행 중입니다.') from None
-        self.stream = stream
-
-    def release(self):
-        if self.stream is None:
-            return
-        stream, self.stream = self.stream, None
-        try:
-            stream.seek(0)
-            if os.name == 'nt':
-                import msvcrt
-                msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
-            else:
-                import fcntl
-                fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
-        finally:
-            stream.close()
 
 
 def _local_json(url, *, method='GET', token=None):
@@ -161,10 +104,7 @@ class DesktopService:
         for folder in ['storage', 'backups']:
             (self.directory / folder).mkdir(exist_ok=True)
         # Explicit settings only. No source-tree .env or developer runtime is used.
-        load_settings(self.directory)
-        os.environ['TRAINING_MODE'] = 'demo'
-        os.environ['COOKIE_SECURE'] = 'false'
-        os.environ['AI_PROVIDER'] = 'disabled'
+        settings_document = load_json_settings(self.directory)
         listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         if os.name == 'nt':
             listener.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
@@ -177,17 +117,17 @@ class DesktopService:
         self.socket = listener
         port = listener.getsockname()[1]
         self.url = f'http://127.0.0.1:{port}'
-        os.environ['ALLOWED_ORIGINS'] = f'{self.url},http://localhost:{port}'
         database = self.directory / 'storage' / 'studio.db'
         database_url = 'sqlite:///' + database.as_posix()
-        os.environ['DATABASE_URL'] = database_url
-        from apps.api.application import create_app
+        with runtime_environment(settings_document, {'TRAINING_MODE': 'demo', 'COOKIE_SECURE': 'false',
+            'AI_PROVIDER': 'disabled', 'ALLOWED_ORIGINS': f'{self.url},http://localhost:{port}', 'DATABASE_URL': database_url}):
+            from apps.api.application import create_app
+            app = create_app(db_url=database_url, demo_mode=True)
+            public_map_key = os.environ.get('VITE_KAKAO_JAVASCRIPT_KEY', '')
+            map_approved = os.environ.get('VITE_KAKAO_MAPS_APPROVED') == 'true' and re.fullmatch('[a-fA-F0-9]{32}', public_map_key) is not None
         from fastapi import Header, HTTPException
         import uvicorn
-        app = create_app(db_url=database_url, demo_mode=True)
         self.app = app
-        public_map_key = os.environ.get('VITE_KAKAO_JAVASCRIPT_KEY', '')
-        map_approved = os.environ.get('VITE_KAKAO_MAPS_APPROVED') == 'true' and re.fullmatch('[a-fA-F0-9]{32}', public_map_key) is not None
 
         @app.get('/_desktop/status')
         def desktop_status():

@@ -17,8 +17,9 @@ from tests.conftest import control, prepare, release_n
 
 BASE = os.getenv('STUDIO_BROWSER_BASE','http://127.0.0.1:8010')
 DESKTOP = os.getenv('RUN_DESKTOP_BROWSER_TESTS') == '1'
-ARTIFACTS = Path('artifacts/desktop/browser') if DESKTOP else Path('artifacts/browser')
-if BASE not in {'http://127.0.0.1:8010','http://127.0.0.1:8011'} and not (DESKTOP and re.fullmatch(r'http://127\.0\.0\.1:[0-9]{1,5}', BASE)):
+WEB_SERVER = os.getenv('RUN_WEB_SERVER_TESTS') == '1'
+ARTIFACTS = Path('artifacts/web-server/browser') if WEB_SERVER else Path('artifacts/desktop/browser') if DESKTOP else Path('artifacts/browser')
+if BASE not in {'http://127.0.0.1:8010','http://127.0.0.1:8011'} and not ((DESKTOP or WEB_SERVER) and re.fullmatch(r'http://127\.0\.0\.1:[0-9]{1,5}', BASE)):
     raise ValueError('Browser checks are limited to the two local synthetic servers')
 pytestmark = pytest.mark.skipif(
     os.environ.get('RUN_BROWSER_TESTS') != '1',
@@ -38,6 +39,9 @@ def browser_context(request):
         if DESKTOP:
             status = client.get('/_desktop/status').json()
             assert status['application'] == 'fire-command-studio' and status['loopback_only']
+        if WEB_SERVER:
+            status = client.get('/api/v1/runtime/status').json()
+            assert status['application'] == 'fire-command-studio' and status['track'] == 'web'
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as playwright:
         engine = os.environ.get('BROWSER_ENGINE', 'chromium')
@@ -71,12 +75,59 @@ def login(page, profile='facilitator'):
     from playwright.sync_api import expect
 
     page.goto(BASE)
+    if WEB_SERVER:
+        expect(page.locator('.login-footer')).to_contain_text('v0.2 · 웹서버판')
     page.get_by_label('가상 사용자').select_option(profile)
     with page.expect_response(lambda response:response.url==BASE+'/api/v1/sessions') as initial_sessions:
         page.get_by_role('button', name='스튜디오 입장').click()
     expect(page.get_by_role('heading', name='공동 상황판단 훈련')).to_be_visible()
     if initial_sessions.value.json():
         expect(page.locator('[data-session-id]')).not_to_have_attribute('data-session-id','')
+
+
+def test_configuration_json_download_preview_and_new_draft(browser_context):
+    from playwright.sync_api import expect
+    page = browser_context.new_page()
+    login(page)
+    name = '합성 JSON 설정 ' + uuid4().hex[:8]
+    created = browser_context.request.post(BASE + '/api/v1/exercises', data={'template': 'factory', 'name': name})
+    assert created.status == 201
+    source = created.json()['id']
+    page.reload()
+    page.get_by_label('훈련 선택', exact=True).select_option(source)
+    page.get_by_role('button', name='훈련 제작', exact=True).click()
+    expect(page.get_by_role('textbox', name='훈련명', exact=True)).to_have_value(name)
+    edited = name + ' · 저장 확인'
+    page.get_by_role('textbox', name='훈련명', exact=True).fill(edited)
+    with page.expect_download() as pending:
+        page.get_by_role('button', name='설정 JSON 저장', exact=True).click()
+    saved = pending.value
+    path = ARTIFACTS / (os.environ.get('BROWSER_ENGINE', 'chromium') + '-training-configuration.json')
+    saved.save_as(path)
+    document = json.loads(path.read_text(encoding='utf-8'))
+    assert document['format'] == 'FIRE_COMMAND_STUDIO_CONFIGURATION'
+    assert document['configuration']['name'] == edited
+    assert document['configuration']['readiness'] == document['configuration']['reviews'] == {}
+    assert not document['configuration']['published'] and len(document['sha256']) == 64
+    page.get_by_label('훈련 설정 JSON 파일', exact=True).set_input_files(path)
+    expect(page.get_by_role('heading', name='설정 파일 미리보기 · ' + edited)).to_be_visible()
+    with page.expect_response(lambda response: response.url == BASE + '/api/v1/configurations/import') as imported:
+        page.get_by_role('button', name='새 편집본으로 불러오기', exact=True).click()
+    assert imported.value.status == 201
+    target = imported.value.json()['id']
+    assert target != source
+    expect(page.get_by_label('훈련 선택', exact=True)).to_have_value(target)
+    expect(page.get_by_role('textbox', name='훈련명', exact=True)).to_have_value(edited)
+    state = browser_context.request.get(BASE + '/api/v1/exercises/' + target).json()['exercise']
+    assert not state['published'] and state['organization_approval'] == ''
+    assert not state['readiness'] and not state['reviews']
+    before = len(browser_context.request.get(BASE + '/api/v1/exercises').json())
+    document['sha256'] = '0' * 64
+    page.get_by_label('훈련 설정 JSON 파일', exact=True).set_input_files({
+        'name': 'synthetic-corrupted.json', 'mimeType': 'application/json', 'buffer': json.dumps(document).encode(),
+    })
+    expect(page.locator('.configuration-files [role=alert]')).to_contain_text('체크섬')
+    assert len(browser_context.request.get(BASE + '/api/v1/exercises').json()) == before
 
 
 def test_new_exercise_readiness_publish_and_ten_injects(browser_context):
