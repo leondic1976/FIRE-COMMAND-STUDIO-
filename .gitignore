@@ -18,3 +18,7 @@ settings.json
 settings.previous.json
 server.json
 server.previous.json
+
+# Private provider keys; browser SDK keys still must never be committed.
+**/vworld.json
+**/vworld.previous.json

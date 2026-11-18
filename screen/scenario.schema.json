@@ -552,6 +552,15 @@
           "title": "Target Mode",
           "type": "string"
         },
+        "map_provider": {
+          "default": "local",
+          "enum": [
+            "local",
+            "vworld"
+          ],
+          "title": "Map Provider",
+          "type": "string"
+        },
         "source": {
           "$ref": "#/$defs/Source"
         }

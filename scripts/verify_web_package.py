@@ -80,6 +80,10 @@ def verify(archive, directory):
             assert client.get('/').status_code == 200
             assert client.post('/api/v1/auth/demo', json={'profile': 'facilitator'}).status_code == 200
             if screen:
+                provider = client.get('/api/screen/maps/vworld/status')
+                assert provider.status_code == 200 and not provider.json()['configured'] and 'browser_key' not in provider.text
+                assert client.get('/api/screen/maps/vworld/bootstrap').status_code == 409
+                assert client.get('/map-frame.html').status_code == 409
                 scenario = client.get('/api/screen/scenarios').json()[0]['id']
                 created = client.post('/api/screen/runs', json={'scenario_id': scenario}, headers={'Idempotency-Key': 'extracted-screen-qa'}).json()
                 screen_id = created['id']

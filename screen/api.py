@@ -217,6 +217,8 @@ def install(app, clock):
     # create_web_app registers its SPA fallback last. Keep the new API before it.
     fallback = next(route for route in app.router.routes if getattr(route, 'path', '') == '/{path:path}')
     app.router.routes.remove(fallback)
+    from .vworld import install as install_vworld
+    install_vworld(app, router, access)
     app.include_router(router)
     from .assets import install_assets
     install_assets(app)

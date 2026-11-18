@@ -1,6 +1,6 @@
 export type Side='A'|'B'|'C'|'D';
 export type Source={name:string;reference:string;accuracy:'fictional'|'approximate'|'surveyed';rights:string};
-export type Site={name:string;address:string;latitude:number;longitude:number;front_bearing:number;target_mode:'VIRTUAL'|'APPROXIMATE'|'REAL';source:Source};
+export type Site={name:string;address:string;latitude:number;longitude:number;front_bearing:number;target_mode:'VIRTUAL'|'APPROXIMATE'|'REAL';map_provider?:'local'|'vworld';source:Source};
 export type Building={id:string;name:string;x:number;z:number;width:number;depth:number;floors:number;floor_height:number;style:'warehouse'|'office'|'apartment';color:string;model_asset_id:string|null;facade_assets:Partial<Record<Side,string>>};
 export type Kind='fire'|'victim'|'engine'|'ladder'|'ambulance'|'command'|'hydrant'|'crew'|'cordon';
 export type Entity={id:string;kind:Kind;label:string;x:number;z:number;y:number;heading:number;building_id:string|null;floor:number;side:Side;visible:boolean;smoke:number;fire:number;status:'standby'|'active'|'waiting'|'rescued'|'unknown'|'unavailable';spraying:boolean;target_id:string|null};

@@ -9,6 +9,7 @@ on:
       - 'apps/api/**'
       - 'package*.json'
       - 'requirements.txt'
+      - 'scripts/run_screen_vworld_fixture.py'
       - '.github/workflows/screen.yml'
 permissions:
   contents: read
@@ -44,6 +45,19 @@ jobs:
           done
           BROWSER_ENGINE=chromium python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/chromium.xml
           xvfb-run -a -s "-screen 0 1920x1080x24" env LIBGL_ALWAYS_SOFTWARE=1 MOZ_WEBRENDER=1 SCREEN_BROWSER_HEADED=1 BROWSER_ENGINE=firefox python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/firefox.xml
+      - name: Verify isolated VWorld adapter with synthetic SDK, never a real key
+        env:
+          RUN_VWORLD_BROWSER_TESTS: '1'
+        run: |
+          python -m scripts.run_screen_vworld_fixture > artifacts/screen/vworld-fixture-server.log 2>&1 &
+          VWORLD_QA_PID=$!
+          trap 'kill "$VWORLD_QA_PID"; wait "$VWORLD_QA_PID" || true' EXIT
+          for attempt in $(seq 1 40); do
+            if curl --fail --silent http://127.0.0.1:8093/api/v1/health > /dev/null; then break; fi
+            sleep 1
+          done
+          BROWSER_ENGINE=chromium python -m pytest screen/tests/test_vworld_browser.py -q --junitxml=artifacts/screen/vworld-chromium.xml
+          xvfb-run -a -s "-screen 0 1920x1080x24" env LIBGL_ALWAYS_SOFTWARE=1 MOZ_WEBRENDER=1 SCREEN_BROWSER_HEADED=1 BROWSER_ENGINE=firefox python -m pytest screen/tests/test_vworld_browser.py -q --junitxml=artifacts/screen/vworld-firefox.xml
       - uses: actions/upload-artifact@v7
         if: always()
         with:

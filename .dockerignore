@@ -14,6 +14,8 @@ output
 **/settings.previous.json
 **/server.json
 **/server.previous.json
+**/vworld.json
+**/vworld.previous.json
 **/*.db
 **/*.db-wal
 **/*.db-shm

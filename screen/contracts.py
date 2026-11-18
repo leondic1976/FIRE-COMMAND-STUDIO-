@@ -23,7 +23,14 @@ class Site(Strict):
     longitude: float = Field(default=127, ge=-180, le=180)
     front_bearing: float = Field(default=180, ge=0, lt=360)
     target_mode: Literal['VIRTUAL', 'APPROXIMATE', 'REAL'] = 'VIRTUAL'
+    map_provider: Literal['local', 'vworld'] = 'local'
     source: Source = Field(default_factory=Source)
+
+    @model_validator(mode='after')
+    def map_label(self):
+        if self.map_provider == 'vworld' and self.target_mode != 'APPROXIMATE':
+            raise ValueError('브이월드 지도와 훈련 좌표는 실제 위치·근사 형상으로 구분합니다.')
+        return self
 
 
 class Building(Strict):

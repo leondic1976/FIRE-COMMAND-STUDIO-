@@ -7,7 +7,7 @@ RUN npm ci
 COPY screen/src screen/src
 COPY packages packages
 
-COPY screen/index.html screen/tsconfig.json screen/vite.config.ts screen/
+COPY screen/index.html screen/map-frame.html screen/tsconfig.json screen/vite.config.ts screen/
 RUN npm run build --workspace screen
 
 FROM python:3.14.10-slim-bookworm@sha256:3fe1a0b6c2d6b2ebb572906cdabeca75aeb558c0c17db5ffefbcf8094871c32b AS dependencies

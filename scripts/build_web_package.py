@@ -42,6 +42,8 @@ def build(root, destination, *, allow_dirty=False, track='web-server'):
                 if path.is_file() and '__pycache__' not in path.parts and 'tests' not in path.parts:
                     sources[path.relative_to(root).as_posix()] = path
         for name in ['screen/README.md', 'screen/PLAN.md', 'screen/SOURCES.md', 'screen/scenario.schema.json',
+                     'docs/VWORLD_INTEGRATION.md', 'screen/map-frame.html',
+                     'screen/configure-vworld.cmd',
                      'screen/index.html', 'screen/tsconfig.json', 'screen/vite.config.ts',
                      'screen/Dockerfile', 'screen/compose.yaml', 'screen/Caddyfile']:
             sources[name] = root / name
@@ -51,7 +53,7 @@ def build(root, destination, *, allow_dirty=False, track='web-server'):
     if not (root / frontend / 'dist/index.html').is_file():
         raise ValueError('Build the web workspace before packaging')
     files = []
-    forbidden = re.compile(r'(?i)(?:^|/)(?:settings\.json|settings\.env|settings\.previous\.json|server\.json|server\.previous\.json|instance\.json|\.env(?:\..*)?|cookies)(?:/|$)')
+    forbidden = re.compile(r'(?i)(?:^|/)(?:vworld\.json|vworld\.previous\.json|settings\.json|settings\.env|settings\.previous\.json|server\.json|server\.previous\.json|instance\.json|\.env(?:\..*)?|cookies)(?:/|$)')
     for name, path in sorted(sources.items()):
         if not path.is_file() or path.is_symlink():
             raise ValueError('Missing or redirected release resource: ' + name)

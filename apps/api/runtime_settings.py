@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import time
 from contextlib import contextmanager
 from threading import RLock
 
@@ -83,7 +84,16 @@ def atomic_json(path, document):
             output.write(data)
             output.flush()
             os.fsync(output.fileno())
-        os.replace(temporary, path)
+        for attempt in range(5):
+            try:
+                os.replace(temporary, path)
+                break
+            except PermissionError as error:
+                # Windows sync/AV watchers may briefly hold a fully flushed file.
+                # Retry sharing/lock violations only; real permission errors fail.
+                if getattr(error, 'winerror', None) not in (32, 33) or attempt == 4:
+                    raise
+                time.sleep(.02 * 2 ** attempt)
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)

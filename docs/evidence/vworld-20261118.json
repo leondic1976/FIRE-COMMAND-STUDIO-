@@ -1,0 +1,204 @@
+{
+  "date": "2026-11-18",
+  "module": "screen",
+  "version": "0.2.0",
+  "provider": "vworld",
+  "provider_selected_by_user": true,
+  "real_key_supplied": false,
+  "real_sdk_or_building_verified": false,
+  "institutional_approval": false,
+  "status": "local adapter implementation and synthetic acceptance passed; remote package verification in progress",
+  "tests": {
+    "vworld-contract-first": [
+      {
+        "tests": "20",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "3.691"
+      }
+    ],
+    "vworld-settings-regression": [
+      {
+        "tests": "19",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "1.004"
+      }
+    ],
+    "vworld-accepted-api": [
+      {
+        "tests": "27",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "2.500"
+      }
+    ],
+    "vworld-full-regression-first": [
+      {
+        "tests": "329",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "25",
+        "time": "144.711"
+      }
+    ],
+    "vworld-browser-first-chromium": [
+      {
+        "tests": "1",
+        "failures": "0",
+        "errors": "1",
+        "skipped": "0",
+        "time": "0.307"
+      }
+    ],
+    "vworld-browser-second-chromium": [
+      {
+        "tests": "3",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "70.086"
+      }
+    ],
+    "vworld-browser-final-chromium": [
+      {
+        "tests": "4",
+        "failures": "1",
+        "errors": "0",
+        "skipped": "0",
+        "time": "77.681"
+      }
+    ],
+    "vworld-browser-final-firefox": [
+      {
+        "tests": "4",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "90.299"
+      }
+    ],
+    "vworld-browser-accepted-chromium": [
+      {
+        "tests": "4",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "72.413"
+      }
+    ],
+    "vworld-browser-accepted-firefox": [
+      {
+        "tests": "4",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "90.813"
+      }
+    ],
+    "vworld-local-regression-chromium": [
+      {
+        "tests": "3",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "74.207"
+      }
+    ],
+    "vworld-local-regression-firefox": [
+      {
+        "tests": "3",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "84.535"
+      }
+    ]
+  },
+  "javascript_passed": 49,
+  "builds_passed": [
+    "core",
+    "web",
+    "screen"
+  ],
+  "sdk_boundary": {
+    "sandbox": "allow-scripts without allow-same-origin",
+    "training_arrays_sent": false,
+    "parent_dom_and_cookies_blocked": true,
+    "api_fetch_blocked": true,
+    "only_viewport_to_sdk": true,
+    "map_data_copied_or_cached": false
+  },
+  "browser_results": [
+    {
+      "engine": "chromium",
+      "version": "151.0.7922.34",
+      "synthetic_sdk_only": true,
+      "live_provider_verified": false,
+      "wall_seconds_to_first_message": 60.7124322000891,
+      "private_parent_and_cookies_blocked": true,
+      "training_arrays_sent_to_sdk": false,
+      "page_errors": [],
+      "unexpected_external_hosts": []
+    },
+    {
+      "engine": "firefox",
+      "version": "153.0",
+      "synthetic_sdk_only": true,
+      "live_provider_verified": false,
+      "wall_seconds_to_first_message": 61.48033439996652,
+      "private_parent_and_cookies_blocked": true,
+      "training_arrays_sent_to_sdk": false,
+      "page_errors": [],
+      "unexpected_external_hosts": []
+    }
+  ],
+  "initial_failures_and_improvements": [
+    "TypeScript config node:url missing declarations; switched to workspace-relative Rollup entries without new dependencies",
+    "East/west rotation sign was reversed for geographic front bearings90/270; corrected ENU/local/north arrow and tested basis",
+    "Actual Windows sharing violation32 while atomically saving provider JSON; bounded retries32/33 only, permanent errors preserve old document",
+    "First browser test had syntax error before collection; corrected",
+    "WebGL fallback test expected smoke2 while actual initial fixture smoke1; assertion now compares server current state, full accepted4/4 per engine"
+  ],
+  "unverified": [
+    "own issued VWorld key/service URL acceptance and real SDK compatibility",
+    "first real facility geography/building/texture coverage and update date",
+    "accurate provider-depth occlusion/structural transformation; training uses configured proxy bounds",
+    "target hardware full map plus overlay performance/projector readability",
+    "institutional SOP/real AV and approximately ten person room pilot"
+  ],
+  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf",
+  "visual_layout": {
+    "caption": {
+      "x": 33,
+      "y": 746,
+      "width": 279.625,
+      "height": 29
+    },
+    "watermark": {
+      "x": 33,
+      "y": 791,
+      "width": 225.390625,
+      "height": 24
+    },
+    "synthetic_logo": {
+      "x": 32,
+      "y": 831,
+      "width": 205.15625,
+      "height": 30
+    },
+    "all_labels_separated": true,
+    "synthetic_only": true
+  },
+  "unauthenticated_provider_probe": {
+    "method": "HEAD",
+    "endpoint": "https://api.vworld.kr/req/search",
+    "status": 200,
+    "key_sent": false,
+    "tls_validation_disabled": false,
+    "actual_search_or_sdk_verified": false
+  }
+}

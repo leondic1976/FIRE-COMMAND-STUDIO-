@@ -6,9 +6,10 @@ import {batchStatic,box,disposeTree,label,makeBuilding,makeEntity,makeWorld,mate
 import {FireEffect,WaterEffect,RainEffect} from './effects';
 import {entityPosition,kindNames,type Entity,type SceneState,type Side} from './types';
 import {SiteMap} from './SiteMap';
+import {cameraPose,enuBasis,type CameraBridge} from './georeference';
 
 export type View=Side|'overview'|'commander';
-type Props={state:SceneState;view:View;low:boolean;phase:string;assetBase:string;onStats?:(fps:number,calls:number)=>void};
+export type Props={state:SceneState;view:View;low:boolean;phase:string;assetBase:string;onStats?:(fps:number,calls:number)=>void;bridge?:CameraBridge;onUnavailable?:()=>void};
 type Visual={group:T.Group;entity:Entity;fire?:FireEffect;water?:WaterEffect;wave?:T.Object3D};
 
 
@@ -20,27 +21,31 @@ export default function Scene(props:Props){
  useEffect(()=>{update.current?.(props);},[props.state,props.view,props.phase,props.assetBase]);
  useEffect(()=>{
   const host=node.current;if(!host||fallback)return;
+  const geographic=!!props.bridge;
   let active=true,frame=0,renderer:T.WebGLRenderer;
-  try{renderer=new T.WebGLRenderer({antialias:!props.low,alpha:false,powerPreference:'high-performance'});}catch{setFallback(true);return;}
+  try{renderer=new T.WebGLRenderer({antialias:!props.low,alpha:geographic,powerPreference:'high-performance'});}catch{setFallback(true);props.onUnavailable?.();return;}
   renderer.setPixelRatio(Math.min(devicePixelRatio,props.low?.9:1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;renderer.shadowMap.needsUpdate=true;renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
   renderer.domElement.setAttribute('aria-label','가상 현장 3D 영상. 드래그로 회전, 휠로 확대합니다. 상단 버튼으로 A B C D 방면을 선택할 수 있습니다.');renderer.domElement.setAttribute('role','img');host.appendChild(renderer.domElement);
   const scene=new T.Scene();scene.background=new T.Color('#d9e5eb');scene.fog=new T.Fog('#d9e5eb',160,420);
+  if(geographic){scene.background=null;scene.fog=null;renderer.setClearColor(0,0);renderer.shadowMap.enabled=false;renderer.domElement.style.pointerEvents='none';}
   const hemi=new T.HemisphereLight('#e6f2ff','#79836b',2.8);scene.add(hemi);
   const sun=new T.DirectionalLight('#fff3db',3.5);sun.position.set(-50,100,65);sun.castShadow=true;sun.shadow.mapSize.setScalar(props.low?1024:2048);Object.assign(sun.shadow.camera,{left:-140,right:140,top:140,bottom:-140,far:260});sun.shadow.bias=-.0004;sun.shadow.normalBias=.04;scene.add(sun);
   const camera=new T.PerspectiveCamera(42,1,.3,700);camera.position.set(65,25,105);
   const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.maxPolarAngle=Math.PI/2.03;controls.minDistance=13;controls.maxDistance=320;controls.target.set(0,7,0);
+  if(geographic){controls.enabled=false;camera.matrixAutoUpdate=false;camera.matrixWorldAutoUpdate=false;}
   const rain=new RainEffect(props.low);scene.add(rain.group);
   const clock=new T.Clock(),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let dirty=true;controls.addEventListener('change',()=>{dirty=true;});
   let world=new T.Group(),signature='',lastView='',elapsedEffects=0,lastTime=0,statTime=0,statFrames=0;
   let abort=new AbortController();const visuals=new Map<string,Visual>(),buildingGroups=new Map<string,T.Group>();
-  const move=(view:View,state:SceneState)=>{const rotation=(state.site.front_bearing-180)*Math.PI/180;const height=Math.max(10,state.buildings[0].floors*state.buildings[0].floor_height);const positions:Record<View,[number,number,number]>={A:[42,Math.max(17,height*.85),112],B:[-88,Math.max(12,height*.7),-23],C:[-28,Math.max(12,height*.7),-88],D:[88,Math.max(12,height*.7),25],overview:[108,100,120],commander:[5,2.2,74]};camera.position.set(...positions[view]).applyAxisAngle(new T.Vector3(0,1,0),rotation);controls.target.set(state.buildings[0].x,height*.45,state.buildings[0].z).applyAxisAngle(new T.Vector3(0,1,0),rotation);controls.update();};
+  const move=(view:View,state:SceneState)=>{if(geographic)return;const rotation=(180-state.site.front_bearing)*Math.PI/180,pose=cameraPose(state,view);camera.position.set(...pose.position).applyAxisAngle(new T.Vector3(0,1,0),rotation);controls.target.set(...pose.target).applyAxisAngle(new T.Vector3(0,1,0),rotation);controls.update();};
   const rebuild=(value:Props)=>{
    const nextSignature=JSON.stringify([value.state.buildings,value.state.site.front_bearing,value.assetBase]);
    if(nextSignature!==signature){
     abort.abort();abort=new AbortController();scene.remove(world);disposeTree(world);visuals.clear();buildingGroups.clear();
-    const built=makeWorld(value.state);world=built.group;world.rotation.y=(value.state.site.front_bearing-180)*Math.PI/180;scene.add(world);signature=nextSignature;lastView='';setAssetMessage('');
+    world=geographic?new T.Group():makeWorld(value.state).group;world.rotation.y=geographic?0:(180-value.state.site.front_bearing)*Math.PI/180;scene.add(world);signature=nextSignature;lastView='';setAssetMessage('');
     for(const building of value.state.buildings){
+     if(geographic){const h=building.floors*building.floor_height,proxy=new T.Mesh(new T.BoxGeometry(building.width,h,building.depth),new T.MeshBasicMaterial({colorWrite:false}));proxy.position.set(building.x,h/2,building.z);proxy.renderOrder=-100;proxy.userData.noBatch=true;world.add(proxy);continue;}
      const generated=makeBuilding(building);world.add(generated);buildingGroups.set(building.id,generated);
      if(building.model_asset_id){
       if(value.state.site.target_mode==='REAL')generated.visible=false;
@@ -69,11 +74,12 @@ export default function Scene(props:Props){
    for(const b of value.state.buildings){const g=buildingGroups.get(b.id),level=value.state.damage[b.id]||0;if(g&&level&&!g.getObjectByName('debris')){const debris=new T.Group();debris.name='debris';const mat=material('#8c8173');for(let i=0;i<18;i++){const piece=box(debris,.2+(i%3)*.2,.18,.3+(i%4)*.2,mat,-b.width/2-1-(i%4),.18,(i/18-.5)*b.depth);piece.rotation.set(i*.2,i,i*.4);}g.add(debris);}const roof=g?.getObjectByName('roof');if(roof){roof.rotation.z=level>=2?.05*level:0;roof.visible=level<3;}}
   };
   update.current=rebuild;rebuild(props);if(savedCamera.current?.signature===signature&&savedCamera.current.view===lastView){camera.position.copy(savedCamera.current.position);controls.target.copy(savedCamera.current.target);controls.update();}
-  const resize=()=>{const {width,height}=host.getBoundingClientRect();if(width<1||height<1)return;renderer.setSize(width,height,false);dirty=true;camera.aspect=width/height;camera.updateProjectionMatrix();};const observer=new ResizeObserver(resize);observer.observe(host);resize();
-  const lost=(event:Event)=>{event.preventDefault();if(active)setFallback(true);};renderer.domElement.addEventListener('webglcontextlost',lost);
+  const resize=()=>{const {width,height}=host.getBoundingClientRect();if(width<1||height<1)return;renderer.setSize(width,height,false);dirty=true;if(!geographic){camera.aspect=width/height;camera.updateProjectionMatrix();}};const observer=new ResizeObserver(resize);observer.observe(host);resize();
+  const lost=(event:Event)=>{event.preventDefault();if(active){setFallback(true);props.onUnavailable?.();}};renderer.domElement.addEventListener('webglcontextlost',lost);
   const animate=()=>{
    if(!active)return;frame=requestAnimationFrame(animate);const now=clock.getElapsedTime(),dt=Math.min(.1,now-lastTime);lastTime=now;const value=current.current;if(value.phase!=='PAUSED'&&!reduced)elapsedEffects+=dt;
-   const state=value.state;rain.update(elapsedEffects,state.weather.rain);sun.intensity=3.5*state.weather.daylight;hemi.intensity=1.8+state.weather.daylight;(scene.fog as T.Fog).near=160-state.weather.fog*90;(scene.fog as T.Fog).far=420-state.weather.fog*180;
+   const state=value.state;rain.update(elapsedEffects,state.weather.rain);sun.intensity=3.5*state.weather.daylight;hemi.intensity=1.8+state.weather.daylight;if(scene.fog){(scene.fog as T.Fog).near=160-state.weather.fog*90;(scene.fog as T.Fog).far=420-state.weather.fog*180;}
+   if(geographic&&value.bridge?.current){const mapped=value.bridge.current;camera.matrixWorldInverse.fromArray(mapped.view).multiply(new T.Matrix4().fromArray(mapped.root)).multiply(new T.Matrix4().fromArray(enuBasis(state.site.front_bearing)));camera.matrixWorld.copy(camera.matrixWorldInverse).invert();camera.position.setFromMatrixPosition(camera.matrixWorld);camera.projectionMatrix.fromArray(mapped.projection);camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert();dirty=true;}
    for(const visual of visuals.values()){
     const entity=visual.entity;const target=new T.Vector3(...entityPosition(entity,state.buildings));visual.group.position.lerp(target,reduced?1:Math.min(1,dt*2));visual.group.rotation.y=entity.heading*Math.PI/180;
     visual.fire?.update(entity,elapsedEffects,camera,state.weather,renderer.domElement.clientHeight);
@@ -82,10 +88,10 @@ export default function Scene(props:Props){
     const ladder=visual.group.getObjectByName('ladder');if(ladder){const destination=state.entities.find(e=>e.id===entity.target_id);if(entity.status==='active'&&destination){const target=new T.Vector3(...entityPosition(destination,state.buildings)).sub(visual.group.position);const distance=Math.hypot(target.x,target.z);ladder.rotation.y=-Math.atan2(target.z,target.x)-visual.group.rotation.y;ladder.rotation.z=T.MathUtils.clamp(Math.atan2(target.y-2.7,distance),.12,1.3);ladder.scale.x=T.MathUtils.clamp(distance/10,1,2.5);}else{ladder.rotation.set(0,0,.08);ladder.scale.x=1;}}
     if(visual.water){const destination=state.entities.find(e=>e.id===entity.target_id);visual.water.group.visible=entity.visible&&entity.spraying&&entity.status!=='unavailable'&&state.water&&!!destination;if(destination)visual.water.update(elapsedEffects,visual.group.position,new T.Vector3(...entityPosition(destination,state.buildings)));}
    }
-   controls.update();if(value.phase!=='PAUSED'||dirty){renderer.render(scene,camera);dirty=false;statFrames++;}if(now-statTime>=2){const fps=Math.round(statFrames/(now-statTime));value.onStats?.(fps,renderer.info.render.calls);if(value.low&&fps<22&&value.phase!=='PAUSED'&&renderer.getPixelRatio()>.66){renderer.setPixelRatio(Math.max(.65,renderer.getPixelRatio()-.1));resize();}statTime=now;statFrames=0;}
+   if(!geographic)controls.update();if((!geographic||value.bridge?.current)&&(value.phase!=='PAUSED'||dirty)){renderer.render(scene,camera);dirty=false;statFrames++;}if(now-statTime>=2){const fps=Math.round(statFrames/(now-statTime));value.onStats?.(fps,renderer.info.render.calls);if(value.low&&fps<22&&value.phase!=='PAUSED'&&renderer.getPixelRatio()>.66){renderer.setPixelRatio(Math.max(.65,renderer.getPixelRatio()-.1));resize();}statTime=now;statFrames=0;}
   };animate();
   return()=>{savedCamera.current={position:camera.position.clone(),target:controls.target.clone(),view:lastView,signature};active=false;abort.abort();cancelAnimationFrame(frame);observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('webglcontextlost',lost);update.current=null;disposeTree(scene);renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();};
- },[props.low,retry,fallback]);
+ },[props.low,retry,fallback,!!props.bridge]);
  return <div className="scene-stage" data-renderer={fallback?'2d':'3d'}>
   {!fallback?<div className="webgl-host" ref={node}/>:<div className="fallback-scene"><SiteMap state={props.state}/><div><strong>2D 현장 상태</strong><p>3D를 사용할 수 없어 현재 배치와 상황을 표시합니다.</p><ul>{props.state.entities.filter(e=>e.visible).map(e=><li key={e.id}>{e.label} · {kindNames[e.kind]}{e.kind==='fire'?` · 연기 ${e.smoke}/화염 ${e.fire}`:''}</li>)}</ul><button onClick={()=>{setFallback(false);setRetry(n=>n+1);}}>3D 다시 시도</button></div></div>}
   {assetMessage&&<span className="asset-status" role="status">{assetMessage}</span>}

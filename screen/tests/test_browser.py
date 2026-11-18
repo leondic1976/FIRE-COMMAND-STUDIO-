@@ -8,7 +8,8 @@ from uuid import uuid4
 import pytest
 
 pytestmark = pytest.mark.skipif(os.getenv('RUN_SCREEN_BROWSER_TESTS') != '1', reason='Opt-in loopback screen browser QA')
-BASE = 'http://127.0.0.1:8090'
+BASE = os.getenv('SCREEN_BROWSER_BASE', 'http://127.0.0.1:8090')
+assert BASE in ('http://127.0.0.1:8090', 'http://127.0.0.1:8093')
 OUT = Path('artifacts/screen/browser')
 
 
