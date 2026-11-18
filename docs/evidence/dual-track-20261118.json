@@ -2,7 +2,7 @@
   "date": "2026-11-18",
   "request": "U-30",
   "version": "0.2.0",
-  "status": "Two-track implementation, packages and public release verified; Pages update pending",
+  "status": "Two-track implementation, artifacts, public release and GitHub Pages verified",
   "tracks": [
     "web-server",
     "windows-local"
@@ -290,5 +290,86 @@
     "authenticode": "NotSigned",
     "public_redownload_hashes_matched": true
   },
-  "real_av_scan_performed": false
+  "real_av_scan_performed": false,
+  "pages": {
+    "url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/",
+    "source_commit": "0dfd03ce071ac5c0f433e6c911dd622c19c02ec4",
+    "run_id": 44214302290,
+    "status": "success",
+    "public": true,
+    "resources": [
+      {
+        "path": "app.js",
+        "sha256": "7206d0dbd1a9699bc91c4f598d12f0be96c5ba1cffe38c8be3062763f1d38f90",
+        "bytes": 3261,
+        "matched": true
+      },
+      {
+        "path": "index.html",
+        "sha256": "af4cea4f01dbc789ea5fdb185aa0ecb1a2fe50549a25b18cb0cf039aa5b0bffe",
+        "bytes": 9101,
+        "matched": true
+      },
+      {
+        "path": "release.json",
+        "sha256": "8ba38ac8fd496e43cb6fdef33bdc56c62c33cf9c83956a5710989d2f975cfcf9",
+        "bytes": 845,
+        "matched": true
+      },
+      {
+        "path": "robots.txt",
+        "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+        "bytes": 23,
+        "matched": true
+      },
+      {
+        "path": "style.css",
+        "sha256": "6c61a3ba1aa2e50f4e3dbd1026655986825d560005c5b370d24a90b4c1cb2c37",
+        "bytes": 7341,
+        "matched": true
+      },
+      {
+        "path": "assets/board-preview.png",
+        "sha256": "2285b280e31a3fb05a9faf15b610ee5301437c7392e6f38b4a10b261553d6b2f",
+        "bytes": 144140,
+        "matched": true
+      },
+      {
+        "path": "assets/favicon.svg",
+        "sha256": "5a38019ba924aaf5f2429df9d2f04a703c8b2b332bd4d402fe98de25e6d1a4bd",
+        "bytes": 343,
+        "matched": true
+      }
+    ],
+    "browser": {
+      "base_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-",
+      "responsive_browser_checks": [
+        {
+          "engine": "chromium",
+          "width": 1440,
+          "download_checksum_keyboard_layout": true
+        },
+        {
+          "engine": "chromium",
+          "width": 390,
+          "download_checksum_keyboard_layout": true
+        },
+        {
+          "engine": "firefox",
+          "width": 1440,
+          "download_checksum_keyboard_layout": true
+        },
+        {
+          "engine": "firefox",
+          "width": 390,
+          "download_checksum_keyboard_layout": true
+        }
+      ],
+      "invalid_release_metadata_rejected": 12,
+      "page_errors": 0,
+      "external_runtime_requests": 0,
+      "synthetic_image_only": true
+    }
+  },
+  "qa_services_stopped": true
 }

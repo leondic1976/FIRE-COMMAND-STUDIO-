@@ -1,10 +1,12 @@
 # 로컬 구현·검증 인계
 
+2026-11-18 현재: [v0.2 웹서버·Windows 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0)와 [공개 안내](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/)를 제공한다. 양쪽 JSON 설정·실제 설치 업그레이드/복구·두 엔진을 검증했다. 서버 설치/계정/HTTPS는 [웹서버 운영](WEB_DEPLOYMENT.md), 설정 파일 사용은 [사용자 매뉴얼](USER_MANUAL.md), 최신 증거는 [투트랙 수용](evidence/dual-track-20261118.json)을 따른다. 아래 표는 11월17일 원래 소스 검증의 시점 기록이다.
+
 현재는 **로컬 합성자료 구현·자동검증을 마친 버전**이다. 이 문서는 로컬 합성자료 구현의 제공 범위와 기관 수용에 필요한 실제 확인을 구분한다. 기관 정규 출시/전문가 승인/실제 회의실 시범훈련을 완료했다는 문서가 아니다.
 
 ## 실행과 검토 경로
 
-일반 Windows 사용자는 이제 [설치판](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0)을 사용할 수 있다. Python/Node 설치 없이 실행 창에서 연다. 단일 PC·공용화면·백업/제거 안내는 [Windows 배포](WINDOWS_DISTRIBUTION.md)를 따른다. 아래8010은 기존 소스 실행 경로다.
+일반 Windows 사용자는 이제 [설치판](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0)을 사용할 수 있다. Python/Node 설치 없이 실행 창에서 연다. 단일 PC·공용화면·백업/제거 안내는 [Windows 배포](WINDOWS_DISTRIBUTION.md)를 따른다. 아래8010은 기존 소스 실행 경로다.
 
 로컬 앱은 `http://127.0.0.1:8010`에서 실행한다. 다시 실행할 때는 README의 의존성 설치/웹 빌드 후 `python -m uvicorn apps.api.main:app --host 127.0.0.1 --port 8010 --workers 1`을 사용한다. 기본은 가명/합성 데모이며 실제 기관 명부·도면·키를 입력하는 운영 환경은 아니다. 자동시험용8011/8012 서버는 기관 배포용이 아니다.
 
