@@ -6,9 +6,9 @@
 
 ## SCREEN · 밝은 3D 현장 화면
 
-루트 [screen/](screen/README.md)에 별도 웹 현장 연출 모듈을 추가했다. 큰 주간3D·작은 우측 상황 메시지·A/B/C/D·최소1분 사건·화재/요구조자/차량/지휘대/소화전 사전 배치·시나리오 JSON·회의 기록을 제공한다. [SCREEN0.1.0 패키지](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.1.0)를 내려받아 Python3.14에서 `python -m screen.server --data-dir runtime/screen`으로 실행한다(최초 의존성 설치는 screen/README 참고). 기본 주소는 **http://127.0.0.1:8090/** 다.
+루트 [screen/](screen/README.md)에 별도 웹 현장 연출 모듈을 추가했다. 큰 주간3D·작은 우측 상황 메시지·A/B/C/D·최소1분 사건·화재/요구조자/차량/지휘대/소화전 사전 배치·시나리오 JSON·회의 기록을 제공한다. [SCREEN0.2.0 패키지](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.2.0)를 내려받아 Python3.14에서 `python -m screen.server --data-dir runtime/screen`으로 실행한다(최초 의존성 설치는 screen/README 참고). 기본 주소는 **http://127.0.0.1:8090/** 다.
 
-기본 현장은 자체 제작 가상 자료다. **전국 실제3D/실사 데이터·자동 지도 연계는 포함되지 않았으며 공급자/이용권 답변 대기**다. 승인된 GLB/방면 사진 연결 경로와 가상/근사/실제 라벨을 제공한다. 원격/로컬 두 엔진·60초 실제 진행·컨테이너·ZIP 추출/복구와 밝은 화면을 검증했다. [검증 범위](docs/evidence/screen-20261118.json). 기관 정규 훈련 승인·기준 PC/GPU·실제 회의실 수용을 대신하지 않는다.
+기본 현장은 자체 제작 가상 자료다. 사용자 선택에 따라 **브이월드3D·검색 연계 코드를 추가했다. 본인 실키·등록 서비스 URL·대상 건물 제공 범위는 아직 미검증**이다. [키 설정 도구](screen/configure-vworld.cmd) 또는 `python -m screen.vworld configure --data-dir runtime/screen`으로 숨김 입력한다. [연계·사용자 준비](docs/VWORLD_INTEGRATION.md)를 따른다. 승인된 GLB/방면 사진 연결 경로와 가상/근사/실제 라벨을 제공한다. 원격/로컬 두 엔진·60초 실제 진행·컨테이너·ZIP 추출/복구와 밝은 화면을 검증했다. [검증 범위](docs/evidence/screen-20261118.json). 기관 정규 훈련 승인·기준 PC/GPU·실제 회의실 수용을 대신하지 않는다.
 
 ## Windows 설치판
 

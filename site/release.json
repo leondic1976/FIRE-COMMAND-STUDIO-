@@ -15,11 +15,11 @@
     "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408"
   },
   "screen": {
-    "version": "0.1.0",
-    "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/screen-v0.1.0/FIRE-Screen-0.1.0.zip",
-    "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.1.0",
-    "sha256": "679d3f8948726f30642c74bfc191af7f451e178a5cdfeb1327293eec686ff2c8",
-    "bytes": 618292,
-    "source_commit": "1b1202b9a1c1a9cf237df918f6faa2b17ca7dc2e"
+    "version": "0.2.0",
+    "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/screen-v0.2.0/FIRE-Screen-0.2.0.zip",
+    "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.2.0",
+    "sha256": "759465d5d1055edc056e2fce0f59dde7b10bff0d3a8ed38a8711bd920429cbce",
+    "bytes": 643379,
+    "source_commit": "3907164f1687a693c7cc6bb137e0b10ee3741b02"
   }
 }
