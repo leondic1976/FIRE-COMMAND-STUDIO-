@@ -169,7 +169,7 @@
     "review_by": "2026-12-18"
   },
   "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf",
-  "recorded_at_utc": "2026-11-18T02:49:47.563997+00:00",
+  "recorded_at_utc": "2026-11-18T02:52:41.353696+00:00",
   "source_commit": "1b1202b9a1c1a9cf237df918f6faa2b17ca7dc2e",
   "remote": {
     "source_commit": "1b1202b9a1c1a9cf237df918f6faa2b17ca7dc2e",
@@ -343,5 +343,79 @@
     "external_runtime_requests": 0,
     "synthetic_image_only": true,
     "card_visual_issue_fixed": true
+  },
+  "download_site_public": {
+    "base_url": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-",
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 20,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true
+  },
+  "download_site_resources": {
+    "base": "https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/",
+    "verified_resources": [
+      {
+        "path": "app.js",
+        "sha256": "a27d612b07c2cd01f4c062851258a1e3cab914c9a9ee2ccbf66759bf940c81ce"
+      },
+      {
+        "path": "index.html",
+        "sha256": "23e5e23d72ae9a761a9a311ab1a3988415ca49e17d31edc1f2af06bf20766842"
+      },
+      {
+        "path": "release.json",
+        "sha256": "76d8555ff49db6a40a9701cb58d560e48ad0298db4ab3fbb737aee537e6717a9"
+      },
+      {
+        "path": "robots.txt",
+        "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95"
+      },
+      {
+        "path": "style.css",
+        "sha256": "28fabead8216a2df9f592d5c880ebb3364cbb410c7cb3354398ee83d207fddde"
+      },
+      {
+        "path": "assets/board-preview.png",
+        "sha256": "2285b280e31a3fb05a9faf15b610ee5301437c7392e6f38b4a10b261553d6b2f"
+      },
+      {
+        "path": "assets/favicon.svg",
+        "sha256": "5a38019ba924aaf5f2429df9d2f04a703c8b2b332bd4d402fe98de25e6d1a4bd"
+      }
+    ],
+    "all_match": true,
+    "tls_validation_disabled": false,
+    "initial_python_probe": "certificate chain Missing Authority Key Identifier; no TLS bypass applied; verified through default-trust browser fetch instead"
+  },
+  "download_site_deployment": {
+    "source_commit": "53d6e4f87f17db94dfce0624f620a18d161b9eaf",
+    "pages_run": 44226191296,
+    "pages_conclusion": "success",
+    "container_run": 44226191384,
+    "container_conclusion": "success",
+    "main_run": 44226191301,
+    "main_conclusion": "success"
   }
 }
