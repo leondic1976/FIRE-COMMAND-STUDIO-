@@ -36,7 +36,8 @@ def verify(archive, directory):
     # No Node binary or original checkout is needed by the extracted server.
     env['PATH'] = str(Path(env.get('SystemRoot', 'C:/Windows')) / 'System32') if os.name == 'nt' else '/usr/bin:/bin'
     flags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
-    command = [sys.executable, '-m', 'web.server', '--data-dir', str(data)]
+    screen = manifest.get('track') == 'screen'
+    command = [sys.executable, '-m', 'screen.server' if screen else 'web.server', '--data-dir', str(data)]
     with socket.socket() as listener:
         listener.bind(('127.0.0.1', 0))
         port = listener.getsockname()[1]
@@ -75,9 +76,15 @@ def verify(archive, directory):
     try:
         with httpx.Client(base_url=base, trust_env=False) as client:
             status = client.get('/api/v1/runtime/status').json()
-            assert status['track'] == 'web' and status['version'] == manifest['version']
+            assert status['track'] == ('screen' if screen else 'web') and status['version'] == manifest.get('core_version', manifest['version'])
             assert client.get('/').status_code == 200
             assert client.post('/api/v1/auth/demo', json={'profile': 'facilitator'}).status_code == 200
+            if screen:
+                scenario = client.get('/api/screen/scenarios').json()[0]['id']
+                created = client.post('/api/screen/runs', json={'scenario_id': scenario}, headers={'Idempotency-Key': 'extracted-screen-qa'}).json()
+                screen_id = created['id']
+                assert client.get('/api/screen/board/' + screen_id).json()['status'] == 'READY'
+                assert 'private_prompt' not in client.get('/api/screen/board/' + screen_id).text
             first = client.post('/api/v1/exercises', json={'template': 'factory', 'name': 'Synthetic packaged server QA'}).json()['id']
             assert client.get('/api/v1/exercises/' + first + '/configuration').json()['format'] == 'FIRE_COMMAND_STUDIO_CONFIGURATION'
             backup = directory / 'consistent-backup.db'
@@ -93,6 +100,8 @@ def verify(archive, directory):
             assert client.post('/api/v1/auth/demo', json={'profile': 'facilitator'}).status_code == 200
             assert client.get('/api/v1/exercises/' + first).status_code == 200
             assert client.get('/api/v1/exercises/' + later).status_code == 404
+            if screen:
+                assert client.get('/api/screen/board/' + screen_id).json()['status'] == 'READY'
             assert json.loads((data / 'settings.json').read_text())['schema_version'] == 1
             assert json.loads((data / 'server.json').read_text())['port'] == port
     finally:

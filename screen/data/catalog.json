@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "complete_taxonomy": false,
+  "scientific_prediction": false,
+  "institutional_sop_approved": false,
+  "source_purpose": "classification_reference",
+  "sources": [
+    {
+      "title": "NIST Fire Dynamics",
+      "url": "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/fire-dynamics"
+    },
+    {
+      "title": "NIST Wind Driven Fires (과거 연구·갱신 중단)",
+      "url": "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/wind-driven-fires"
+    },
+    {
+      "title": "NIST Structural Collapse (과거 연구·갱신 중단)",
+      "url": "https://www.nist.gov/el/fire-research-division-73300/firegov-fire-service/structural-collapse"
+    },
+    {
+      "title": "NFA Command and Control 2024 · 분류 참고, 원본 시나리오/도표 미복제",
+      "url": "https://apps.usfa.fema.gov/ax/sm/sm_0312.pdf"
+    }
+  ],
+  "items": [
+    {
+      "id": "F01",
+      "category": "화염",
+      "title": "창문 외부화염",
+      "message": "A방면 2층 창문 밖으로 불꽃이 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "F02",
+      "category": "화염",
+      "title": "출입구 화염",
+      "message": "전면 출입구 안쪽에 불꽃이 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "F03",
+      "category": "화염",
+      "title": "상층부 화염",
+      "message": "상층부 창문 두 곳에 불꽃이 추가로 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "F04",
+      "category": "화염",
+      "title": "지붕 화염",
+      "message": "지붕 가장자리에서 불꽃이 관찰됩니다.",
+      "fictional": true
+    },
+    {
+      "id": "F05",
+      "category": "화염",
+      "title": "인접동 화염",
+      "message": "B방면 인접동 외벽 부근에 불꽃이 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "F06",
+      "category": "화염",
+      "title": "야외 적치물 화염",
+      "message": "후면 야외 적치물에서 불꽃이 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "S01",
+      "category": "연기",
+      "title": "초기 발연",
+      "message": "A방면 창문 틈에서 옅은 연기가 나오기 시작합니다.",
+      "fictional": true
+    },
+    {
+      "id": "S02",
+      "category": "연기",
+      "title": "발연 증가",
+      "message": "같은 창문에서 나오는 연기의 양이 증가합니다.",
+      "fictional": true
+    },
+    {
+      "id": "S03",
+      "category": "연기",
+      "title": "상층부 연기 전언",
+      "message": "상층부에도 연기가 있다는 전언입니다. 확인 여부는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "S04",
+      "category": "연기",
+      "title": "지붕 발연",
+      "message": "지붕 틈에서 연기가 추가로 올라옵니다.",
+      "fictional": true
+    },
+    {
+      "id": "S05",
+      "category": "연기",
+      "title": "짙은 연기",
+      "message": "상부에 짙은 색의 연기 기둥이 형성됩니다. 연료 종류는 확인되지 않았습니다.",
+      "fictional": true
+    },
+    {
+      "id": "S06",
+      "category": "연기",
+      "title": "발연 감소",
+      "message": "창문 부근의 연기가 이전 장면보다 줄어듭니다.",
+      "fictional": true
+    },
+    {
+      "id": "W01",
+      "category": "기상·시야",
+      "title": "풍향 변화",
+      "message": "연기가 흘러가는 방향이 바뀝니다.",
+      "fictional": true
+    },
+    {
+      "id": "W02",
+      "category": "기상·시야",
+      "title": "돌풍 연출",
+      "message": "일시적인 돌풍으로 연기 기둥이 흔들립니다.",
+      "fictional": true
+    },
+    {
+      "id": "W03",
+      "category": "기상·시야",
+      "title": "지휘 위치 연기 유입",
+      "message": "전면 지휘 위치 쪽으로 연기가 지나갑니다.",
+      "fictional": true
+    },
+    {
+      "id": "W04",
+      "category": "기상·시야",
+      "title": "도로 시야 저하",
+      "message": "전면 도로에 연기가 흘러 차량 일부가 가려집니다.",
+      "fictional": true
+    },
+    {
+      "id": "W05",
+      "category": "기상·시야",
+      "title": "강우 시작",
+      "message": "비가 내리기 시작하고 노면에 물기가 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "W06",
+      "category": "기상·시야",
+      "title": "주변 조도 저하",
+      "message": "주변이 어두워지면서 세부가 덜 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "B01",
+      "category": "구조·접근",
+      "title": "유리 낙하",
+      "message": "창문 아래로 유리 파편이 떨어지는 가상 연출입니다.",
+      "fictional": true
+    },
+    {
+      "id": "B02",
+      "category": "구조·접근",
+      "title": "외장재 탈락",
+      "message": "외장재 일부가 떨어집니다.",
+      "fictional": true
+    },
+    {
+      "id": "B03",
+      "category": "구조·접근",
+      "title": "지붕 변형",
+      "message": "지붕 일부가 이전 형태와 다르게 처져 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "B04",
+      "category": "구조·접근",
+      "title": "외벽 균열",
+      "message": "외벽에 균열을 표시하는 손상 표현이 추가됩니다.",
+      "fictional": true
+    },
+    {
+      "id": "B05",
+      "category": "구조·접근",
+      "title": "지붕 부분 붕괴",
+      "message": "설정된 시나리오에 따라 지붕 일부가 무너지는 장면입니다.",
+      "fictional": true
+    },
+    {
+      "id": "B06",
+      "category": "구조·접근",
+      "title": "출입구 장애물",
+      "message": "출입구 앞에 장애물이 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "B07",
+      "category": "구조·접근",
+      "title": "계단 사용 불가 전언",
+      "message": "내부 계단을 사용할 수 없다는 보고입니다. 외부 화면에서는 확인되지 않습니다.",
+      "fictional": true
+    },
+    {
+      "id": "B08",
+      "category": "구조·접근",
+      "title": "낙하물 잔해",
+      "message": "건물 주변에 낙하물 잔해가 쌓입니다.",
+      "fictional": true
+    },
+    {
+      "id": "P01",
+      "category": "인명",
+      "title": "창문 인물 신호",
+      "message": "상층 창문에서 사람이 손을 흔드는 가상 인물이 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "P02",
+      "category": "인명",
+      "title": "피난 인원 출현",
+      "message": "건물 출입구에서 피난 인원이 밖으로 나옵니다.",
+      "fictional": true
+    },
+    {
+      "id": "P03",
+      "category": "인명",
+      "title": "이동 지원 필요 전언",
+      "message": "이동 지원이 필요한 사람이 있다는 전언입니다. 위치와 상태는 확인 중입니다.",
+      "fictional": true
+    },
+    {
+      "id": "P04",
+      "category": "인명",
+      "title": "미확인 잔류 인원",
+      "message": "건물 안에 사람이 남아 있을 수 있다는 전언입니다. 잔류 여부는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "P05",
+      "category": "인명",
+      "title": "집결지 인원 도착",
+      "message": "피난 인원 일부가 지정 집결지에 도착합니다.",
+      "fictional": true
+    },
+    {
+      "id": "P06",
+      "category": "인명",
+      "title": "인원 정보 불일치",
+      "message": "시설 관계자의 인원 설명이 앞선 보고와 다릅니다. 어느 정보가 맞는지는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "R01",
+      "category": "자원·활동",
+      "title": "소방차 도착",
+      "message": "소방차 한 대가 지정 위치에 도착합니다.",
+      "fictional": true
+    },
+    {
+      "id": "R02",
+      "category": "자원·활동",
+      "title": "고가차 도착",
+      "message": "고가차가 대기 위치로 들어옵니다.",
+      "fictional": true
+    },
+    {
+      "id": "R03",
+      "category": "자원·활동",
+      "title": "구급차 도착",
+      "message": "구급차가 가상 구급 집결 위치에 도착합니다.",
+      "fictional": true
+    },
+    {
+      "id": "R04",
+      "category": "자원·활동",
+      "title": "대원 이동",
+      "message": "가상 대원들이 출입구 쪽으로 이동합니다.",
+      "fictional": true
+    },
+    {
+      "id": "R05",
+      "category": "자원·활동",
+      "title": "대원 외부 이동",
+      "message": "가상 대원들이 건물 쪽에서 외부 위치로 이동합니다.",
+      "fictional": true
+    },
+    {
+      "id": "R06",
+      "category": "자원·활동",
+      "title": "대원 교신 두절 전언",
+      "message": "한 조와 연락이 닿지 않는다는 보고입니다. 위치와 상태는 확정되지 않았습니다.",
+      "fictional": true
+    },
+    {
+      "id": "R07",
+      "category": "자원·활동",
+      "title": "방수 시작",
+      "message": "설정된 방수 위치에서 물줄기가 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "R08",
+      "category": "자원·활동",
+      "title": "방수 중단",
+      "message": "표시되던 물줄기가 멈춥니다.",
+      "fictional": true
+    },
+    {
+      "id": "U01",
+      "category": "설비·용수",
+      "title": "용수 압력 저하 전언",
+      "message": "방수 압력이 낮아졌다는 보고입니다. 원인은 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "U02",
+      "category": "설비·용수",
+      "title": "급수 중단",
+      "message": "시나리오에 설정된 급수 중단으로 물줄기가 사라집니다.",
+      "fictional": true
+    },
+    {
+      "id": "U03",
+      "category": "설비·용수",
+      "title": "급수 복구",
+      "message": "설정된 급수 복구 시점에 물줄기가 다시 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "U04",
+      "category": "설비·용수",
+      "title": "건물 정전",
+      "message": "건물 조명이 꺼집니다. 전체 전원 차단 여부를 뜻하지는 않습니다.",
+      "fictional": true
+    },
+    {
+      "id": "U05",
+      "category": "설비·용수",
+      "title": "전선 처짐",
+      "message": "처진 전선을 표시합니다. 통전 여부는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "U06",
+      "category": "설비·용수",
+      "title": "경보 작동 보고",
+      "message": "시설 관계자로부터 화재 경보가 작동 중이라는 설명이 들어옵니다.",
+      "fictional": true
+    },
+    {
+      "id": "U07",
+      "category": "설비·용수",
+      "title": "소화설비 작동 전언",
+      "message": "내부 소화설비가 작동했다는 전언입니다. 범위와 효과는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "U08",
+      "category": "설비·용수",
+      "title": "소화설비 상태 미확인",
+      "message": "현재 소화설비의 작동 상태가 미확인이라는 보고입니다.",
+      "fictional": true
+    },
+    {
+      "id": "H01",
+      "category": "특수 위험",
+      "title": "가스 냄새 전언",
+      "message": "가스와 유사한 냄새가 난다는 전언입니다. 물질과 발생원은 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "H02",
+      "category": "특수 위험",
+      "title": "미확인 용기",
+      "message": "적치장 부근에 용기 여러 개가 보입니다. 내용물은 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "H03",
+      "category": "특수 위험",
+      "title": "물질 표지 식별 불가",
+      "message": "용기의 표지를 읽을 수 없습니다. 물질 종류를 확정하지 않습니다.",
+      "fictional": true
+    },
+    {
+      "id": "H04",
+      "category": "특수 위험",
+      "title": "액체 유출",
+      "message": "바닥에 액체가 퍼지는 가상 장면입니다. 액체 성질은 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "H05",
+      "category": "특수 위험",
+      "title": "차량 배터리 부근 발연",
+      "message": "차량 하부 부근에서 연기가 보입니다. 원인과 배터리 상태는 미확인입니다.",
+      "fictional": true
+    },
+    {
+      "id": "H06",
+      "category": "특수 위험",
+      "title": "급격 연소 훈련 연출",
+      "message": "설정된 훈련 사건으로 불길이 순간적으로 크게 번집니다.",
+      "fictional": true
+    },
+    {
+      "id": "H07",
+      "category": "특수 위험",
+      "title": "역화 현상 훈련 연출",
+      "message": "시나리오에 지정된 역화 현상의 가상 장면입니다. 실제 발생 예측이 아닙니다.",
+      "fictional": true
+    },
+    {
+      "id": "H08",
+      "category": "특수 위험",
+      "title": "폭발 현상 훈련 연출",
+      "message": "설정된 시각에 섬광과 파편의 가상 폭발 장면이 발생합니다.",
+      "fictional": true
+    },
+    {
+      "id": "C01",
+      "category": "변화·종결",
+      "title": "화염 약화",
+      "message": "외부에서 보이는 불꽃의 범위가 줄어듭니다.",
+      "fictional": true
+    },
+    {
+      "id": "C02",
+      "category": "변화·종결",
+      "title": "가시 화염 소멸",
+      "message": "보이던 불꽃이 사라집니다. 내부 잔화나 안전 상태를 확정하지 않습니다.",
+      "fictional": true
+    },
+    {
+      "id": "C03",
+      "category": "변화·종결",
+      "title": "불꽃 재출현",
+      "message": "불꽃이 사라졌던 위치에 작은 불꽃이 다시 보입니다.",
+      "fictional": true
+    },
+    {
+      "id": "C04",
+      "category": "변화·종결",
+      "title": "통제선 표시",
+      "message": "설정한 위치에 가상 통제선이 표시됩니다.",
+      "fictional": true
+    },
+    {
+      "id": "C05",
+      "category": "변화·종결",
+      "title": "도로 통제 연출",
+      "message": "전면 도로에 통제 차량과 차단 표지가 나타납니다.",
+      "fictional": true
+    },
+    {
+      "id": "C06",
+      "category": "변화·종결",
+      "title": "지원 자원 대기",
+      "message": "추가 지원 차량이 대기 장소에 모입니다.",
+      "fictional": true
+    },
+    {
+      "id": "C07",
+      "category": "변화·종결",
+      "title": "앞선 보고 정정",
+      "message": "앞서 전달된 위치 정보가 정정됐습니다. 최초 보고와 정정 내용은 모두 기록에 남깁니다.",
+      "fictional": true
+    },
+    {
+      "id": "C08",
+      "category": "변화·종결",
+      "title": "일시적 관찰 제한",
+      "message": "연기나 장애물로 장면 일부가 가려져 현재 상태가 미확인입니다.",
+      "fictional": true
+    }
+  ]
+}

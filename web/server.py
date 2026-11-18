@@ -115,12 +115,13 @@ def create_web_app(data_directory=None, settings=None, frontend_directory=None):
     app.state.runtime_track = 'web'
     app.state.runtime_directory = directory
     app.state.runtime_settings = settings.model_copy(deep=True)
+    app.state.frontend_directory = frontend
     return app
 
 
-def main():
+def main(app_factory=create_web_app, default_directory='runtime/web-server', default_port=None, frontend_directory=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--data-dir', type=Path, default=Path(os.getenv('STUDIO_DATA_DIR', 'runtime/web-server')))
+    parser.add_argument('--data-dir', type=Path, default=Path(os.getenv('STUDIO_DATA_DIR', default_directory)))
     parser.add_argument('--host')
     parser.add_argument('--port', type=int)
     parser.add_argument('--public-url')
@@ -137,7 +138,10 @@ def main():
     parser.add_argument('--role', choices=['admin', 'facilitator', 'evaluator', 'participant', 'board', 'observer'], default='admin')
     parser.add_argument('--person-id')
     args = parser.parse_args()
+    private_directory(args.data_dir, Path(frontend_directory or Path(__file__).parent / 'dist'))
     overrides = {name: value for name, value in vars(args).items() if name in ('host', 'port', 'public_url') and value is not None}
+    if default_port is not None and 'port' not in overrides and not (args.data_dir / 'server.json').exists():
+        overrides['port'] = default_port
     if args.production:
         overrides['mode'] = 'production'
     if args.allow_development_origin:
@@ -152,7 +156,7 @@ def main():
     try:
         if not (args.check or args.create_account or args.backup_to):
             lock.acquire()
-        app = create_web_app(args.data_dir, settings)
+        app = app_factory(args.data_dir, settings)
         if args.backup_to or args.restore_from:
             from .maintenance import restore_offline, sqlite_path
             from scripts.backup_restore import backup
@@ -171,7 +175,7 @@ def main():
             manage(arguments, database_url=app.state.store.url)
             return
         if args.check:
-            print(json.dumps({'configured': True, 'mode': settings.mode, 'frontend_built': (Path(__file__).parent / 'dist/index.html').is_file(), 'schema_version': 2}))
+            print(json.dumps({'configured': True, 'mode': settings.mode, 'frontend_built': (app.state.frontend_directory / 'index.html').is_file(), 'schema_version': 2}))
             return
         import uvicorn
         uvicorn.run(app, host=settings.host, port=settings.port, workers=1, proxy_headers=False, access_log=False)

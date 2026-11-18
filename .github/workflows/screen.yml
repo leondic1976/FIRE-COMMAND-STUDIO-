@@ -1,0 +1,52 @@
+name: Verify screen browser rehearsal
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'screen/**'
+      - 'web/*.py'
+      - 'apps/api/**'
+      - 'package*.json'
+      - 'requirements.txt'
+      - '.github/workflows/screen.yml'
+permissions:
+  contents: read
+jobs:
+  browsers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.14.10'
+          cache: pip
+      - run: npm ci
+      - run: python -m pip install -r requirements.txt playwright==1.62.0
+      - run: python -m playwright install --with-deps chromium firefox
+      - run: npm run build --workspace screen
+      - name: Verify real-minute browser flows against the production build
+        env:
+          RUN_SCREEN_BROWSER_TESTS: '1'
+        run: |
+          mkdir -p runtime artifacts/screen
+          python -m screen.server --data-dir runtime/screen-browser-qa --port 8090 > artifacts/screen/server.log 2>&1 &
+          SCREEN_QA_PID=$!
+          trap 'kill "$SCREEN_QA_PID"; wait "$SCREEN_QA_PID" || true' EXIT
+          for attempt in $(seq 1 40); do
+            if curl --fail --silent http://127.0.0.1:8090/api/v1/health > /dev/null; then break; fi
+            sleep 1
+          done
+          BROWSER_ENGINE=chromium python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/chromium.xml
+          BROWSER_ENGINE=firefox python -m pytest screen/tests/test_browser.py -q --junitxml=artifacts/screen/firefox.xml
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: screen-browser-proof
+          path: artifacts/screen/
+          retention-days: 14

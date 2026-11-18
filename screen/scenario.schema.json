@@ -1,0 +1,723 @@
+{
+  "$defs": {
+    "Building": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,48}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "x": {
+          "maximum": 200,
+          "minimum": -200,
+          "title": "X",
+          "type": "number"
+        },
+        "z": {
+          "maximum": 200,
+          "minimum": -200,
+          "title": "Z",
+          "type": "number"
+        },
+        "width": {
+          "default": 40,
+          "maximum": 120,
+          "minimum": 4,
+          "title": "Width",
+          "type": "number"
+        },
+        "depth": {
+          "default": 26,
+          "maximum": 120,
+          "minimum": 4,
+          "title": "Depth",
+          "type": "number"
+        },
+        "floors": {
+          "default": 3,
+          "maximum": 40,
+          "minimum": 1,
+          "title": "Floors",
+          "type": "integer"
+        },
+        "floor_height": {
+          "default": 4.4,
+          "maximum": 6,
+          "minimum": 2.4,
+          "title": "Floor Height",
+          "type": "number"
+        },
+        "style": {
+          "default": "warehouse",
+          "enum": [
+            "warehouse",
+            "office",
+            "apartment"
+          ],
+          "title": "Style",
+          "type": "string"
+        },
+        "color": {
+          "default": "#c5c9c5",
+          "pattern": "^#[a-fA-F0-9]{6}$",
+          "title": "Color",
+          "type": "string"
+        },
+        "model_asset_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z0-9_-]{1,80}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Asset Id"
+        },
+        "facade_assets": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "propertyNames": {
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "title": "Facade Assets",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "x",
+        "z"
+      ],
+      "title": "Building",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,48}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "fire",
+            "victim",
+            "engine",
+            "ladder",
+            "ambulance",
+            "command",
+            "hydrant",
+            "crew",
+            "cordon"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "x": {
+          "default": 0,
+          "maximum": 250,
+          "minimum": -250,
+          "title": "X",
+          "type": "number"
+        },
+        "z": {
+          "default": 0,
+          "maximum": 250,
+          "minimum": -250,
+          "title": "Z",
+          "type": "number"
+        },
+        "y": {
+          "default": 0,
+          "maximum": 240,
+          "minimum": 0,
+          "title": "Y",
+          "type": "number"
+        },
+        "heading": {
+          "default": 0,
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "Heading",
+          "type": "number"
+        },
+        "building_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Building Id"
+        },
+        "floor": {
+          "default": 1,
+          "maximum": 40,
+          "minimum": 1,
+          "title": "Floor",
+          "type": "integer"
+        },
+        "side": {
+          "default": "A",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "visible": {
+          "default": true,
+          "title": "Visible",
+          "type": "boolean"
+        },
+        "smoke": {
+          "default": 0,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Smoke",
+          "type": "integer"
+        },
+        "fire": {
+          "default": 0,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Fire",
+          "type": "integer"
+        },
+        "status": {
+          "default": "standby",
+          "enum": [
+            "standby",
+            "active",
+            "waiting",
+            "rescued",
+            "unknown",
+            "unavailable"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "spraying": {
+          "default": false,
+          "title": "Spraying",
+          "type": "boolean"
+        },
+        "target_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Id"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "EntityPatch": {
+      "additionalProperties": false,
+      "properties": {
+        "visible": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visible"
+        },
+        "smoke": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Smoke"
+        },
+        "fire": {
+          "anyOf": [
+            {
+              "maximum": 4,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fire"
+        },
+        "spraying": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spraying"
+        },
+        "status": {
+          "anyOf": [
+            {
+              "enum": [
+                "standby",
+                "active",
+                "waiting",
+                "rescued",
+                "unknown",
+                "unavailable"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Status"
+        },
+        "x": {
+          "anyOf": [
+            {
+              "maximum": 250,
+              "minimum": -250,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "X"
+        },
+        "z": {
+          "anyOf": [
+            {
+              "maximum": 250,
+              "minimum": -250,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Z"
+        }
+      },
+      "title": "EntityPatch",
+      "type": "object"
+    },
+    "Patch": {
+      "additionalProperties": false,
+      "properties": {
+        "entities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/EntityPatch"
+          },
+          "title": "Entities",
+          "type": "object"
+        },
+        "weather": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Weather"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "damage": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Damage",
+          "type": "object"
+        },
+        "water": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Water"
+        },
+        "power": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Power"
+        }
+      },
+      "title": "Patch",
+      "type": "object"
+    },
+    "ScenarioEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9_-]{1,48}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "at_seconds": {
+          "maximum": 10800,
+          "minimum": 60,
+          "title": "At Seconds",
+          "type": "integer"
+        },
+        "catalog_id": {
+          "maxLength": 40,
+          "title": "Catalog Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 1200,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "source_label": {
+          "default": "가상 현장 보고",
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Source Label",
+          "type": "string"
+        },
+        "certainty": {
+          "default": "fictional",
+          "enum": [
+            "fictional",
+            "unverified",
+            "confirmed"
+          ],
+          "title": "Certainty",
+          "type": "string"
+        },
+        "priority": {
+          "default": "attention",
+          "enum": [
+            "info",
+            "attention",
+            "urgent"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "side": {
+          "default": "A",
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "patch": {
+          "$ref": "#/$defs/Patch"
+        },
+        "private_prompt": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Private Prompt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "at_seconds",
+        "catalog_id",
+        "title",
+        "message"
+      ],
+      "title": "ScenarioEvent",
+      "type": "object"
+    },
+    "Site": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "default": "가상 물류센터",
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "address": {
+          "default": "가상 훈련 부지 · 실제 주소 아님",
+          "maxLength": 240,
+          "title": "Address",
+          "type": "string"
+        },
+        "latitude": {
+          "default": 37.5,
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "default": 127,
+          "maximum": 180,
+          "minimum": -180,
+          "title": "Longitude",
+          "type": "number"
+        },
+        "front_bearing": {
+          "default": 180,
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "Front Bearing",
+          "type": "number"
+        },
+        "target_mode": {
+          "default": "VIRTUAL",
+          "enum": [
+            "VIRTUAL",
+            "APPROXIMATE",
+            "REAL"
+          ],
+          "title": "Target Mode",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        }
+      },
+      "title": "Site",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "default": "자체 제작 가상 현장",
+          "maxLength": 200,
+          "title": "Name",
+          "type": "string"
+        },
+        "reference": {
+          "default": "",
+          "maxLength": 500,
+          "title": "Reference",
+          "type": "string"
+        },
+        "accuracy": {
+          "default": "fictional",
+          "enum": [
+            "fictional",
+            "approximate",
+            "surveyed"
+          ],
+          "title": "Accuracy",
+          "type": "string"
+        },
+        "rights": {
+          "default": "자체 제작",
+          "maxLength": 200,
+          "title": "Rights",
+          "type": "string"
+        }
+      },
+      "title": "Source",
+      "type": "object"
+    },
+    "Weather": {
+      "additionalProperties": false,
+      "properties": {
+        "wind_degrees": {
+          "default": 65,
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "Wind Degrees",
+          "type": "number"
+        },
+        "wind_speed": {
+          "default": 2.5,
+          "maximum": 20,
+          "minimum": 0,
+          "title": "Wind Speed",
+          "type": "number"
+        },
+        "rain": {
+          "default": 0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Rain",
+          "type": "number"
+        },
+        "daylight": {
+          "default": 1,
+          "maximum": 1,
+          "minimum": 0.15,
+          "title": "Daylight",
+          "type": "number"
+        },
+        "fog": {
+          "default": 0.12,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Fog",
+          "type": "number"
+        }
+      },
+      "title": "Weather",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": 1,
+      "maximum": 1,
+      "minimum": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "id": {
+      "default": "scenario-new",
+      "pattern": "^[A-Za-z0-9_-]{1,60}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 140,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "maxLength": 2000,
+      "title": "Description",
+      "type": "string"
+    },
+    "mode": {
+      "default": "auto",
+      "enum": [
+        "auto",
+        "confirm"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "site": {
+      "$ref": "#/$defs/Site"
+    },
+    "buildings": {
+      "items": {
+        "$ref": "#/$defs/Building"
+      },
+      "maxItems": 24,
+      "minItems": 1,
+      "title": "Buildings",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "maxItems": 96,
+      "title": "Entities",
+      "type": "array"
+    },
+    "weather": {
+      "$ref": "#/$defs/Weather"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/ScenarioEvent"
+      },
+      "maxItems": 120,
+      "minItems": 1,
+      "title": "Events",
+      "type": "array"
+    },
+    "duration_seconds": {
+      "default": 900,
+      "maximum": 10860,
+      "minimum": 120,
+      "title": "Duration Seconds",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "title",
+    "buildings",
+    "events"
+  ],
+  "title": "Scenario",
+  "type": "object"
+}

@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-18",
+  "module": "screen",
+  "version": "0.1.0",
+  "status": "implementation/local tests passed; final build/remote verification pending",
+  "user_requests": [
+    "U31",
+    "U32",
+    "U33"
+  ],
+  "design": "bright/simple",
+  "nationwide_real_buildings_supplied": false,
+  "photorealistic_national_coverage_verified": false,
+  "institutional_approval": false,
+  "catalog_entries": 64,
+  "default_events": 12,
+  "minimum_event_interval_seconds": 60,
+  "tests": {
+    "screen-contract-first": [
+      {
+        "tests": "12",
+        "failures": "1",
+        "errors": "0",
+        "skipped": "0",
+        "time": "2.403"
+      }
+    ],
+    "screen-contract-fixed": [
+      {
+        "tests": "31",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "10.163"
+      }
+    ],
+    "screen-contract-strict": [
+      {
+        "tests": "12",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "1.935"
+      }
+    ],
+    "screen-browser-first-chromium": [
+      {
+        "tests": "3",
+        "failures": "2",
+        "errors": "0",
+        "skipped": "0",
+        "time": "39.577"
+      }
+    ],
+    "screen-browser-second-chromium": [
+      {
+        "tests": "3",
+        "failures": "1",
+        "errors": "0",
+        "skipped": "0",
+        "time": "107.342"
+      }
+    ],
+    "screen-browser-third-chromium": [
+      {
+        "tests": "3",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "78.436"
+      }
+    ],
+    "screen-browser-first-firefox": [
+      {
+        "tests": "3",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "85.413"
+      }
+    ],
+    "screen-full-regression-first": [
+      {
+        "tests": "1",
+        "failures": "0",
+        "errors": "1",
+        "skipped": "0",
+        "time": "2.018"
+      }
+    ],
+    "screen-full-regression-fixed": [
+      {
+        "tests": "318",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "22",
+        "time": "56.059"
+      }
+    ],
+    "screen-assets-positive": [
+      {
+        "tests": "6",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "2.249"
+      }
+    ],
+    "screen-isolation-recovery": [
+      {
+        "tests": "32",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "11.340"
+      }
+    ]
+  },
+  "extracted_qa_candidate": {
+    "version": "0.1.0",
+    "source_commit": "d492fe850b479ec21c86d3da312fc001448d4017",
+    "source_dirty": true,
+    "extracted_payload_hashes_verified": 122,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "javascript_unit_tests": 46,
+  "builds_passed": [
+    "original web",
+    "web workspace",
+    "screen workspace"
+  ],
+  "known_development_advisory": {
+    "id": "GHSA-fc5q-39xc-vjpf",
+    "reported_paths": 5,
+    "runtime_paths": 0,
+    "review_by": "2026-12-18"
+  },
+  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf"
+}

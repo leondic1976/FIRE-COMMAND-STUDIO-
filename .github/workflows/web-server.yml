@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'web/**'
+      - 'screen/**'
       - 'apps/**'
       - 'packages/**'
       - 'data/**'
@@ -19,30 +20,42 @@ jobs:
   container:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    strategy:
+      matrix:
+        include:
+          - track: web
+            dockerfile: web/Dockerfile
+            compose: web/compose.yaml
+            port: 8080
+          - track: screen
+            dockerfile: screen/Dockerfile
+            compose: screen/compose.yaml
+            port: 8090
     steps:
       - uses: actions/checkout@v7
       - name: Build non-root web image
-        run: docker build --pull --file web/Dockerfile --tag fire-studio-web-qa .
+        run: docker build --pull --file ${{ matrix.dockerfile }} --tag fire-studio-web-qa .
       - name: Validate production Compose configuration
         env:
           STUDIO_DOMAIN: synthetic.invalid
-        run: docker compose --file web/compose.yaml config --quiet
+          SCREEN_DOMAIN: synthetic.invalid
+        run: docker compose --file ${{ matrix.compose }} config --quiet
       - name: Verify container isolation and restart persistence
         run: |
           mkdir -p artifacts
-          docker run --detach --name fire-studio-web-qa --cap-drop ALL --security-opt no-new-privileges --read-only --tmpfs /tmp --publish 127.0.0.1:8080:8080 --volume fire-studio-web-qa:/data fire-studio-web-qa --production --host 0.0.0.0 --public-url https://synthetic.invalid
+          docker run --detach --name fire-studio-web-qa --cap-drop ALL --security-opt no-new-privileges --read-only --tmpfs /tmp --publish 127.0.0.1:${{ matrix.port }}:${{ matrix.port }} --volume fire-studio-web-qa:/data fire-studio-web-qa --production --host 0.0.0.0 --public-url https://synthetic.invalid
           for attempt in $(seq 1 40); do
-            if curl --fail --silent http://127.0.0.1:8080/api/v1/health > /dev/null; then break; fi
+            if curl --fail --silent http://127.0.0.1:${{ matrix.port }}/api/v1/health > /dev/null; then break; fi
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8080/api/v1/runtime/status > artifacts/web-container-status.json
-          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:8080/api/v1/auth/me)" = 401
-          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -H 'Host: untrusted.invalid' http://127.0.0.1:8080/api/v1/health)" = 400
-          curl --fail --silent http://127.0.0.1:8080/ | grep -q '웹 훈련'
+          curl --fail --silent http://127.0.0.1:${{ matrix.port }}/api/v1/runtime/status > artifacts/web-container-status.json
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:${{ matrix.port }}/api/v1/auth/me)" = 401
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' -H 'Host: untrusted.invalid' http://127.0.0.1:${{ matrix.port }}/api/v1/health)" = 400
+          curl --fail --silent http://127.0.0.1:${{ matrix.port }}/ | grep -q 'id="root"'
           docker exec fire-studio-web-qa python -c "import os,json,pathlib; assert os.getuid()!=0; p=pathlib.Path('/data/settings.json'); d=json.loads(p.read_text()); d['settings']['CLAMD_PORT']=3311; p.write_text(json.dumps(d))"
           docker restart fire-studio-web-qa
           for attempt in $(seq 1 40); do
-            if curl --fail --silent http://127.0.0.1:8080/api/v1/health > /dev/null; then break; fi
+            if curl --fail --silent http://127.0.0.1:${{ matrix.port }}/api/v1/health > /dev/null; then break; fi
             sleep 1
           done
           docker exec fire-studio-web-qa python -c "import json,pathlib; assert json.loads(pathlib.Path('/data/settings.json').read_text())['settings']['CLAMD_PORT']==3311"
@@ -64,7 +77,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: web-server-container-proof
+          name: ${{ matrix.track }}-server-container-proof
           path: |
             artifacts/web-container-status.json
             artifacts/web-image-vulnerabilities.json

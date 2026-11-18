@@ -1,0 +1,663 @@
+{
+  "schema_version": 1,
+  "id": "warehouse-first",
+  "title": "물류센터 화재 · 현장 지휘 토론",
+  "description": "자체 제작 가상 물류센터. 장면은 훈련용 연출이며 실제 화재 예측이 아닙니다.",
+  "mode": "auto",
+  "site": {
+    "name": "가상 물류센터",
+    "address": "가상 훈련 부지 · 실제 주소 아님",
+    "latitude": 37.5,
+    "longitude": 127.0,
+    "front_bearing": 180.0,
+    "target_mode": "VIRTUAL",
+    "source": {
+      "name": "자체 제작 가상 현장",
+      "reference": "",
+      "accuracy": "fictional",
+      "rights": "자체 제작"
+    }
+  },
+  "buildings": [
+    {
+      "id": "B01",
+      "name": "가상 물류센터",
+      "x": 0.0,
+      "z": 0.0,
+      "width": 46.0,
+      "depth": 30.0,
+      "floors": 3,
+      "floor_height": 4.4,
+      "style": "warehouse",
+      "color": "#c5c9c5",
+      "model_asset_id": null,
+      "facade_assets": {}
+    },
+    {
+      "id": "B02",
+      "name": "인접 사무동",
+      "x": -65.0,
+      "z": -15.0,
+      "width": 20.0,
+      "depth": 22.0,
+      "floors": 5,
+      "floor_height": 4.4,
+      "style": "office",
+      "color": "#e0ded6",
+      "model_asset_id": null,
+      "facade_assets": {}
+    },
+    {
+      "id": "B03",
+      "name": "보관동",
+      "x": 63.0,
+      "z": -28.0,
+      "width": 24.0,
+      "depth": 24.0,
+      "floors": 2,
+      "floor_height": 4.4,
+      "style": "warehouse",
+      "color": "#b7c0bf",
+      "model_asset_id": null,
+      "facade_assets": {}
+    }
+  ],
+  "entities": [
+    {
+      "id": "fire-a",
+      "kind": "fire",
+      "label": "A방면 2층 화점",
+      "x": -10.0,
+      "z": 0.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": "B01",
+      "floor": 2,
+      "side": "A",
+      "visible": true,
+      "smoke": 1,
+      "fire": 1,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "fire-b",
+      "kind": "fire",
+      "label": "B방면 화점",
+      "x": 0.0,
+      "z": -4.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": "B01",
+      "floor": 3,
+      "side": "B",
+      "visible": false,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "victim-a",
+      "kind": "victim",
+      "label": "2층 요구조자",
+      "x": 9.0,
+      "z": 0.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": "B01",
+      "floor": 2,
+      "side": "A",
+      "visible": false,
+      "smoke": 0,
+      "fire": 0,
+      "status": "waiting",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "engine-1",
+      "kind": "engine",
+      "label": "펌프 1",
+      "x": -18.0,
+      "z": 49.0,
+      "y": 0.0,
+      "heading": 270.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "active",
+      "spraying": false,
+      "target_id": "fire-a"
+    },
+    {
+      "id": "engine-2",
+      "kind": "engine",
+      "label": "펌프 2",
+      "x": -45.0,
+      "z": 24.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": false,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": "fire-b"
+    },
+    {
+      "id": "ladder-1",
+      "kind": "ladder",
+      "label": "고가 1",
+      "x": 20.0,
+      "z": 34,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": "victim-a"
+    },
+    {
+      "id": "command",
+      "kind": "command",
+      "label": "현장 지휘대",
+      "x": 39.0,
+      "z": 69.0,
+      "y": 0.0,
+      "heading": 270.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "hydrant-1",
+      "kind": "hydrant",
+      "label": "소화전 H-01",
+      "x": -43.0,
+      "z": 59.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "active",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "hydrant-2",
+      "kind": "hydrant",
+      "label": "소화전 H-02",
+      "x": 71.0,
+      "z": -58.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "unknown",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "crew-1",
+      "kind": "crew",
+      "label": "진압 1조",
+      "x": -7.0,
+      "z": 29.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "active",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "crew-2",
+      "kind": "crew",
+      "label": "대기조",
+      "x": 24.0,
+      "z": 60.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "ambulance",
+      "kind": "ambulance",
+      "label": "구급대",
+      "x": 69.0,
+      "z": 55.0,
+      "y": 0.0,
+      "heading": 270.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    },
+    {
+      "id": "cordon",
+      "kind": "cordon",
+      "label": "가상 통제선",
+      "x": 0.0,
+      "z": 79.0,
+      "y": 0.0,
+      "heading": 0.0,
+      "building_id": null,
+      "floor": 1,
+      "side": "A",
+      "visible": true,
+      "smoke": 0,
+      "fire": 0,
+      "status": "standby",
+      "spraying": false,
+      "target_id": null
+    }
+  ],
+  "weather": {
+    "wind_degrees": 65.0,
+    "wind_speed": 2.5,
+    "rain": 0.0,
+    "daylight": 1.0,
+    "fog": 0.12
+  },
+  "events": [
+    {
+      "id": "EV-01",
+      "at_seconds": 60,
+      "catalog_id": "S02",
+      "title": "발연 증가",
+      "message": "같은 창문에서 나오는 연기의 양이 증가합니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "fire-a": {
+            "visible": null,
+            "smoke": 3,
+            "fire": 2,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-02",
+      "at_seconds": 120,
+      "catalog_id": "P01",
+      "title": "창문 인물 신호",
+      "message": "A방면 2층 창문에서 요구조자 1명이 손을 흔듭니다. 다른 잔류 인원은 미확인입니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "urgent",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "victim-a": {
+            "visible": true,
+            "smoke": null,
+            "fire": null,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-03",
+      "at_seconds": 180,
+      "catalog_id": "R01",
+      "title": "소방차 도착",
+      "message": "소방차 한 대가 지정 위치에 도착합니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "B",
+      "patch": {
+        "entities": {
+          "engine-2": {
+            "visible": true,
+            "smoke": null,
+            "fire": null,
+            "spraying": null,
+            "status": "active",
+            "x": null,
+            "z": null
+          },
+          "ladder-1": {
+            "visible": null,
+            "smoke": null,
+            "fire": null,
+            "spraying": null,
+            "status": "active",
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-04",
+      "at_seconds": 240,
+      "catalog_id": "F03",
+      "title": "상층부 화염",
+      "message": "B방면 3층에서도 불꽃이 보입니다. 연소 확대 경로는 확인 중입니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "urgent",
+      "side": "B",
+      "patch": {
+        "entities": {
+          "fire-b": {
+            "visible": true,
+            "smoke": 3,
+            "fire": 3,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-05",
+      "at_seconds": 300,
+      "catalog_id": "W01",
+      "title": "풍향 변화",
+      "message": "연기가 흘러가는 방향이 바뀝니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {},
+        "weather": {
+          "wind_degrees": 115.0,
+          "wind_speed": 4.0,
+          "rain": 0.15,
+          "daylight": 1.0,
+          "fog": 0.2
+        },
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-06",
+      "at_seconds": 360,
+      "catalog_id": "R07",
+      "title": "방수 시작",
+      "message": "설정된 방수 위치에서 물줄기가 나타납니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "engine-1": {
+            "visible": null,
+            "smoke": null,
+            "fire": null,
+            "spraying": true,
+            "status": null,
+            "x": null,
+            "z": null
+          },
+          "engine-2": {
+            "visible": null,
+            "smoke": null,
+            "fire": null,
+            "spraying": true,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-07",
+      "at_seconds": 420,
+      "catalog_id": "P05",
+      "title": "집결지 인원 도착",
+      "message": "가상 요구조자 1명이 외부로 이동한 장면입니다. 추가 잔류 인원과 상태는 별도 확인이 필요합니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "victim-a": {
+            "visible": null,
+            "smoke": null,
+            "fire": null,
+            "spraying": null,
+            "status": "rescued",
+            "x": 48,
+            "z": 42
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-08",
+      "at_seconds": 480,
+      "catalog_id": "U02",
+      "title": "급수 중단",
+      "message": "급수 중단 상황이 주입됐습니다. 물줄기가 멈춥니다. 원인은 미확인입니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "urgent",
+      "side": "A",
+      "patch": {
+        "entities": {},
+        "weather": null,
+        "damage": {},
+        "water": false,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-09",
+      "at_seconds": 540,
+      "catalog_id": "U03",
+      "title": "급수 복구",
+      "message": "설정된 급수 복구 시점에 물줄기가 다시 나타납니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {},
+        "weather": null,
+        "damage": {},
+        "water": true,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-10",
+      "at_seconds": 600,
+      "catalog_id": "B02",
+      "title": "외장재 탈락",
+      "message": "B방면 외벽 아래에 낙하물 잔해가 나타납니다. 구조 안전을 예측한 결과가 아닙니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "urgent",
+      "side": "B",
+      "patch": {
+        "entities": {},
+        "weather": null,
+        "damage": {
+          "B01": 1
+        },
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-11",
+      "at_seconds": 660,
+      "catalog_id": "C01",
+      "title": "화염 약화",
+      "message": "외부에서 보이는 불꽃의 범위가 줄어듭니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "fire-a": {
+            "visible": null,
+            "smoke": 2,
+            "fire": 1,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          },
+          "fire-b": {
+            "visible": null,
+            "smoke": 2,
+            "fire": 1,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    },
+    {
+      "id": "EV-12",
+      "at_seconds": 720,
+      "catalog_id": "C02",
+      "title": "가시 화염 소멸",
+      "message": "외부에서 보이는 불꽃이 사라집니다. 내부 잔화·잔류 인원·구조 안전을 확정하지 않습니다.",
+      "source_label": "가상 현장 보고",
+      "certainty": "fictional",
+      "priority": "attention",
+      "side": "A",
+      "patch": {
+        "entities": {
+          "fire-a": {
+            "visible": null,
+            "smoke": 1,
+            "fire": 0,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          },
+          "fire-b": {
+            "visible": null,
+            "smoke": 1,
+            "fire": 0,
+            "spraying": null,
+            "status": null,
+            "x": null,
+            "z": null
+          }
+        },
+        "weather": null,
+        "damage": {},
+        "water": null,
+        "power": null
+      },
+      "private_prompt": "이 시점에 어떤 정보를 추가 확인하고 누구에게 보고할지 토론하세요. 정답 자동 승인 없음."
+    }
+  ],
+  "duration_seconds": 840
+}
