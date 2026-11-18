@@ -25,12 +25,18 @@ def verify():
             for width in [1440, 390]:
                 page.set_viewport_size({'width': width, 'height': 1000})
                 page.goto(BASE + '/')
-                expect(page.locator('#download-state')).to_contain_text('v0.1.0')
+                expect(page.locator('#download-state')).to_contain_text('v' + RELEASE['version'])
                 assert page.locator('.download').count() == 2
                 for anchor in page.locator('.download').all():
                     expect(anchor).to_have_attribute('href', RELEASE['download_url'])
                     assert anchor.get_attribute('aria-disabled') is None
                 expect(page.locator('#sha')).to_have_text(RELEASE['sha256'])
+                if RELEASE.get('server'):
+                    expect(page.locator('#server-sha')).to_have_text(RELEASE['server']['sha256'])
+                    assert page.locator('.server-download').count() == 2
+                    for anchor in page.locator('.server-download').all():
+                        expect(anchor).to_have_attribute('href', RELEASE['server']['download_url'])
+                        assert anchor.get_attribute('aria-disabled') is None
                 expect(page.locator('#signature')).to_contain_text('전자서명 없음')
                 expect(page.locator('#release-link')).to_have_attribute('href', RELEASE['release_url'])
                 assert page.locator('img[src="assets/board-preview.png"]').evaluate('(el)=>el.complete&&el.naturalWidth===1380')
@@ -45,19 +51,23 @@ def verify():
                 page.screenshot(path=str(OUT / f'{engine}-{width}.png'), full_page=True)
                 result.append({'engine': engine, 'width': width, 'download_checksum_keyboard_layout': True})
             # Corrupted or incomplete metadata must never enable another download source.
-            for change in [{'download_url': 'https://example.invalid/other.exe'}, {'status': 'preparing'}, {'sha256': 'invalid'}]:
+            changes = [{'download_url': 'https://example.invalid/other.exe'}, {'status': 'preparing'}, {'sha256': 'invalid'}]
+            if RELEASE.get('server'):
+                changes += [{'server': {**RELEASE['server'], 'download_url': 'https://example.invalid/other.zip'}},
+                            {'server': {**RELEASE['server'], 'sha256': 'invalid'}}, {'server': None}]
+            for change in changes:
                 bad = {**RELEASE, **change}
                 page.route('**/release.json', lambda route, request, body=bad: route.fulfill(json=body))
                 page.goto(BASE + '/')
                 expect(page.locator('#download-state')).not_to_contain_text('상태를 확인하고 있습니다')
-                for anchor in page.locator('.download').all():
+                for anchor in page.locator('.download,.server-download').all():
                     expect(anchor).to_have_attribute('aria-disabled', 'true')
                     expect(anchor).to_have_attribute('href', '#release')
                 page.unroute('**/release.json')
             assert not errors and not outside, (errors, outside)
             context.close()
             browser.close()
-    return {'base_url': BASE, 'responsive_browser_checks': result, 'invalid_release_metadata_rejected': 6,
+    return {'base_url': BASE, 'responsive_browser_checks': result, 'invalid_release_metadata_rejected': len(changes) * 2,
             'page_errors': 0, 'external_runtime_requests': 0, 'synthetic_image_only': True}
 
 

@@ -1,14 +1,27 @@
 # FIRE-COMMAND STUDIO
 
-임무 숙지 → 공동 상황판단 → 보고·조치 → 지휘결론 → 상황 변화 → 강평·재훈련을 연결하는 로컬 가상 재난지휘 훈련 스튜디오.
+임무 숙지 → 공동 상황판단 → 보고·조치 → 지휘결론 → 상황 변화 → 강평·재훈련을 연결하는 웹서버·PC 로컬 가상 재난지휘 훈련 스튜디오.
 
 현재 제공물은 `plan.md`에 따른 로컬 합성 훈련 구현이다. 역할/공동훈련·상세 대상물 제작·공공자료/자산/영상·AAR를 구현하고 자동 검증했다. 기관 정규 훈련용 출시 승인은 받지 않았다. 실제 기관 SOP·명부·건물자료·회의실 실증은 제공되지 않았으며, 미실행 시험은 통과로 표시하지 않는다.
 
 ## Windows 설치판
 
-[Windows 설치 프로그램 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0) · [GitHub Pages 다운로드·운영 안내](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/) · 로컬 훈련 시범판. Python·Node를 별도로 설치할 필요가 없습니다. 설치 후 바로가기를 실행하고 **훈련 스튜디오 열기**를 누르세요.
+[Windows 설치 프로그램 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0) · [GitHub Pages 다운로드·운영 안내](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/) · 로컬 훈련 시범판. Python·Node를 별도로 설치할 필요가 없습니다. 설치 후 바로가기를 실행하고 **훈련 스튜디오 열기**를 누르세요.
 
 운영 PC 한 대에서 준비·대리 입력하고, **공용화면**을 프로젝터에 띄워 구두로 토론합니다. 데이터는 `%LOCALAPPDATA%\FIRECommandStudio`에 저장합니다. 전체 백업·복원과 제거 후 데이터 보존은 [설치·운영 안내](docs/WINDOWS_DISTRIBUTION.md)를 따릅니다. 전자서명은 적용하지 않았으며 릴리스의 SHA256으로 파일을 확인할 수 있습니다. 기관 정규 출시 승인과 실제 회의실 시범훈련은 별도입니다.
+
+## 웹서버판과 JSON 설정
+
+[웹서버 패키지 다운로드](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0). 관리자가 Python3.14 서버 또는 Docker/HTTPS로 설치하고 사용자는 브라우저로 접속합니다. 빌드된 화면이 포함돼 서버에 Node를 설치할 필요가 없습니다. 압축을 푼 폴더에서 다음을 실행합니다.
+
+```powershell
+python -m pip install -r requirements.txt
+python -m web.server --data-dir runtime/web-server
+```
+
+기본 합성 데모는 서버 PC의 **http://127.0.0.1:8080/** 입니다. 공개 서버는 별도 도메인·HTTPS·기관 계정을 구성합니다. [웹서버 운영·백업·업데이트](docs/WEB_DEPLOYMENT.md)를 따르세요. GitHub Pages 주소는 다운로드 안내이며 공개 훈련 서버 주소가 아닙니다.
+
+양쪽 방식은 같은 훈련 기능과 설정 JSON 형식을 사용합니다. 실행 설정은 비공개 settings.json, 웹서버 설정은 server.json에 저장합니다. 훈련 제작의 **설정 JSON 저장/불러오기**로 새 편집본을 이동하며 기존 기록·승인 상태를 덮어쓰지 않습니다. 전체 기록/첨부자료는 별도 DB 백업으로 보관합니다.
 
 ## 소스에서 실행
 
@@ -23,7 +36,7 @@ npm.cmd run serve
 
 접속: **http://127.0.0.1:8010**. 기본은 가상 데모 계정 선택 방식이다. 진행자·평가관·공동화면·참관자·가상 참가자 10명을 제공한다. 실제 성명·근무표·현장도면을 데모에 입력하지 않는다.
 
-`.env.example`을 참고해 필요할 때 `.env`를 만든다. 실제 환경변수가 `.env`보다 우선한다. API는 `.env`를 읽으며, 웹의 `VITE_` 설정 변경은 재빌드가 필요하다. `VITE_` 변수에는 공개용 지도 JavaScript 키만 허용하며, 공공 API·AI·DB 비밀값을 넣지 않는다.
+`.env.example`을 참고해 필요할 때 `.env`를 만든다. 실제 환경변수가 `.env`보다 우선한다. API는 `.env`를 읽으며, 공개 지도 런타임 설정은 서버 재시작 후 적용된다. `VITE_` 변수에는 공개용 지도 JavaScript 키만 허용하며, 공공 API·AI·DB 비밀값을 넣지 않는다.
 
 웹 개발 서버는 별도 터미널에서 `npm.cmd run dev`로 실행할 수 있다. API 서버는 8010에 유지하며, Vite가 API와 WebSocket을 같은 출처로 프록시한다.
 
@@ -51,7 +64,7 @@ npm.cmd run serve
 | AI | 비활성 어댑터. 외부 전송 없음. 승인된 공급자 구현은 후속 단계 |
 | 운영 DB·계정 | SQLite 개발 경로 자동시험 있음. PostgreSQL 설정·기관 계정 CLI 준비, 기관 DB·SSO 실증 대기 |
 
-지도 사용은 실제/혼합 대상물에서만 선택할 수 있다. `VITE_KAKAO_MAPS_APPROVED=true`와 도메인이 제한된 공개 JavaScript 키를 설정하고 재빌드해야 한다. 로드뷰는 공식 위젯 안에서만 참조하며 사진 추출·캐시·텍스처 재가공 기능은 제공하지 않는다.
+지도 사용은 실제/혼합 대상물에서만 선택할 수 있다. `VITE_KAKAO_MAPS_APPROVED=true`와 도메인이 제한된 공개 JavaScript 키를 설정하고 서버를 재시작한다. 로드뷰는 공식 위젯 안에서만 참조하며 사진 추출·캐시·텍스처 재가공 기능은 제공하지 않는다.
 
 ## 검증
 

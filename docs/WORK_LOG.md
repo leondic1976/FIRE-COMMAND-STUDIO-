@@ -384,3 +384,14 @@
 - 소스18a7d3a의 서버 실행/Compose/비루트·읽기전용·JSON 재시작은 통과했으나 컨테이너44212306461은 setuptools70.3.0/CVE-2025-47273 High1건으로 실패했다. 보고의 AnalyzedBy=sbom이며 pip 내장 vendored 고지에서 나온 항목이다. 불필요한 설치 도구 pip를 최종 런타임의 시스템/venv 양쪽에서 제거해 코드/고지도 함께 제외하고 Trivy를 공식 보안판0.76.2로 고정한다. 취약점 무시 규칙은 추가하지 않았다. 재검증 전 통과로 기록하지 않는다.
 - 전체 CI44212306451은 기능 시험·Python 권고 조회를 통과한 뒤 npm5개High 보고로 실패했다. 원인은 전날2026-11-17 갱신된 picomatch4.0.7의 단일 GHSA-fc5q-39xc-vjpf와 Vite/Vitest 등의 간접 경로다. 공식 권고/레지스트리는 수정판 없음이다. 강제 구버전 변경 대신 정확한 권고·4.0.7·개발 전용 경로만2026-12-18까지 수용하며 운영 의존성/새 권고/조회 실패/기한 경과는 CI를 실패시킨다. 원시 npm 보고와 판정을 artifacts에 저장한다. build는 저장소 자체 glob만 처리하고 운영 이미지/설치본에는 Node/dev 서버가 없다. 알려진 권고0이라고 표현하지 않는다. 정책 정상/신규/운영/기한/버전/조회 오류6개0.04초 통과, 실제 전체 조회에서5개개발경로/단일권고·운영0 확인.
 - 컨테이너 원시 보고/로그는 artifacts/container-first, 전체 CI 최초 실패는 artifacts/dual-ci-first에 보존했다. [공식 권고](https://github.com/advisories/GHSA-fc5q-39xc-vjpf), [setuptools 원본](https://github.com/pypa/setuptools/security/advisories/GHSA-5rjg-fvgr-3xxf), [Trivy0.76.2](https://github.com/aquasecurity/trivy/releases/tag/v0.76.2).
+
+
+### 2026-11-18 10:14 KST 0.2 최종 산출물 수용·공개
+
+- Windows 빌더44212338188/source18a7d3a는276통과/19skip·Python3.14.10·frozen PNG/XLSX/재시작/백업복원 성공이다. 실제 Windows11에서 설치된784파일/67,135,337바이트를 매니페스트와 전부 대조했다. 실제0.1→0.2 업그레이드에서 훈련/기존 settings.env 바이트/JSON 이관/백업을 보존했고, 웹→로컬·로컬→웹 JSON 새 편집본 가져오기를 확인했다. PATH에 Python/Node가 없었다.
+- 실제 최종 설치판 Chromium8개120.15초/Firefox8개155.96초 통과. JSON 실행 설정으로 가상 공개키를 주입한 별도 지도 QA에서 네트워크/시간초과/로드뷰 없음 각3개17.19/29.91초 통과했다. 외부 제공자 통신은 차단/합성했으며 실제 승인·실키를 주장하지 않는다. 같은 버전 재설치/제거/제거 후 재설치에서19개 합성 훈련과 settings.json/기존 env/백업을 보존했고 최종 QA 앱 파일은 제거했다. 다른 실제 사용자 설치/기본 데이터는 건드리지 않았다.
+- 수정 후 Linux CI44212776714/source3aefa7d는281통과/20skip·웹39·두 웹 빌드·Python37조회 실패0/알려진 권고0·기한 제한 JS 개발 권고 평가·서버 ZIP 생성/실제 추출 검증 전체 success다. 컨테이너44212776675는 비루트/읽기전용·Host/계정 격리·JSON 재시작과 Trivy0.76.2 수정 가능한High/Critical0을 통과했다. 최초 실패를 숨기거나 ignore로 없애지 않았다.
+- 정확한 CI 서버 ZIP을 Windows에서도133자원 해시 검증 후 Python만으로 실행·재시작·백업/중지 후 복원·실행 중 복원 거절을 확인했다. 이 최종 패키지의 Chromium8개118.44초/Firefox8개152.07초 통과. JSON 미리보기390px도 두 엔진 가로 넘침/JS오류0이다.
+- GitHub 아티팩트의 Windows ZIP 수신이 지연돼 GitHub 커넥터의 같은 artifact14386657440을 받았다. Node fetch는 실패로 기록하고 Windows 신뢰 저장소의 숨김 stdin URL 수신을 사용했다. 서명 URL/키는 Git/증거/파일에 저장하지 않았다. 완료 후 지연된 자기 GH 다운로드 프로세스만 중지했다.
+- v0.2.0을 초안으로 올려 수용 후10:13:40 KST 공개 prerelease로 발행했다. Windows31,547,397바이트/SHA2565a6415205fccbf3c203e8340744e1d81c49cc99d0f1c9f151a472ab93de6a1cd, 서버724,857바이트/SHA25626ea88b5aa8e5c03327f1a24c551acfe916a97a5e7e8a0f950d6c9fe92f27f05가 GitHub 자산 digest 및 인증 없는 재다운로드와 모두 같다. 전자서명NotSigned·실제AV/기관검수/실제시범 미실행은 유지한다.
+- 안내 사이트를 두 방식의 다운로드·JSON·서버 설치/실제 주소 구분으로 갱신했다. 로컬 두 엔진1440/390px4회·잘못된 메타데이터6종×두 엔진12회 거절·JS/외부런타임요청0이며 모바일 화면을 직접 확인했다. Windows에 Node가 포함된다는 잘못된 초안 문구를 Python 런타임/웹 화면 포함으로 고쳤다. 실제 Pages 반영/해시는 후속 확인한다.

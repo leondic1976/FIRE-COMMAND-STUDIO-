@@ -1,11 +1,17 @@
 {
   "status": "released",
-  "version": "0.1.0",
-  "published_date": "2026-11-17",
-  "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v0.1.0/FIRE-Command-Studio-Setup-0.1.0-x64.exe",
-  "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0",
-  "sha256": "393d7c9e21fd454af9940652b57bdc219773d75541b92714c0fa76df6ced993d",
-  "bytes": 31535358,
+  "version": "0.2.0",
+  "published_date": "2026-11-18",
+  "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v0.2.0/FIRE-Command-Studio-Setup-0.2.0-x64.exe",
+  "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0",
+  "sha256": "5a6415205fccbf3c203e8340744e1d81c49cc99d0f1c9f151a472ab93de6a1cd",
+  "bytes": 31547397,
   "authenticode": "NotSigned",
-  "source_commit": "bd78c0e50e838a005d827e21f6cd6e1d75f25ea5"
+  "source_commit": "18a7d3a1466f1bb9118b6470d7ea7d85e7421783",
+  "server": {
+    "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v0.2.0/FIRE-Command-Studio-Web-0.2.0.zip",
+    "sha256": "26ea88b5aa8e5c03327f1a24c551acfe916a97a5e7e8a0f950d6c9fe92f27f05",
+    "bytes": 724857,
+    "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408"
+  }
 }

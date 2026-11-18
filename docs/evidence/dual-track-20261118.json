@@ -2,7 +2,7 @@
   "date": "2026-11-18",
   "request": "U-30",
   "version": "0.2.0",
-  "status": "local implementation verified; remote packaging and native upgrade pending",
+  "status": "Two-track implementation, packages and public release verified; Pages update pending",
   "tracks": [
     "web-server",
     "windows-local"
@@ -81,9 +81,214 @@
       "errors": "0",
       "skipped": "0",
       "time": "1.788"
+    },
+    "web-release-chromium": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "118.434"
+    },
+    "web-release-firefox": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "152.067"
+    },
+    "local-release-chromium": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "120.146"
+    },
+    "local-release-firefox": {
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "155.959"
+    },
+    "local-release-maps-chromium": {
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "17.190"
+    },
+    "local-release-maps-firefox": {
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "29.908"
+    },
+    "javascript-audit-policy": {
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.037"
     }
   },
   "web_unit_tests": 39,
   "root_and_web_typecheck_build": true,
-  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf"
+  "plan_sha256": "cae4e3a6352504efff283cbfaa6e5bb53856f01fa058b6f2e12ca25d0ab52eaf",
+  "native_upgrade": {
+    "different_version_upgrade_tested": true,
+    "from": "0.1.0",
+    "to": "0.2.0",
+    "training_preserved": true,
+    "legacy_settings_preserved": true,
+    "settings_json_migrated": true,
+    "backup_preserved": true,
+    "web_to_local_json_import": true,
+    "local_to_web_json_import": true,
+    "python_removed_from_path": true,
+    "qa_workspace_only": true,
+    "normal_user_installation_touched": false,
+    "new_installer_sha256": "5a6415205fccbf3c203e8340744e1d81c49cc99d0f1c9f151a472ab93de6a1cd",
+    "old_installer_sha256": "393d7c9e21fd454af9940652b57bdc219773d75541b92714c0fa76df6ced993d"
+  },
+  "native_lifecycle": {
+    "same_version_reinstall": true,
+    "uninstall": true,
+    "reinstall_after_removal": true,
+    "training_records_preserved": true,
+    "backup_and_settings_preserved": true,
+    "installed_payload_removed": true,
+    "exercise_count_preserved": 19,
+    "different_version_upgrade_tested": false,
+    "qa_workspace_only": true,
+    "normal_user_data_touched": false
+  },
+  "server_extracted_windows": {
+    "version": "0.2.0",
+    "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408",
+    "source_dirty": false,
+    "extracted_payload_hashes_verified": 133,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "server_extracted_linux": {
+    "version": "0.2.0",
+    "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408",
+    "source_dirty": false,
+    "extracted_payload_hashes_verified": 133,
+    "node_not_required": true,
+    "json_configuration": true,
+    "restart_persistence": true,
+    "backup_restore_roundtrip": true,
+    "active_restore_rejected": true,
+    "synthetic_only": true,
+    "public_deployment_claimed": false
+  },
+  "json_mobile": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "json_preview_visible": true,
+      "horizontal_overflow": false,
+      "page_errors": 0
+    },
+    {
+      "engine": "firefox",
+      "width": 390,
+      "json_preview_visible": true,
+      "horizontal_overflow": false,
+      "page_errors": 0
+    }
+  ],
+  "download_page_local": {
+    "base_url": "http://127.0.0.1:8020",
+    "responsive_browser_checks": [
+      {
+        "engine": "chromium",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "chromium",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 1440,
+        "download_checksum_keyboard_layout": true
+      },
+      {
+        "engine": "firefox",
+        "width": 390,
+        "download_checksum_keyboard_layout": true
+      }
+    ],
+    "invalid_release_metadata_rejected": 12,
+    "page_errors": 0,
+    "external_runtime_requests": 0,
+    "synthetic_image_only": true
+  },
+  "builds": {
+    "native": {
+      "source_commit": "18a7d3a1466f1bb9118b6470d7ea7d85e7421783",
+      "run_id": 44212338188,
+      "status": "success",
+      "tests_passed": 276,
+      "tests_skipped": 19,
+      "python": "3.14.10",
+      "payload_files_matched": 784,
+      "payload_bytes": 67135337
+    },
+    "web": {
+      "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408",
+      "ci_run_id": 44212776714,
+      "ci_status": "success",
+      "tests_passed": 281,
+      "tests_skipped": 20,
+      "container_run_id": 44212776675,
+      "container_status": "success",
+      "container_fixable_high_critical_advisories": 0,
+      "trivy": "0.76.2",
+      "python_advisory_queries": 37,
+      "python_query_failures": 0,
+      "python_known_advisories": 0,
+      "javascript_development_advisories": {
+        "root_count": 1,
+        "reported_paths": 5,
+        "id": "GHSA-fc5q-39xc-vjpf",
+        "review_by": "2026-12-18",
+        "patched_upstream_available": false,
+        "production_paths": 0
+      }
+    }
+  },
+  "release": {
+    "version": "0.2.0",
+    "native_source": "18a7d3a1466f1bb9118b6470d7ea7d85e7421783",
+    "server_source": "3aefa7da8aa391299ee27cb3a31743a8df785408",
+    "assets": [
+      {
+        "name": "FIRE-Command-Studio-Setup-0.2.0-x64.exe",
+        "sha256": "5a6415205fccbf3c203e8340744e1d81c49cc99d0f1c9f151a472ab93de6a1cd",
+        "bytes": 31547397
+      },
+      {
+        "name": "FIRE-Command-Studio-Web-0.2.0.zip",
+        "sha256": "26ea88b5aa8e5c03327f1a24c551acfe916a97a5e7e8a0f950d6c9fe92f27f05",
+        "bytes": 724857
+      }
+    ],
+    "url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0",
+    "published_at": "2026-11-18T01:13:40Z",
+    "prerelease": true,
+    "authenticode": "NotSigned",
+    "public_redownload_hashes_matched": true
+  },
+  "real_av_scan_performed": false
 }

@@ -11,6 +11,11 @@ if (release.status !== 'released' || !/^\d+\.\d+\.\d+$/.test(version) ||
     release.release_url !== `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v${version}`) {
   throw new Error('A verified, published installer and checksum are required before building.');
 }
+if (version !== '0.1.0' && (!release.server ||
+    release.server.download_url !== `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v${version}/FIRE-Command-Studio-Web-${version}.zip` ||
+    !/^[a-f0-9]{64}$/.test(release.server.sha256) || !Number.isSafeInteger(release.server.bytes) || release.server.bytes < 100000)) {
+  throw new Error('A verified server package and checksum are required for the dual-track release.');
+}
 const output = path.join(root, 'dist');
 await mkdir(output, { recursive: true });
 for (const name of ['index.html', 'style.css', 'app.js', 'release.json', 'assets']) {

@@ -1,6 +1,6 @@
 # Windows 설치형 배포 계약
 
-사용자 최종 선택(2026-11-17): 대형 화면을 보고 구두로 토론하며 진행자 한 명이 PC로 운영한다. 원래 기능을 유지하기 위해 Windows 로컬 설치 프로그램을 별도로 내려받도록 한다. 정적호스팅에는 다운로드·설치/운영 안내를 게시한다. 여러 PC 접속·브라우저 전용 서버리스 전환은 필수가 아니다. 원본 plan.md는 변경하지 않고 최신 지시 U26을 현재 배포 구조에 적용한다.
+사용자 최종 선택(2026-11-17): 대형 화면을 보고 구두로 토론하며 진행자 한 명이 PC로 운영한다. 원래 기능을 유지하기 위해 Windows 로컬 설치 프로그램을 별도로 내려받도록 한다. 정적호스팅에는 다운로드·설치/운영 안내를 게시한다. 여러 PC 접속·브라우저 전용 서버리스 전환은 필수가 아니다. 원본 plan.md는 변경하지 않고 U26의 설치판을 유지하고 최신 U30에 따라 웹서버판도 함께 제공한다. 웹서버 운영은 WEB_DEPLOYMENT.md를 따른다.
 
 ## 제공물과 경계
 
@@ -23,11 +23,11 @@
 
 브라우저 전용 WebAssembly 검토는 U26으로 중단했다. 해당 의존성/미완성 소스를 제품에 넣지 않으며, 조사한 배포본의 구형 이미지 패키지도 포함하지 않는다. 설치형 구현과 독립 패키지 검증을 마쳤으며 실제 설치/브라우저·재설치/제거 시험과 게시 증거는 아래에 유지한다.
 
-고급 승인 설정은 사용자 데이터 폴더의 settings.env에만 입력한다. 이 폴더는 실행 창의 기록·백업 폴더 버튼으로 연다. 공개 지도 JS 키는 승인 후 재시작하면 적용하고, 공공 API 비밀키는 로컬 서버만 읽는다. 승인된 IFC 변환은 `FIRECommandStudio.exe --convert-ifc 입력.ifc --output 새출력.glb --headless --no-browser`로 HTTP 서비스를 시작하지 않고 수행한다. 도구/AV/권리 승인은 기존 ASSET_PIPELINE을 따른다.
+0.2부터 고급 승인 설정은 사용자 데이터 폴더의 settings.json(schema_version1)에 저장한다. 기존 settings.env는 첫 실행 때 허용 항목만 이관하며 원본을 보존한다. JSON 생성 후에는 settings.json을 수정하고 재시작한다. 예시는 web/config/settings.example.json을 따른다. 이 폴더는 실행 창의 기록·백업 폴더 버튼으로 연다. 공개 지도 JS 키는 승인 후 재시작하면 적용하고, 공공 API 비밀키는 로컬 서버만 읽는다. 승인된 IFC 변환은 `FIRECommandStudio.exe --convert-ifc 입력.ifc --output 새출력.glb --headless --no-browser`로 HTTP 서비스를 시작하지 않고 수행한다. 도구/AV/권리 승인은 기존 ASSET_PIPELINE을 따른다.
 
 ## 설치·운영 방법
 
-1. [릴리스](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.1.0)에서 `FIRE-Command-Studio-Setup-0.1.0-x64.exe`를 내려받는다. 게시 SHA256과 파일을 대조할 수 있다. 설치본은 전자서명되지 않았다.
+1. [릴리스](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0)에서 `FIRE-Command-Studio-Setup-0.2.0-x64.exe`를 내려받는다. 게시 SHA256과 파일을 대조할 수 있다. 설치본은 전자서명되지 않았다.
 2. 설치 프로그램을 실행한다. 사용자별 설치이며 관리자 권한과 별도 Python/Node 설치가 필요하지 않다. 기본 설치 폴더는 `%LOCALAPPDATA%\Programs\FIRECommandStudio`다.
 3. 시작 메뉴의 FIRE-COMMAND STUDIO를 실행한다. 제어 창의 **훈련 스튜디오 열기**에서 기본 브라우저를 연다. 기본 주소는 `http://127.0.0.1:8765`이며 다른 프로그램이 점유하면 빈 포트를 사용한다. 제어 창에서 현재 앱을 연다.
 4. 진행자 한 명이 조작하고 **공용화면**을 프로젝터로 옮긴다. 참가자는 화면을 보고 구두로 토론하며 진행자가 대리 입력한다. 공용화면에는 별도의 서버 공개 투영을 사용한다.
@@ -50,3 +50,8 @@
 
 
 U27 호스팅 대상 정정: 현재 기본 다운로드·사용 안내는 **[공개 GitHub Pages](https://leondic1976.github.io/FIRE-COMMAND-STUDIO-/)**다. 로그인 없이 열리며 Pages 배포/소스CI·공개 자원7개 해시·두 엔진 PC/모바일·설치파일 링크 검증을 완료했다. 이전 Sites 주소는 과거 보조 배포 기록이다. 설치파일0.1.0은 변경하지 않았다.
+
+
+## 0.2.0 JSON 투트랙 실제 검증 (2026-11-18)
+
+[공개 릴리스](https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/v0.2.0)에는 Windows 설치본과 별도 웹서버 ZIP·체크섬을 함께 제공한다. Windows 설치31,547,397바이트/SHA256 `5a6415205fccbf3c203e8340744e1d81c49cc99d0f1c9f151a472ab93de6a1cd`, NotSigned다. 실제0.1→0.2 업그레이드에서 훈련/기존env/JSON이관/백업을 보존했다. 최종 설치본 두 엔진 각8개·지도 합성 각3개·재설치/제거 후19개 훈련 보존이 통과했다. 설치784파일/67,135,337바이트·Python3.14.10을 확인했다. 실제 AV·Windows10/다른PC·기관 시범훈련은 미실행이다. [투트랙 증거](evidence/dual-track-20261118.json). 위0.1의 다른 버전 업그레이드 미실행 문장은 해당 이전 시점 기록이며 이번에는0.1→0.2를 실제 실행했다.
