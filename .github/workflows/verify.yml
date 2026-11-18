@@ -28,7 +28,7 @@ jobs:
       - run: npm test
       - run: python scripts/dependency_inventory.py
       - run: python scripts/audit_python_dependencies.py
-      - run: npm audit --audit-level=high
+      - run: python -m scripts.audit_javascript_dependencies
       - name: Build web server distribution with dependency notices
         run: |
           python -m scripts.desktop_notices

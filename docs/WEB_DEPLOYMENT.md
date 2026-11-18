@@ -69,3 +69,5 @@ python -m web.server --data-dir runtime/web-server --restore-from backups/traini
 AI·실제 지휘망 발신은 기본 비활성이다. 외부 API·지도·AV·정밀 모델·IFC·영상 처리는 원래의 기관 승인·권리·고정 도구 조건을 유지한다. Linux 컨테이너에서 Windows Job/오프라인 호스트 승인을 자동으로 충족했다고 표현하지 않는다. 해당 네이티브 처리는 승인된 지원 호스트가 필요하며 준비 전에는 격리를 유지한다.
 
 현재 제공물은 훈련용 로컬/웹 배포판이다. 실제 기관 SOP 검수·보안 승인·약10명 회의실 시범훈련과 실제 시설 정확도/장비 성능 검증은 별도다. GitHub Pages 안내 페이지와 실제 Python 운영 서버의 주소는 다르다.
+
+보안 점검 참고(2026-11-18): npm 개발 도구 picomatch4.0.7에는 수정판 없는 [GHSA-fc5q-39xc-vjpf](https://github.com/advisories/GHSA-fc5q-39xc-vjpf)가 있다. 빌드에서 저장소 자체 glob만 사용하며 Node/개발 서버는 운영물에 포함하지 않는다. 전체 npm 보고를 보존하고 정확한 개발 경로/버전만2026-12-18까지 별도 평가한다. 새 권고·운영 경로·기한 경과는 CI를 중단한다. 컨테이너 런타임에서는 불필요한 pip를 제거하므로 추가 패키지는 이미지를 다시 빌드해 반영한다.

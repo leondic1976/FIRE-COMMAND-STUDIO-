@@ -377,3 +377,10 @@
 - 실제 웹서버8016·격리 합성 DB에서 Chromium8개122.37초/Firefox8개163.42초를 통과했다. JSON 편집 저장·파일 다운로드·미리보기·새 편집본·손상 거절과 기존10사건/보고/인계/AAR/공용 격리/모바일 흐름을 포함한다. 웹/로컬 표시 보완 뒤 마지막 JSON 집중시험은 Chromium1개4.00초·Firefox1개8.14초 통과했다. 첫 표시 시험은 존재하지 않는 .app-header 선택자를 쓴1실패였고 실제 로그인 화면의 웹서버판 표시로 바로잡았다. 실패 파일은 보존했다.
 - 서버 ZIP을 새 디렉터리에 풀어 Node/PYTHONPATH 없이 실행·JSON 지속·백업·서버 실행 중 복원 거절·중지 후 복원/재시작을 실제 검증했다(artifacts/web-server-extracted-qa.json). 이 후보는 source_dirty=true로 발행하지 않는다. 깨끗한 커밋의 서버 ZIP/Windows0.2와 실제0.1→0.2 업그레이드·컨테이너 CI는 후속 검증이다. 로컬 Docker는 없어 실행했다고 기록하지 않는다.
 - 원본 plan/사본 바이트 동일. 별도 웹서버 패키지·Docker/HTTPS Compose·계정/백업/업데이트 문서를 준비했다. 실제 공개 서버/도메인 미제공이므로 Pages를 실행 웹앱으로 표시하지 않는다. 이전 workspace 수정 커밋c62b388/원격 CI44078012351은 success다.
+
+
+### 2026-11-18 원격 보안 게이트 최초 실패와 보완
+
+- 소스18a7d3a의 서버 실행/Compose/비루트·읽기전용·JSON 재시작은 통과했으나 컨테이너44212306461은 setuptools70.3.0/CVE-2025-47273 High1건으로 실패했다. 보고의 AnalyzedBy=sbom이며 pip 내장 vendored 고지에서 나온 항목이다. 불필요한 설치 도구 pip를 최종 런타임의 시스템/venv 양쪽에서 제거해 코드/고지도 함께 제외하고 Trivy를 공식 보안판0.76.2로 고정한다. 취약점 무시 규칙은 추가하지 않았다. 재검증 전 통과로 기록하지 않는다.
+- 전체 CI44212306451은 기능 시험·Python 권고 조회를 통과한 뒤 npm5개High 보고로 실패했다. 원인은 전날2026-11-17 갱신된 picomatch4.0.7의 단일 GHSA-fc5q-39xc-vjpf와 Vite/Vitest 등의 간접 경로다. 공식 권고/레지스트리는 수정판 없음이다. 강제 구버전 변경 대신 정확한 권고·4.0.7·개발 전용 경로만2026-12-18까지 수용하며 운영 의존성/새 권고/조회 실패/기한 경과는 CI를 실패시킨다. 원시 npm 보고와 판정을 artifacts에 저장한다. build는 저장소 자체 glob만 처리하고 운영 이미지/설치본에는 Node/dev 서버가 없다. 알려진 권고0이라고 표현하지 않는다. 정책 정상/신규/운영/기한/버전/조회 오류6개0.04초 통과, 실제 전체 조회에서5개개발경로/단일권고·운영0 확인.
+- 컨테이너 원시 보고/로그는 artifacts/container-first, 전체 CI 최초 실패는 artifacts/dual-ci-first에 보존했다. [공식 권고](https://github.com/advisories/GHSA-fc5q-39xc-vjpf), [setuptools 원본](https://github.com/pypa/setuptools/security/advisories/GHSA-5rjg-fvgr-3xxf), [Trivy0.76.2](https://github.com/aquasecurity/trivy/releases/tag/v0.76.2).

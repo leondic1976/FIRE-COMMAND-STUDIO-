@@ -38,6 +38,8 @@ COPY web/*.py web/
 COPY web/config web/config
 COPY --from=frontend /build/web/dist web/dist
 COPY --from=dependencies /build/runtime/desktop-notices notices
+RUN /usr/local/bin/python -m pip uninstall --yes pip \
+    && /opt/venv/bin/python -m pip uninstall --yes pip
 USER 10001:10001
 EXPOSE 8080
 VOLUME ["/data"]
