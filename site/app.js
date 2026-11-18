@@ -8,9 +8,13 @@ function trustedRelease(value){
   const server=value.server;
   if(!server||server.download_url!==`https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/v${value.version}/FIRE-Command-Studio-Web-${value.version}.zip`||!/^[a-f0-9]{64}$/.test(server.sha256)||!Number.isSafeInteger(server.bytes)||server.bytes<100000)throw Error('웹서버 패키지의 출처와 체크섬을 확인할 수 없습니다.');
  }
+ if(value.screen){
+  const screen=value.screen;
+  if(!/^\d+\.\d+\.\d+$/.test(screen.version)||screen.download_url!==`https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/screen-v${screen.version}/FIRE-Screen-${screen.version}.zip`||screen.release_url!==`https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v${screen.version}`||!/^[a-f0-9]{64}$/.test(screen.sha256)||!Number.isSafeInteger(screen.bytes)||screen.bytes<100000)throw Error('SCREEN 패키지의 출처와 체크섬을 확인할 수 없습니다.');
+ }
  return value;
 }
-for(const link of document.querySelectorAll('.download,.server-download'))link.addEventListener('click',event=>{if(link.getAttribute('aria-disabled')==='true')event.preventDefault();});
+for(const link of document.querySelectorAll('.download,.server-download,.screen-download'))link.addEventListener('click',event=>{if(link.getAttribute('aria-disabled')==='true')event.preventDefault();});
 try{
  const response=await fetch('release.json',{cache:'no-store'});if(!response.ok)throw Error('배포 정보를 불러오지 못했습니다.');release=trustedRelease(await response.json());
  document.querySelector('#version').textContent=`v${release.version} · ${release.published_date}`;
@@ -23,6 +27,11 @@ try{
   for(const link of document.querySelectorAll('.server-download')){link.href=release.server.download_url;link.removeAttribute('aria-disabled');}
   document.querySelector('#server-sha').textContent=release.server.sha256;
   document.querySelector('#server-size').textContent=`${(release.server.bytes/1048576).toFixed(2)} MB · Python 서버·빌드된 웹 화면·Docker/HTTPS 구성`;
+ }
+ if(release.screen){
+  for(const link of document.querySelectorAll('.screen-download')){link.href=release.screen.download_url;link.removeAttribute('aria-disabled');}
+  document.querySelector('#screen-sha').textContent=release.screen.sha256;
+  document.querySelector('#screen-size').textContent=`SCREEN v${release.screen.version} · ${(release.screen.bytes/1048576).toFixed(2)} MB · Python 서버·빌드된 3D 화면`;
  }
  state.textContent=`v${release.version} · Windows 64비트 · ${(release.bytes/1048576).toFixed(1)} MB · 로컬 훈련 시범판`;
 }catch(error){state.textContent=error instanceof Error?error.message:'다운로드 상태를 확인할 수 없습니다.';}

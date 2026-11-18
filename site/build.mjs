@@ -16,6 +16,15 @@ if (version !== '0.1.0' && (!release.server ||
     !/^[a-f0-9]{64}$/.test(release.server.sha256) || !Number.isSafeInteger(release.server.bytes) || release.server.bytes < 100000)) {
   throw new Error('A verified server package and checksum are required for the dual-track release.');
 }
+if (release.screen) {
+  const screen = release.screen;
+  if (!/^\d+\.\d+\.\d+$/.test(screen.version) ||
+      screen.download_url !== `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/screen-v${screen.version}/FIRE-Screen-${screen.version}.zip` ||
+      screen.release_url !== `https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v${screen.version}` ||
+      !/^[a-f0-9]{64}$/.test(screen.sha256) || !Number.isSafeInteger(screen.bytes) || screen.bytes < 100000) {
+    throw new Error('A verified SCREEN release and checksum are required.');
+  }
+}
 const output = path.join(root, 'dist');
 await mkdir(output, { recursive: true });
 for (const name of ['index.html', 'style.css', 'app.js', 'release.json', 'assets']) {

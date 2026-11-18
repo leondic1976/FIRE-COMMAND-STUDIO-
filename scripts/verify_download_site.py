@@ -37,6 +37,13 @@ def verify():
                     for anchor in page.locator('.server-download').all():
                         expect(anchor).to_have_attribute('href', RELEASE['server']['download_url'])
                         assert anchor.get_attribute('aria-disabled') is None
+                if RELEASE.get('screen'):
+                    expect(page.locator('#screen-sha')).to_have_text(RELEASE['screen']['sha256'])
+                    expect(page.locator('.screen-download')).to_have_attribute('href', RELEASE['screen']['download_url'])
+                    assert page.locator('.screen-download').get_attribute('aria-disabled') is None
+                assert page.locator('html').evaluate('(el)=>getComputedStyle(el).colorScheme') == 'light'
+                assert page.locator('.cards article').first.evaluate('(el)=>getComputedStyle(el).backgroundImage') == 'none'
+                assert page.locator('.cards article').first.evaluate('(el)=>getComputedStyle(el).backgroundColor') == 'rgb(255, 255, 255)'
                 expect(page.locator('#signature')).to_contain_text('전자서명 없음')
                 expect(page.locator('#release-link')).to_have_attribute('href', RELEASE['release_url'])
                 assert page.locator('img[src="assets/board-preview.png"]').evaluate('(el)=>el.complete&&el.naturalWidth===1380')
@@ -55,12 +62,17 @@ def verify():
             if RELEASE.get('server'):
                 changes += [{'server': {**RELEASE['server'], 'download_url': 'https://example.invalid/other.zip'}},
                             {'server': {**RELEASE['server'], 'sha256': 'invalid'}}, {'server': None}]
+            if RELEASE.get('screen'):
+                changes += [{'screen': {**RELEASE['screen'], 'download_url': 'https://example.invalid/screen.zip'}},
+                            {'screen': {**RELEASE['screen'], 'release_url': 'https://example.invalid/release'}},
+                            {'screen': {**RELEASE['screen'], 'sha256': 'invalid'}},
+                            {'screen': {**RELEASE['screen'], 'bytes': 0}}]
             for change in changes:
                 bad = {**RELEASE, **change}
                 page.route('**/release.json', lambda route, request, body=bad: route.fulfill(json=body))
                 page.goto(BASE + '/')
                 expect(page.locator('#download-state')).not_to_contain_text('상태를 확인하고 있습니다')
-                for anchor in page.locator('.download,.server-download').all():
+                for anchor in page.locator('.download,.server-download,.screen-download').all():
                     expect(anchor).to_have_attribute('aria-disabled', 'true')
                     expect(anchor).to_have_attribute('href', '#release')
                 page.unroute('**/release.json')

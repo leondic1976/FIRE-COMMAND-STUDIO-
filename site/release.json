@@ -13,5 +13,13 @@
     "sha256": "26ea88b5aa8e5c03327f1a24c551acfe916a97a5e7e8a0f950d6c9fe92f27f05",
     "bytes": 724857,
     "source_commit": "3aefa7da8aa391299ee27cb3a31743a8df785408"
+  },
+  "screen": {
+    "version": "0.1.0",
+    "download_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/download/screen-v0.1.0/FIRE-Screen-0.1.0.zip",
+    "release_url": "https://github.com/leondic1976/FIRE-COMMAND-STUDIO-/releases/tag/screen-v0.1.0",
+    "sha256": "679d3f8948726f30642c74bfc191af7f451e178a5cdfeb1327293eec686ff2c8",
+    "bytes": 618292,
+    "source_commit": "1b1202b9a1c1a9cf237df918f6faa2b17ca7dc2e"
   }
 }
